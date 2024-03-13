@@ -1,17 +1,23 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../layouts/Layout";
-import PostHeaderLayout from "../layouts/PostHeaderLayout";
 import PostNew from "../pages/PostNew/PostNew";
 import Home from "../pages/Home/Home";
 import PostResult from "../pages/PostResult/PostResult";
+import HeaderLayout from "../layouts/HeaderLayout";
+import NotFound from "../components/Error/NotFound";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <Layout />,
+		errorElement: <NotFound />,
 		children: [
 			{
-				element: <PostHeaderLayout />,
+				path: "/",
+				element: <Home />,
+			},
+			{
+				element: <HeaderLayout />,
 				children: [
 					{
 						path: "/post",
@@ -22,10 +28,6 @@ const router = createBrowserRouter([
 						element: <PostResult />,
 					},
 				],
-			},
-			{
-				path: "/",
-				element: <Home />,
 			},
 		],
 	},
