@@ -1,13 +1,12 @@
-import * as S from "./App.style";
-import { RouterProvider } from "react-router-dom";
-import router from "./router/Router";
+import { RouterProvider } from 'react-router-dom';
+import router from './router/Router';
 
 function App() {
-	return (
-		<S.Wrapper>
-			<RouterProvider router={router} />
-		</S.Wrapper>
-	);
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;
