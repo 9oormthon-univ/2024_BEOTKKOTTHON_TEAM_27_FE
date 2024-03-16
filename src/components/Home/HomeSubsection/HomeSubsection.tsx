@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import sodong from '../../../assets/Image/sodong_half.png';
 import styled from 'styled-components';
+import { Ai, ChatGpt, Kogpt } from '../../../assets/svg';
 
 export default function HomeSubsection() {
   const navigate = useNavigate();
@@ -12,6 +13,11 @@ export default function HomeSubsection() {
     <HomeSubSectionContainer>
       <PostCreation onClick={handlePostCreate}>
         <PostTitle>포스트 생성</PostTitle>
+        <IconContainer>
+          <Ai style={{ height: '20px' }} />
+          <Kogpt style={{ height: '20px' }} />
+          <ChatGpt style={{ height: '20px' }} />
+        </IconContainer>
         <img src={sodong} alt='소동-캐릭터' />
       </PostCreation>
 
@@ -55,6 +61,16 @@ const PostCreation = styled.div`
 const PostTitle = styled.p`
   padding-top: 1rem;
   color: ${({ theme }) => theme.colors.white};
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  position: absolute;
+  flex-wrap: wrap;
+
+  width: 30%;
+  padding-top: 11%;
+  gap: 0.3rem;
 `;
 
 const PostContainer = styled.div`

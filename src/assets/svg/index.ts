@@ -1,4 +1,4 @@
-export { default as AibUtton } from './AibUtton';
+export { default as Ai } from './Ai';
 export { default as ChatGpt } from './ChatGpt';
 export { default as Confetti } from './Confetti';
 export { default as Confetti2 } from './Confetti2';
