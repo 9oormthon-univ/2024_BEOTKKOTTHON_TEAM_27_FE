@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import sodong from '../../../assets/Image/sodong_half.png';
+import Sodong from '../../../assets/Image/sodong_half.png';
 import styled from 'styled-components';
 import { Ai, ChatGpt, Kogpt } from '../../../assets/svg';
+import MyStore from '../../../assets/Image/myStoreSetting.png';
 
 export default function HomeSubsection() {
   const navigate = useNavigate();
@@ -18,12 +19,15 @@ export default function HomeSubsection() {
           <Kogpt style={{ height: '20px' }} />
           <ChatGpt style={{ height: '20px' }} />
         </IconContainer>
-        <img src={sodong} alt='소동-캐릭터' />
+        <img src={Sodong} alt='소동-캐릭터' />
       </PostCreation>
 
       <PostContainer>
         <StoreManagement>
-          내 가게 <br /> 정보 관리하기
+          <StoreTitle>
+            내 가게 <br /> 정보 관리하기
+          </StoreTitle>
+          <img src={MyStore} alt='소동-캐릭터' />
         </StoreManagement>
         <StoreContainer>
           <DataLookup>
@@ -63,13 +67,18 @@ const PostTitle = styled.p`
   color: ${({ theme }) => theme.colors.white};
 `;
 
+const StoreTitle = styled.p`
+  padding-top: 6rem;
+  color: ${({ theme }) => theme.colors.black};
+`;
+
 const IconContainer = styled.div`
   display: flex;
   position: absolute;
   flex-wrap: wrap;
 
   width: 30%;
-  padding-top: 11%;
+  padding-top: 12%;
   gap: 0.3rem;
 `;
 
@@ -80,10 +89,20 @@ const PostContainer = styled.div`
 
 const StoreManagement = styled.div`
   display: flex;
+  position: relative;
+
+  padding: 1rem;
   height: 10.5rem;
   width: 50%;
   border-radius: 10px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+
+  img {
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    right: 10px;
+  }
 `;
 
 const StoreContainer = styled.div`
