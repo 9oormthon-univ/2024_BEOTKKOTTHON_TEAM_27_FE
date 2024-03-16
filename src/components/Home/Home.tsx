@@ -5,15 +5,15 @@ import { Confetti, Confetti2 } from '../../assets/svg';
 export default function Home() {
   return (
     <HomeContainer>
-      <Confetti
+      <Confetti style={{ left: '10%', top: '21%', position: 'absolute', height: '6.4rem' }} />
+      <Confetti2
         style={{
-          right: '2%',
-          top: '16%',
+          right: '4%',
+          top: '13%',
           position: 'absolute',
           height: '6.4rem',
         }}
       />
-      <Confetti2 style={{ left: '2%', top: '21%', position: 'absolute', height: '6.4rem' }} />
       <HomeTitle>
         SNS 마케팅 포스트 <br />
         지금 바로 만들어 보세요!
