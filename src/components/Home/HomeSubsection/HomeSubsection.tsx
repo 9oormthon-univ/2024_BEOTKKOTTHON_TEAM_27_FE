@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Sodong from '../../../assets/Image/sodong_half.png';
 import styled from 'styled-components';
-import { Ai, ChatGpt, Kogpt } from '../../../assets/svg';
+import { Ai, ChatGpt, Kogpt, Myposting } from '../../../assets/svg';
 import MyStore from '../../../assets/Image/myStoreSetting.png';
 
 export default function HomeSubsection() {
@@ -33,6 +33,7 @@ export default function HomeSubsection() {
           <DataLookup>
             내가 만든 <br />
             포스팅
+            <Myposting style={{ height: '2.5rem' }} />
           </DataLookup>
           <UserGuide>이용가이드</UserGuide>
         </StoreContainer>
@@ -115,12 +116,17 @@ const StoreContainer = styled.div`
 `;
 
 const DataLookup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
   height: 50%;
   border-radius: 10px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
 const UserGuide = styled.div`
+  padding: 1rem;
   height: 50%;
   border-radius: 10px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
