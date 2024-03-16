@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import HomeContainer from '../../components/Home/Home';
 
 export default function Home() {
   useEffect(() => {
@@ -6,5 +7,5 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => console.log(data));
   }, []);
-  return <div>메인 홈 화면입니다.</div>;
+  return <HomeContainer />;
 }

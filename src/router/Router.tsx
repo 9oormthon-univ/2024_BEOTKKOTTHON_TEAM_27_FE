@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../layouts/Layout";
 import PostNew from "../pages/PostNew/PostNew";
-import Home from "../pages/Home/Home";
+import Home from "../pages/Home/HomePage";
 import PostResult from "../pages/PostResult/PostResult";
 import HeaderLayout from "../layouts/HeaderLayout";
 import NotFound from "../components/Error/NotFound";
