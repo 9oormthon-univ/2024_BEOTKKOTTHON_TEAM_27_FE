@@ -4,7 +4,7 @@ import { css } from 'styled-components';
 const colors = {
   white: '#FFFFFF',
   black: '#1E1E1E',
-  main: '#342FFF',
+  main: '#4C2FFF',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
   G_03: '#E1DEDF',
