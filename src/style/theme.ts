@@ -32,6 +32,13 @@ const fonts = {
     font-weight: 700;
     line-height: 125%;
   `,
+  heading_02: css`
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  `,
 };
 
 const theme = { colors, fonts };
