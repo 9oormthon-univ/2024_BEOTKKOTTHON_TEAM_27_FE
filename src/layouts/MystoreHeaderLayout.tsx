@@ -2,11 +2,11 @@ import { Outlet } from 'react-router-dom';
 import Header from '../components/common/Header';
 import { useMobile } from '../hooks/useMobile';
 
-export default function HeaderLayout() {
+export default function MystoreHeaderLayout() {
   useMobile();
   return (
     <>
-      <Header title={'포스팅 만들기'} />
+      <Header title={'내 가게 등록하기'} />
       <Outlet />
     </>
   );
