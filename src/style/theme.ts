@@ -3,7 +3,8 @@ import { css } from 'styled-components';
 /** 컬러 코드 나오면 추가 될 예정 */
 const colors = {
   white: '#FFFFFF',
-  black: '#222222',
+  black: '#1E1E1E',
+  main: '#342FFF',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
   G_03: '#E1DEDF',
@@ -18,18 +19,18 @@ const colors = {
 /** 폰트 결정 시 수정 될 예정 */
 const fonts = {
   Title: css`
-    font-family: 'SUIT';
-    font-size: 2.4rem;
+    font-family: Pretendard;
+    font-size: 24px;
     font-style: normal;
-    font-weight: 600;
-    line-height: 150%;
+    font-weight: 700;
+    line-height: 160%;
   `,
   heading_01: css`
-    font-family: 'SUIT';
-    font-size: 2.2rem;
+    font-family: Pretendard;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 600;
-    line-height: 150%;
+    font-weight: 700;
+    line-height: 125%;
   `,
 };
 
