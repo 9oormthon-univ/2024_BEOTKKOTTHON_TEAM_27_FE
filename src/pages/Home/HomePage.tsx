@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
-import HomeContainer from '../../components/Home/Home';
+import styled from 'styled-components';
+import HomeTitle from '../../components/Home/HomeTitle/HomeTitle';
+import HomeSubsection from '../../components/Home/HomeSubsection/HomeSubsection';
 
 export default function Home() {
   useEffect(() => {
@@ -7,5 +9,15 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => console.log(data));
   }, []);
-  return <HomeContainer />;
+  return (
+    <HomePageContainer>
+      <HomeTitle />
+      <HomeSubsection />
+    </HomePageContainer>
+  );
 }
+
+const HomePageContainer = styled.section`
+  padding: 2rem;
+  width: 100vw;
+`;
