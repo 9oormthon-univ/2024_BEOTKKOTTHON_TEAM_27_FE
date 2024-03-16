@@ -26,6 +26,7 @@ export default function Home() {
 const HomeContainer = styled.div`
   padding: 2rem;
   width: 100vw;
+  /* height: 100dvh; */
 `;
 
 const HomeTitle = styled.h1`
