@@ -39,6 +39,22 @@ const fonts = {
     font-weight: 700;
     line-height: normal;
   `,
+  heading_03: css`
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%; /* 32px */
+  `,
+  footer_01: css`
+    color: #fff;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  `,
 };
 
 const theme = { colors, fonts };
