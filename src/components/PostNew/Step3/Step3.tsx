@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import PostFooter from '../PostFooter/PostFooter';
 import SelectType from './SelectType/SelectType';
+import Title from '../../common/Title/Title';
 
 export default function Step3() {
   return (
@@ -24,10 +25,6 @@ export default function Step3() {
 const PostTitleContainer = styled.div`
   margin-top: 7.5rem;
   width: 100vw;
-`;
-
-const Title = styled.p`
-  ${({ theme }) => theme.fonts.PostingTitle};
 `;
 
 const Highlight = styled.span`
