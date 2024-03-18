@@ -4,6 +4,8 @@ import { css } from 'styled-components';
 const colors = {
   white: '#FFFFFF',
   black: '#1E1E1E',
+  gray: '#94A3B8',
+  light_gray: '#F9F9F9',
   main: '#4C2FFF',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
@@ -31,6 +33,24 @@ const fonts = {
     font-style: normal;
     font-weight: 700;
     line-height: 125%;
+  `,
+  description: css`
+    color: #94a3b8;
+    font-family: 'Pretendard';
+    font-size: 1rem;
+    font-weight: 500;
+  `,
+  post_normal: css`
+    color: #000;
+    font-family: 'Pretendard';
+    font-size: 0.875rem;
+    font-weight: 400;
+  `,
+  post_big: css`
+    color: #000;
+    font-family: Pretendard;
+    font-size: 1.25rem;
+    font-weight: 400;
   `,
 };
 
