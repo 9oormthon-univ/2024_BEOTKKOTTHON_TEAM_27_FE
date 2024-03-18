@@ -13,3 +13,5 @@ export { default as MyStore } from './MyStore';
 export { default as Myposting } from './Myposting';
 export { default as TipBtn } from './Tip';
 export { default as Xmark } from './Xmark';
+export { default as IcImgEditBtn } from './IcImgEditBtn';
+export { default as IcEmptyThumbnailFinal } from './IcEmptyThumbnailFinal';
