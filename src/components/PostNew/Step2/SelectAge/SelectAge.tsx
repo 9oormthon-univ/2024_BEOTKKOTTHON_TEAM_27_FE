@@ -40,11 +40,13 @@ const AgeBox = styled.div<AgeBoxProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 5.5rem;
   height: 5.5rem;
   padding: 0.5rem 1rem;
   border-radius: 10px;
   cursor: pointer;
+
   ${({ theme }) => theme.fonts.heading_01};
   color: ${({ selected }) => (selected ? '#402FFF' : '#BDBDBD')};
   border: ${({ selected }) => (selected ? 'none' : '1px solid #ccc')};

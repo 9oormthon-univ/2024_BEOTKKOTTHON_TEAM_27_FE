@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import Step2 from '../../components/PostNew/Step2/Step2';
+// import Step2 from '../../components/PostNew/Step2/Step2';
 import Step1 from '../../components/PostNew/Step1/Step1';
 
 export default function PostNew() {

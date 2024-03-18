@@ -45,6 +45,7 @@ const GenderOption = styled.div<GenderOptionProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   gap: 2rem;
   cursor: pointer;
   ${({ theme }) => theme.fonts.heading_01};
