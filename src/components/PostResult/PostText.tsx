@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import Toggle from '../../components/common/Toggle/Toggle';
 import { useState } from 'react';
 
-export default function PostText() {
+interface PostTextProps {
+  text: string;
+}
+export default function PostText({ text }: PostTextProps) {
   const [isBig, setIsBig] = useState(false);
   function handleToggle() {
     setIsBig(!isBig);
@@ -11,13 +14,7 @@ export default function PostText() {
   return (
     <PostTextContainer>
       <Toggle label='큰글씨' checked={isBig} onChange={handleToggle} />
-      <Text $isbig={isBig.toString()}>
-        망원동 성공 맛집 딸기프토 감성 카페☕️ <br />
-        쫀득, 부드러운 토스트 위에 크림치즈와 딸기가 듬뿍!🍓 <br />
-        비주얼부터 맛까지 빠짐없는 망원동 필수 코스 ✨ <br /> <br /># 망원동카페 # 합정카페 <br />
-        🏷️ 망원동 #콘웰 <br />
-        📍 서울 마포구 월드컵로15길 40 2층
-      </Text>
+      <Text $isbig={isBig.toString()}>{text}</Text>
     </PostTextContainer>
   );
 }
@@ -41,4 +38,5 @@ const Text = styled.p<{ $isbig: string }>`
 
   ${({ theme, $isbig }) => ($isbig == 'true' ? theme.fonts.post_big : theme.fonts.post_normal)};
   transition: 300ms all;
+  white-space: pre-line;
 `;
