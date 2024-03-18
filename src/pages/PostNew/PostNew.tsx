@@ -1,17 +1,23 @@
+import { styled } from 'styled-components';
 import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
 import ButtonPrev from '../../components/common/Button/ButtonPrev/ButtonPrev';
-import Title from '../../components/common/Title/Title';
+
+import PostTitle from '../../components/PostNew/PostTitle/PostTitle';
+import SelectGender from '../../components/PostNew/SelectGender/SelectGender';
+import SelectAge from '../../components/PostNew/SelectAge/SelectAge';
 
 export default function PostNew() {
   return (
-    <>
-      <Title highlightText='홍보 타겟'>
-        의 <br />
-        성별, 연령대를 설정해 주세요
-      </Title>
-
+    <PostNewContainer>
+      <PostTitle />
+      <SelectGender/>
+      <SelectAge/>
       <ButtonFill title='다음' width='11.5rem' />
       <ButtonPrev title='로그인' width='20rem' />
-    </>
+    </PostNewContainer>
   );
 }
+
+const PostNewContainer = styled.section`
+  padding: 0 1.5rem;
+`;

@@ -2,7 +2,6 @@ import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 import { TitleProps } from '../../../types/PostNew';
 
-
 export default function Title({ children, highlightText }: PropsWithChildren<TitleProps>) {
   return (
     <PostingTitleContainer>
@@ -16,8 +15,7 @@ export default function Title({ children, highlightText }: PropsWithChildren<Tit
 const PostingTitleContainer = styled.div`
   display: flex;
   align-items: center;
-
-  margin-bottom: 34px;
+  margin-bottom: 0.3rem;
   ${({ theme }) => theme.fonts.PostingTitle};
 
   .highlight {
