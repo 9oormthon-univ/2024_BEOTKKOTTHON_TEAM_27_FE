@@ -6,7 +6,7 @@ interface ButtonFillProps {
   onClick?: () => void;
 }
 
-function ButtonFill({ width, title, onClick }: ButtonFillProps) {
+export default function ButtonFill({ width, title, onClick }: ButtonFillProps) {
   return (
     <ButtonFillContainer width={width} onClick={onClick}>
       {title}
@@ -21,5 +21,3 @@ const ButtonFillContainer = styled.button<{ width?: string }>`
   border-radius: 10px;
   background: ${({ theme }) => theme.colors.main};
 `;
-
-export default ButtonFill;
