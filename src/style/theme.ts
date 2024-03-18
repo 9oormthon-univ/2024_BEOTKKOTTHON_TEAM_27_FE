@@ -55,6 +55,13 @@ const fonts = {
     font-weight: 300;
     line-height: normal;
   `,
+  modal_01: css`
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%; /* 1.8rem */
+  `,
 };
 
 const theme = { colors, fonts };
