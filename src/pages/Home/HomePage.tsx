@@ -24,7 +24,7 @@ export default function Home() {
 }
 
 const HomePageContainer = styled.section`
-  padding: 10rem 2rem;
+  padding: 10rem 1rem;
 `;
 
 const HomeHeader = styled.header`
