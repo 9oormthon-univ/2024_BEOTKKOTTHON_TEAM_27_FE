@@ -22,6 +22,7 @@ const HeaderContainer = styled.div`
 
   width: 100%;
   height: 4rem;
+  left: 0;
   background-color: white;
   z-index: 888;
 
