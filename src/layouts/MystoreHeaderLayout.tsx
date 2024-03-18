@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../components/common/Header';
 
-export default function HeaderLayout() {
-  
+export default function MystoreHeaderLayout() {
+
   return (
     <>
-      <Header title={'포스팅 만들기'} />
+      <Header title={'내 가게 등록하기'} />
       <Outlet />
     </>
   );

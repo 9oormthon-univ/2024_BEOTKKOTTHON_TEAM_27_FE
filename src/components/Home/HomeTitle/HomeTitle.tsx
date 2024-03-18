@@ -28,5 +28,5 @@ const HomeTitleContainer = styled.h1`
   margin-bottom: 34px;
 
   text-align: center;
-  ${({ theme }) => theme.fonts.Title};
+  ${({ theme }) => theme.fonts.HomeTitle};
 `;
