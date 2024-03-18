@@ -32,6 +32,13 @@ const fonts = {
     font-weight: 700;
     line-height: 144.583%; /* 34.7px */
   `,
+  subTitle: css`
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 144.583%; /* 1.35544rem */
+  `,
   heading_01: css`
     font-family: Pretendard;
     font-size: 16px;
