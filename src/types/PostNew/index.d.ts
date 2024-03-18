@@ -1,5 +1,5 @@
 export interface TitleProps {
-  highlightText: string;
+  highlightText?: string;
 }
 
 export interface ButtonProps {
