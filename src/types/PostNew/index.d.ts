@@ -7,3 +7,7 @@ export interface ButtonProps {
   title: string;
   onClick?: () => void;
 }
+
+export interface AgeBoxProps {
+  selected: boolean;
+}
