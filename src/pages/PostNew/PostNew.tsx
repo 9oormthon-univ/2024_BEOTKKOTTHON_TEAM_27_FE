@@ -1,10 +1,8 @@
 import { styled } from 'styled-components';
-import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
-import ButtonPrev from '../../components/common/Button/ButtonPrev/ButtonPrev';
-
 import PostTitle from '../../components/PostNew/PostTitle/PostTitle';
 import SelectGender from '../../components/PostNew/SelectGender/SelectGender';
 import SelectAge from '../../components/PostNew/SelectAge/SelectAge';
+import PostFooter from '../../components/PostNew/PostFooter/PostFooter';
 
 export default function PostNew() {
   return (
@@ -12,8 +10,8 @@ export default function PostNew() {
       <PostTitle />
       <SelectGender/>
       <SelectAge/>
-      <ButtonFill title='다음' width='11.5rem' />
-      <ButtonPrev title='로그인' width='20rem' />
+      <PostFooter/>
+      
     </PostNewContainer>
   );
 }

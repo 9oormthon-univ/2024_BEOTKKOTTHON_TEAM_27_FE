@@ -31,7 +31,9 @@ const AgeSelection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   flex-wrap: wrap;
+  margin-top: 4rem;
   gap: 1rem;
 `;
 

@@ -11,3 +11,7 @@ export interface ButtonProps {
 export interface AgeBoxProps {
   selected: boolean;
 }
+
+export interface GenderOptionProps {
+  selected: boolean;
+}
