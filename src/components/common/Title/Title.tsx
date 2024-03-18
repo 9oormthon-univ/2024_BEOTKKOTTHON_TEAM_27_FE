@@ -1,9 +1,7 @@
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
+import { TitleProps } from '../../../types/PostNew';
 
-interface TitleProps {
-  highlightText: string;
-}
 
 export default function Title({ children, highlightText }: PropsWithChildren<TitleProps>) {
   return (
@@ -17,7 +15,6 @@ export default function Title({ children, highlightText }: PropsWithChildren<Tit
 
 const PostingTitleContainer = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
 
   margin-bottom: 34px;
