@@ -2,15 +2,19 @@ import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
 export default function Title({ children }: PropsWithChildren) {
-  return <PostingTitleContainer>{children}</PostingTitleContainer>;
+  return <TitleContainer>{children}</TitleContainer>;
 }
 
-const PostingTitleContainer = styled.div`
+const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 34px;
 
   text-align: center;
   ${({ theme }) => theme.fonts.PostingTitle};
+
+  // Main Color
+  > span {
+    color: ${({ theme }) => theme.colors.main};
+  }
 `;

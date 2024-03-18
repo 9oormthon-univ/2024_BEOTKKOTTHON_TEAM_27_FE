@@ -6,8 +6,8 @@ const colors = {
   black: '#1E1E1E',
   gray: '#94A3B8',
   light_gray: '#F9F9F9',
+  deep_gray: '#727272',
   main: '#4C2FFF',
-  main: '#402FFF',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
   G_03: '#ECEEF4',
@@ -43,22 +43,22 @@ const fonts = {
     line-height: 125%;
   `,
   description: css`
-    color: #94a3b8;
     font-family: 'Pretendard';
     font-size: 1rem;
     font-weight: 500;
   `,
   post_normal: css`
-    color: #000;
     font-family: 'Pretendard';
     font-size: 0.875rem;
     font-weight: 400;
+    line-height: 120%;
   `,
   post_big: css`
     color: #000;
     font-family: Pretendard;
     font-size: 1.25rem;
     font-weight: 400;
+    line-height: 120%;
   `,
   heading_02: css`
     font-family: Pretendard;
@@ -89,6 +89,11 @@ const fonts = {
     font-style: normal;
     font-weight: 700;
     line-height: 160%; /* 1.8rem */
+  `,
+  toggle_01: css`
+    font-family: 'Pretendard';
+    font-size: 1rem;
+    font-weight: 500;
   `,
 };
 
