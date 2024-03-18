@@ -83,6 +83,13 @@ const fonts = {
     font-weight: 500;
     line-height: 144.583%;
   `,
+  content_01: css`
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 125%;
+  `,
 };
 
 const theme = { colors, fonts };
