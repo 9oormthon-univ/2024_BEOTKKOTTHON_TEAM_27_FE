@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PostFooter from '../PostFooter/PostFooter';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
+import Tip from './Tip/Tip';
 
 export default function Step5() {
   const [content, setContent] = useState('');
@@ -31,8 +32,7 @@ export default function Step5() {
           value={content}
           onChange={handleChange}
           rows={1}
-          placeholder='자세히 적을 수록 AI가 더 만족스러운 
-결과를 생성해요.'
+          placeholder='자세히 적을 수록 AI가 더 만족스러운 결과를 생성해요.'
         />
         {content && (
           <Xmark
@@ -44,6 +44,7 @@ export default function Step5() {
       <CharacterCount>
         {characterCount}/{maxCharacters}
       </CharacterCount>
+      <Tip />
       <PostFooter />
     </>
   );

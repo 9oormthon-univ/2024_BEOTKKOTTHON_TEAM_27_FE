@@ -81,7 +81,7 @@ const PriceInputContainer = styled.div`
   position: relative;
 `;
 
-const Example = styled.p`
+export const Example = styled.div`
   margin: 0.5rem 0 0 0.5rem;
   color: ${({ theme }) => theme.colors.G_06};
   ${({ theme }) => theme.fonts.ex_01};

@@ -61,7 +61,6 @@ const fonts = {
     line-height: 160%; /* 32px */
   `,
   footer_01: css`
-    color: #fff;
     text-align: center;
     font-family: Pretendard;
     font-size: 14px;

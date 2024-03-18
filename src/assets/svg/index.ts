@@ -11,5 +11,5 @@ export { default as Kakaomap } from './Kakaomap';
 export { default as Kogpt } from './Kogpt';
 export { default as MyStore } from './MyStore';
 export { default as Myposting } from './Myposting';
-export { default as Tip } from './Tip';
+export { default as TipBtn } from './Tip';
 export { default as Xmark } from './Xmark';
