@@ -3,6 +3,7 @@ import PostTitle from '../../components/PostResult/PostTitle';
 import PostImage from '../../components/PostResult/PostImage';
 import PostText from '../../components/PostResult/PostText';
 import { useEffect, useState } from 'react';
+import PostButton from '../../components/PostResult/PostButton';
 
 interface Post {
   image: string;
@@ -24,6 +25,7 @@ export default function PostResult() {
       <PostTitle />
       <PostImage url={post.image} />
       <PostText text={post.text} />
+      <PostButton />
     </PostResultContainter>
   );
 }
@@ -36,4 +38,5 @@ const PostResultContainter = styled.div`
 
   width: 100%;
   height: 100%;
+  padding-bottom: calc(3.125rem + 3.125rem + 1rem + 1rem); // 버튼 영역 고려
 `;
