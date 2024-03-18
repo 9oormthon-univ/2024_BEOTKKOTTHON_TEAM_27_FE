@@ -43,6 +43,8 @@ export default function HomeSubsection() {
 }
 
 const HomeSubSectionContainer = styled.article`
+  width: 19.5rem;
+
   ${({ theme }) => theme.fonts.heading_01};
 `;
 

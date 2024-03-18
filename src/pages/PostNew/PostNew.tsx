@@ -1,3 +1,16 @@
+import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
+import ButtonPrev from '../../components/common/Button/ButtonPrev/ButtonPrev';
+import Title from '../../components/common/Title/Title';
+
 export default function PostNew() {
-	return <div>포스트 생성 페이지 입니다.</div>;
+  return (
+    <>
+      <Title>
+        홍보 타겟의 <br />
+        성별, 연령대를 설정해 주세요
+      </Title>
+      <ButtonFill title='다음' width='11.5rem' />
+      <ButtonPrev title='로그인' width='20rem' />
+    </>
+  );
 }

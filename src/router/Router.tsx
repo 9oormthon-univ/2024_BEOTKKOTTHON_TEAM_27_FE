@@ -5,6 +5,8 @@ import Home from '../pages/Home/HomePage';
 import PostResult from '../pages/PostResult/PostResult';
 import HeaderLayout from '../layouts/HeaderLayout';
 import NotFound from '../components/Error/NotFound';
+import MystoreHeaderLayout from '../layouts/MystoreHeaderLayout';
+import MyStoreAdd from '../pages/MyStoreAdd/MyStoreAdd';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,12 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+        children: [
+          {
+            path: '/post-result',
+            element: <PostResult />,
+          },
+        ],
       },
       {
         element: <HeaderLayout />,
@@ -26,8 +34,13 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: '/post-result',
-        element: <PostResult />,
+        element: <MystoreHeaderLayout />,
+        children: [
+          {
+            path: '/store-add',
+            element: <MyStoreAdd />,
+          },
+        ],
       },
     ],
   },
