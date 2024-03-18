@@ -18,12 +18,19 @@ const colors = {
 
 /** 폰트 결정 시 수정 될 예정 */
 const fonts = {
-  Title: css`
+  HomeTitle: css`
     font-family: Pretendard;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: 160%;
+  `,
+  PostingTitle: css`
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 144.583%; /* 34.7px */
   `,
   heading_01: css`
     font-family: Pretendard;
