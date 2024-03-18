@@ -89,18 +89,18 @@ const Example = styled.p`
 
 const InputFieldContainer = styled.div`
   display: flex;
-
   align-items: center;
   position: relative;
 `;
 
 const InputField = styled.input`
-  height: 2.7rem;
   width: 100vw;
+  height: 2.7rem;
   padding: 0.5rem;
-  font-size: 1rem;
+
   border: none;
   outline: none;
+  font-size: 1rem;
   border-radius: 0.5rem;
   background: #f9f9f9;
 `;
