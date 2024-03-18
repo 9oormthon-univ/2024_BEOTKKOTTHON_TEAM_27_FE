@@ -10,7 +10,7 @@ const colors = {
   G_03: '#ECEEF4',
   G_04: '#D3CFD1',
   G_05: '#CAC6C8',
-  G_06: '#BDB8BA',
+  G_06: '#BDBDBD',
   G_07: '#757373',
   G_08: '#868384',
   G_09: '#686566',
@@ -75,6 +75,13 @@ const fonts = {
     font-style: normal;
     font-weight: 700;
     line-height: 160%; /* 1.8rem */
+  `,
+  ex_01: css`
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 144.583%;
   `,
 };
 
