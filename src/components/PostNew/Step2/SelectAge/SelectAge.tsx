@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { AgeBoxProps } from '../../../types/PostNew';
+import { AgeBoxProps } from '../../../../types/PostNew';
 
 export default function SelectAge() {
   const [selectedAges, setSelectedAges] = useState<string[]>([]);
@@ -13,7 +13,6 @@ export default function SelectAge() {
     }
   }
 
-  // Define age groups
   const ageGroups = ['10대', '20대', '30대', '40대', '50대', '기타'];
 
   return (

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { GenderOptionProps } from '../../../types/PostNew';
+import { GenderOptionProps } from '../../../../types/PostNew';
 
 export default function SelectGender() {
   const [selectedGender, setSelectedGender] = useState<string | null>(null);
@@ -9,7 +9,6 @@ export default function SelectGender() {
     setSelectedGender(gender);
   }
 
-  // Define gender options
   const genderOptions = [
     { label: '남자', value: 'male', emoji: '🙋🏻‍♂️' },
     { label: '여자', value: 'female', emoji: '🙋🏻‍♀️' },
