@@ -51,7 +51,7 @@ export default function PostButton({ image, text }: PostButtonProps) {
     }
   }
   function handleSaveAll() {
-    // setIsSaved(true);
+    setIsSaved(true);
     saveImage();
     copyText();
   }
