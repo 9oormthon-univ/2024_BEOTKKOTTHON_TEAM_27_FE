@@ -4,6 +4,7 @@ import PostImage from '../../components/PostResult/PostImage';
 import PostText from '../../components/PostResult/PostText';
 import { useEffect, useState } from 'react';
 import PostButton from '../../components/PostResult/PostButton';
+import { isAndroid } from '../../utils/utils';
 
 interface Post {
   image: string;
@@ -20,12 +21,59 @@ export default function PostResult() {
       });
   }, []);
 
+  //// TEST START ////
+  function copyText() {
+    try {
+      if (!navigator?.clipboard?.writeText)
+        throw new Error('복사 기능이 제공되지 않는 브라우저입니다.');
+      // 클립보드에 복사
+      window.navigator.clipboard.writeText('dhkfkfkk').then(() => {
+        alert('copy');
+      });
+    } catch (e) {
+      alert(e);
+    }
+  }
+
+  function saveImage() {
+    if (isAndroid()) {
+      return Android.downloadImage(post.image);
+    } else {
+      fetch(post.image, {
+        method: 'GET',
+      })
+        .then((res) => {
+          return res.blob();
+        })
+        .then((blob) => {
+          const blobURL = URL.createObjectURL(blob);
+
+          const aTag = document.createElement('a');
+          aTag.href = blobURL;
+          aTag.download = 'sodong_image.png';
+          aTag.click();
+
+          alert('다운로드 성공!');
+        })
+        .catch((e) => {
+          console.error(e);
+          alert(e);
+        });
+    }
+  }
+  //// TEST END ////
+
   return (
     <PostResultContainter>
       <PostTitle />
       <PostImage url={post.image} />
       <PostText text={post.text} />
-      <PostButton />
+      <PostButton image={post.image} text={post.text} />
+      <div onClick={copyText}>
+        Copy
+        <br /> <br />
+      </div>
+      <div onClick={saveImage}>Download</div>
     </PostResultContainter>
   );
 }
