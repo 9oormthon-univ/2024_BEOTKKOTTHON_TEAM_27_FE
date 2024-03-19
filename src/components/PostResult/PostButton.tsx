@@ -1,30 +1,33 @@
 import styled from 'styled-components';
 import ButtonWithTip from '../../components/common/Button/ButtonWithTip/ButtonWithTip';
-import { useState } from 'react';
-import { copyText, downloadImage, isAndroid } from '../../utils/utils';
+import { SetStateAction, useState } from 'react';
+import { copyText, downloadImage, getPackageName, isAndroid } from '../../utils/utils';
 
 interface PostButtonProps {
   image: string;
   text: string;
+  sns: string;
 }
-export default function PostButton({ image, text }: PostButtonProps) {
+
+export default function PostButton({ image, text, sns }: PostButtonProps) {
   // isSaved - false,[저장하기] show & primary
   // isSaved - true, [공유하기] show
   const [isSaved, setIsSaved] = useState(false);
+  const [file, setFile] = useState('');
 
   // (1) [한번에 저장하기]
-  // 텍스트 복사 -> 이미지 저장 -> 모두 성공 시, isSaved!
+  // 텍스트 복사 -> 이미지 저장 -> 모두 성공 시, isSaved
   function handleSaveAll() {
-    // CORS 문제로 풀려 있는 이미지 사용
+    // [TODO] 지울 것. CORS 문제로 풀려 있는 이미지 사용
     const url =
       'https://objectstorage.ap-chuncheon-1.oraclecloud.com/p/NFhdxT-Gf5qr8V_6_oDec6dx_DSu5LL4E8ZXQsTEeTJaTt2j7KWRFJae6hi5V1fC/n/axn4dve0qg0d/b/sejong-uni-cafeteria-notifier/o/z9.png';
     console.log(url);
 
     const saveFunc = isAndroid() ? saveImage : downloadImage;
-    console.log('>>> Func', saveFunc);
-    Promise.all([saveFunc(url), copyText(text)])
+    Promise.all([saveFunc(url), copyText('hi')])
       .then((res) => {
-        console.log('>> res'), res;
+        setFile(res[0] as SetStateAction<string>);
+
         alert('성공하였습니다');
         setIsSaved(true);
       })
@@ -33,17 +36,27 @@ export default function PostButton({ image, text }: PostButtonProps) {
       });
   }
 
-  function saveImage() {
-    return new Promise((resolve, reject) => {
-      const uri = Android.downloadImage(image);
+  function saveImage(url: string) {
+    return new Promise<String>((resolve, reject) => {
+      const uri = Android.downloadImage(url);
       if (uri === '') reject();
       else resolve(uri);
     });
   }
 
   // (2) SNS 공유하기
-  // Android인 경우, openApp() / else인 경우, 스토어로 랜딩
-  function handleShare() {}
+  // Android인 경우, openApp() / else인 경우, 지원 X
+  function handleShare() {
+    try {
+      if (!isAndroid()) throw new Error('공유하기 기능을 지원하지 않는 기기입니다.');
+      if (file == '') throw new Error('이미지를 다시 저장해 주세요.');
+
+      if (sns == 'instagram') Android.shareInsta(file);
+      else Android.openApp(getPackageName(sns));
+    } catch (e) {
+      alert(e);
+    }
+  }
 
   return (
     <ButtonContainer>

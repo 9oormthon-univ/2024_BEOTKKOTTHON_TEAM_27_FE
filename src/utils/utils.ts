@@ -29,7 +29,7 @@ export function copyText(text: string): Promise<void> {
 /**
  * 파일 다운로드 함수
  */
-export function downloadImage(url: string): Promise<void> {
+export function downloadImage(url: string): Promise<string> {
   return new Promise((resolve) => {
     fetch(url, {
       method: 'GET',
@@ -45,8 +45,17 @@ export function downloadImage(url: string): Promise<void> {
         aTag.download = 'sodong_image.png';
         aTag.click();
 
-        console.log('다운로드 성공!');
-        resolve();
+        resolve('');
       });
   });
+}
+
+/**
+ * 패키지 이름 가져오는 함수
+ */
+export function getPackageName(sns: string): string {
+  if (sns == 'dangeun') return 'com.towneers.www';
+  else if (sns == 'kakaochannel') return 'com.kakao.yellowid';
+  else if (sns == 'kakaotalk') return 'com.kakao.talk';
+  else return '';
 }
