@@ -3,6 +3,8 @@ import PostTitle from '../../components/PostResult/PostTitle';
 import PostImage from '../../components/PostResult/PostImage';
 import PostText from '../../components/PostResult/PostText';
 import PostButton from '../../components/PostResult/PostButton';
+import { useWindowSize } from '../../hooks/useWindowSize';
+import Confetti from 'react-confetti';
 
 export default function PostResult() {
   const post = {
@@ -12,17 +14,21 @@ export default function PostResult() {
     sns: 'instagram',
   };
 
+  const { width, height } = useWindowSize();
+
   return (
     <PostResultContainter>
       <PostTitle />
       <PostImage url={post.image} />
       <PostText text={post.text} />
       <PostButton image={post.image} text={post.text} sns={post.sns} />
+      <Confetti width={width} height={height} recycle={false} />
     </PostResultContainter>
   );
 }
 
 const PostResultContainter = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
