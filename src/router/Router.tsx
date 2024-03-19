@@ -7,6 +7,7 @@ import HeaderLayout from '../layouts/HeaderLayout';
 import NotFound from '../components/Error/NotFound';
 import MystoreHeaderLayout from '../layouts/MystoreHeaderLayout';
 import MyStoreAdd from '../pages/MyStoreAdd/MyStoreAdd';
+import Login from '../pages/Login/Login';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
       },
       {
         path: '/post-result',

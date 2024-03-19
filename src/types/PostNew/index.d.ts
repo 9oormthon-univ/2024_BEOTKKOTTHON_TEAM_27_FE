@@ -4,6 +4,7 @@ export interface TitleProps {
 
 export interface ButtonProps {
   width?: string;
+  height?: string;
   title: string;
   onClick?: () => void;
 }
