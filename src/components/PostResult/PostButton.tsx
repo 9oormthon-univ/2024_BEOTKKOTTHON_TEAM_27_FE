@@ -9,7 +9,7 @@ interface PostButtonProps {
   sns: string;
 }
 
-export default function PostButton({ text, sns }: PostButtonProps) {
+export default function PostButton({ image, text, sns }: PostButtonProps) {
   // isSaved - false,[저장하기] show & primary
   // isSaved - true, [공유하기] show
   const [isSaved, setIsSaved] = useState(false);
@@ -18,7 +18,7 @@ export default function PostButton({ text, sns }: PostButtonProps) {
   // (1) [한번에 저장하기]
   // 텍스트 복사 -> 이미지 저장 -> 모두 성공 시, isSaved
   function handleSaveAll() {
-    // [TODO] 지울 것. CORS 문제로 풀려 있는 이미지 사용 - export default function PostButton({ image, text, sns }: PostButtonProps)
+    // [TODO] 지울 것. CORS 문제로 풀려 있는 이미지 사용
     const url =
       'https://objectstorage.ap-chuncheon-1.oraclecloud.com/p/NFhdxT-Gf5qr8V_6_oDec6dx_DSu5LL4E8ZXQsTEeTJaTt2j7KWRFJae6hi5V1fC/n/axn4dve0qg0d/b/sejong-uni-cafeteria-notifier/o/z9.png';
     console.log(url);
@@ -36,9 +36,9 @@ export default function PostButton({ text, sns }: PostButtonProps) {
       });
   }
 
-  function saveImage(url: string) {
+  function saveImage() {
     return new Promise<String>((resolve, reject) => {
-      const uri = Android.downloadImage(url);
+      const uri = Android.downloadImage(image);
       if (uri === '') reject();
       else resolve(uri);
     });
