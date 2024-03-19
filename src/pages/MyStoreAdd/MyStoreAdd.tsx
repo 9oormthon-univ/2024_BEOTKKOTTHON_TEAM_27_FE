@@ -7,10 +7,12 @@ import StoreResult from '../../components/StoreNew/StoreResult';
 const KAKAO_REST_API = import.meta.env.VITE_KAKAO_REST_API;
 export default function MyStoreAdd() {
   const [result, setResult] = useState({ documents: [], meta: { total_count: 0 } });
+  const [selected, setSelected] = useState(-1);
 
   function handleSumbit() {}
 
   function handleSearch(query: string) {
+    setSelected(-1);
     const requestOptions = {
       method: 'GET',
       headers: {
@@ -37,10 +39,22 @@ export default function MyStoreAdd() {
       <SearchInput placeholder='가게 이름으로 검색' onClick={handleSearch} />
 
       {/* 중간 영역 */}
-      <StoreResult totalCount={result.meta.total_count} result={result.documents} />
+      {selected}
+      <StoreResult
+        totalCount={result.meta.total_count}
+        result={result.documents}
+        selected={selected}
+        onChange={setSelected}
+      />
 
       {/* 버튼 */}
-      <ButtonFill title='등록하기' width='90%' height='3.125rem' onClick={handleSumbit} />
+      <ButtonFill
+        title='등록하기'
+        width='90%'
+        height='3.125rem'
+        onClick={handleSumbit}
+        enable={selected !== -1}
+      />
     </MyStoreContainer>
   );
 }

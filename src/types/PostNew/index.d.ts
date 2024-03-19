@@ -6,6 +6,7 @@ export interface ButtonProps {
   width?: string;
   height?: string;
   title: string;
+  enable?: boolean;
   onClick?: () => void;
 }
 

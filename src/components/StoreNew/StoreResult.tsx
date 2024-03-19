@@ -7,9 +7,11 @@ interface Store {
 interface SearchInputProps {
   totalCount: number;
   result: Array<Store>;
+  selected: number;
+  onChange: (index: number) => void;
 }
 
-export default function StoreResult({ totalCount, result }: SearchInputProps) {
+export default function StoreResult({ totalCount, result, selected, onChange }: SearchInputProps) {
   return (
     <>
       <StoreResultTitle>
@@ -17,7 +19,7 @@ export default function StoreResult({ totalCount, result }: SearchInputProps) {
       </StoreResultTitle>
       <StoreResultContainer>
         {result.map((item, index) => (
-          <StoreResultBox key={index}>
+          <StoreResultBox key={index} $selected={selected == index} onClick={() => onChange(index)}>
             <h3>{item.place_name}</h3>
             <p>{item.address_name}</p>
             <br />
@@ -32,7 +34,6 @@ const StoreResultContainer = styled.section`
   width: 100%;
   // Input, Button, Margin 고려
   height: calc(100% - ((3.125rem + 1.44rem) + (3.125rem + 1.94rem) + 4rem));
-  border: 1px solid red;
   overflow-y: scroll;
   overflow-x: hidden;
 `;
@@ -45,8 +46,9 @@ const StoreResultTitle = styled.div`
   }
 `;
 
-const StoreResultBox = styled.div`
+const StoreResultBox = styled.div<{ $selected: boolean }>`
   padding: 1rem 0;
+  background: ${({ theme, $selected }) => ($selected ? theme.colors.gray : theme.colors.white)};
 
   > h3 {
     ${({ theme }) => theme.fonts.heading_01};
