@@ -5,7 +5,12 @@ import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
 import Tip from './Tip/Tip';
 
-export default function Step5() {
+interface NameInputProps {
+  onNext: VoidFunction;
+}
+
+export default function Step5(props: NameInputProps) {
+  const { onNext } = props;
   const [content, setContent] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -45,7 +50,7 @@ export default function Step5() {
         {characterCount}/{maxCharacters}
       </CharacterCount>
       <Tip />
-      <PostFooter />
+      <PostFooter onNext={onNext} />
     </>
   );
 }

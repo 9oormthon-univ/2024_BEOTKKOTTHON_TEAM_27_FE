@@ -6,8 +6,14 @@ import kakao from '../../../assets/Image/kakao.png';
 import carrot from '../../../assets/Image/carrot.png';
 import kakaoMap from '../../../assets/Image/kakaoMap.png';
 import insta from '../../../assets/Image/Instagram.png';
+import Step1Title from './Step1Title/Step1Title';
 
-export default function Step1() {
+interface NameInputProps {
+  onNext: VoidFunction;
+}
+
+export default function Step1(props: NameInputProps) {
+  const { onNext } = props;
   const [selectedSNS, setSelectedSNS] = useState<string | null>(null);
 
   const snsOptions = [
@@ -16,6 +22,7 @@ export default function Step1() {
     { name: '당근마켓', icon: kakao },
     { name: '카카오맵', icon: kakaoMap },
   ];
+
   const handleSelectSNS = (sns: string) => {
     setSelectedSNS(sns === selectedSNS ? null : sns);
   };
@@ -23,15 +30,8 @@ export default function Step1() {
   return (
     <>
       <PostTitleContainer>
-        <Title>
-          해당 포스팅을 올릴
-          <br /> <Highlight>SNS</Highlight>를 선택해 주세요
-        </Title>
-        <SubTitle>
-          선택하신 SNS에 맞게 <br />
-          AI 마법사, 소동이가 작성해 드릴게요!
-        </SubTitle>
-        <SNSOptions>
+        <Step1Title />
+        <SNSOptionContainer>
           {snsOptions.map((sns) => (
             <SNSOption
               key={sns.name}
@@ -45,10 +45,9 @@ export default function Step1() {
               {selectedSNS === sns.name && <CheckIcon style={{ width: '1.2rem' }} />}{' '}
             </SNSOption>
           ))}
-        </SNSOptions>
+        </SNSOptionContainer>
       </PostTitleContainer>
-
-      <PostFooter />
+      <PostFooter onNext={onNext} />
     </>
   );
 }
@@ -65,19 +64,7 @@ const ImgContainer = styled.div`
   gap: 1rem;
 `;
 
-const Title = styled.p`
-  ${({ theme }) => theme.fonts.PostingTitle};
-`;
-
-const Highlight = styled.span`
-  color: ${({ theme }) => theme.colors.main};
-`;
-
-const SubTitle = styled.p`
-  ${({ theme }) => theme.fonts.subTitle};
-`;
-
-const SNSOptions = styled.div`
+const SNSOptionContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

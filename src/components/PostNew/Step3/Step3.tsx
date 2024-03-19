@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import PostFooter from '../PostFooter/PostFooter';
 import SelectType from './SelectType/SelectType';
 import Title from '../../common/Title/Title';
+interface NameInputProps {
+  onNext: VoidFunction;
+}
 
-export default function Step3() {
+export default function Step3(props: NameInputProps) {
+  const { onNext } = props;
   return (
     <>
       <PostTitleContainer>
@@ -17,7 +21,7 @@ export default function Step3() {
       </PostTitleContainer>
 
       <SelectType />
-      <PostFooter />
+      <PostFooter onNext={onNext} />
     </>
   );
 }
