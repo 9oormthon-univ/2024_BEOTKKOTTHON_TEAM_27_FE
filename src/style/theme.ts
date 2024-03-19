@@ -4,7 +4,10 @@ import { css } from 'styled-components';
 const colors = {
   white: '#FFFFFF',
   black: '#1E1E1E',
-  main: '#402FFF',
+  gray: '#94A3B8',
+  light_gray: '#F9F9F9',
+  deep_gray: '#727272',
+  main: '#342FFF',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
   G_03: '#ECEEF4',
@@ -46,6 +49,24 @@ const fonts = {
     font-weight: 700;
     line-height: 125%;
   `,
+  description: css`
+    font-family: 'Pretendard';
+    font-size: 1rem;
+    font-weight: 500;
+  `,
+  post_normal: css`
+    font-family: 'Pretendard';
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 120%;
+  `,
+  post_big: css`
+    color: #000;
+    font-family: Pretendard;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 120%;
+  `,
   heading_02: css`
     font-family: Pretendard;
     font-size: 18px;
@@ -74,6 +95,30 @@ const fonts = {
     font-style: normal;
     font-weight: 700;
     line-height: 160%; /* 1.8rem */
+  `,
+  toggle_01: css`
+    font-family: 'Pretendard';
+    font-size: 1rem;
+    font-weight: 500;
+  `,
+  button_01: css`
+    color: #342fff;
+    font-family: 'Pretendard';
+    font-size: 1.125rem;
+    font-weight: 700;
+  `,
+  button_02: css`
+    color: #727272;
+    font-family: 'Pretendard';
+    font-size: 1.125rem;
+    font-weight: 500;
+  `,
+  tooltip: css`
+    font-family: 'Pretendard';
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 144.583%; /* 1.08438rem */
   `,
   ex_01: css`
     font-family: Pretendard;

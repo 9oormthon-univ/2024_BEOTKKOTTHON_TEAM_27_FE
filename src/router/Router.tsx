@@ -17,12 +17,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
-        children: [
-          {
-            path: '/post-result',
-            element: <PostResult />,
-          },
-        ],
+      },
+      {
+        path: '/post-result',
+        element: <PostResult />,
       },
       {
         element: <HeaderLayout />,
