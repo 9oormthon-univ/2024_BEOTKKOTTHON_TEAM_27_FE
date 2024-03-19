@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         element: <MystoreHeaderLayout />,
         children: [
           {
-            path: '/store-add',
+            path: '/store-new',
             element: <MyStoreAdd />,
           },
         ],
