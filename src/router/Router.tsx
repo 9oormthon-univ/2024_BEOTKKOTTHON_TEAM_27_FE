@@ -7,6 +7,7 @@ import HeaderLayout from '../layouts/HeaderLayout';
 import NotFound from '../components/Error/NotFound';
 import MystoreHeaderLayout from '../layouts/MystoreHeaderLayout';
 import MyStoreAdd from '../pages/MyStoreAdd/MyStoreAdd';
+import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
           {
             path: '/post',
             element: <PostNew />,
+          },
+          {
+            path: '/post-history',
+            element: <PostHistoryPage />,
           },
         ],
       },

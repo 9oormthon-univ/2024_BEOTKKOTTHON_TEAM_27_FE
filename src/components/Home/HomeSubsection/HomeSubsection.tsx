@@ -10,6 +10,10 @@ export default function HomeSubsection() {
   const handlePostCreate = () => {
     navigate(`/post`);
   };
+
+  const handlePostHistory = () => {
+    navigate(`/post-history`);
+  };
   return (
     <HomeSubSectionContainer>
       <PostCreation onClick={handlePostCreate}>
@@ -27,10 +31,10 @@ export default function HomeSubsection() {
           <StoreTitle>
             내 가게 <br /> 정보 관리하기
           </StoreTitle>
-          <img src={MyStore} alt='소동-캐릭터' />
+          <img src={MyStore} alt='세팅 아이콘' />
         </StoreManagement>
         <StoreContainer>
-          <DataLookup>
+          <DataLookup onClick={handlePostHistory}>
             내가 만든 <br />
             포스팅
             <Myposting style={{ height: '2.5rem' }} />
