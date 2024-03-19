@@ -13,7 +13,7 @@ const colors = {
   G_03: '#ECEEF4',
   G_04: '#D3CFD1',
   G_05: '#CAC6C8',
-  G_06: '#BDB8BA',
+  G_06: '#BDBDBD',
   G_07: '#757373',
   G_08: '#868384',
   G_09: '#686566',
@@ -34,6 +34,13 @@ const fonts = {
     font-style: normal;
     font-weight: 700;
     line-height: 144.583%; /* 34.7px */
+  `,
+  subTitle: css`
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 144.583%; /* 1.35544rem */
   `,
   heading_01: css`
     font-family: Pretendard;
@@ -75,7 +82,6 @@ const fonts = {
     line-height: 160%; /* 32px */
   `,
   footer_01: css`
-    color: #fff;
     text-align: center;
     font-family: Pretendard;
     font-size: 14px;
@@ -113,6 +119,20 @@ const fonts = {
     font-style: normal;
     font-weight: 300;
     line-height: 144.583%; /* 1.08438rem */
+  `,
+  ex_01: css`
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 144.583%;
+  `,
+  content_01: css`
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 125%;
   `,
 };
 

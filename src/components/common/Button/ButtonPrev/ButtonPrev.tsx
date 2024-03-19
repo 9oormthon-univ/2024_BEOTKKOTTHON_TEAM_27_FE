@@ -1,12 +1,7 @@
 import styled from 'styled-components';
+import { ButtonProps } from '../../../../types/PostNew';
 
-interface ButtonFillProps {
-  width?: string;
-  title: string;
-  onClick?: () => void;
-}
-
-export default function ButtonPrev({ width, title, onClick }: ButtonFillProps) {
+export default function ButtonPrev({ width, title, onClick }: ButtonProps) {
   return (
     <ButtonFillContainer width={width} onClick={onClick}>
       {title}
