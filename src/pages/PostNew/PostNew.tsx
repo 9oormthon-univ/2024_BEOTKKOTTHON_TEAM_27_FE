@@ -85,7 +85,7 @@ export default function PostNew() {
 
       <Funnel.Step name='POSTING_IMAGE'>
         <PostNewContainer>
-          {/* <ProcessBar currentStep={6} stepCount={6} /> */}
+          <ProcessBar currentStep={6} stepCount={6} />
           <Step6 onNext={() => setStep(() => 'POSTING_IMAGE')} />
         </PostNewContainer>
       </Funnel.Step>

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Title from '../../common/Title/Title';
+import food1 from '../../../assets/Image/food1.jpg';
+import food2 from '../../../assets/Image/food2.jpg';
+import food3 from '../../../assets/Image/food3.jpg';
 import { IcEmptyThumbnailFinal, TipBtn } from '../../../assets/svg';
 import PostFooter from '../PostFooter/PostFooter';
-import Tip from '../Step5/Tip/Tip';
-import ProcessBar from '../../common/ProcessBar/ProcessBar';
 
 interface NameInputProps {
   onNext: VoidFunction;
@@ -25,7 +26,6 @@ export default function Step6(props: NameInputProps) {
   return (
     <>
       <PostTitleContainer>
-        <ProcessBar currentStep={6} stepCount={6} />
         <Title>
           <Highlight>메뉴 사진</Highlight>을 올려주세요 &#40;선택 &#41;
         </Title>
@@ -57,15 +57,42 @@ export default function Step6(props: NameInputProps) {
         <TipBtn style={{ width: '2rem', margin: '0 0.5rem' }} />
         <TipMenu>메뉴의 특징을 강조해 보세요.</TipMenu>
       </TipContainer>
+      <TipImageContainer>
+        <ImgWrapper>
+          <img src={food1} alt='첫번째-팁-음식' />
+        </ImgWrapper>
+        <ImgWrapper>
+          <img src={food2} alt='첫번째-팁-음식' />
+        </ImgWrapper>
+        <ImgWrapper>
+          <img src={food3} alt='첫번째-팁-음식' />
+        </ImgWrapper>
+      </TipImageContainer>
 
       <PostFooter onNext={onNext} />
     </>
   );
 }
 
+const ImgWrapper = styled.div`
+  img {
+    border-radius: 10px;
+    width: 6rem;
+    height: 6rem;
+  }
+`;
+
+const TipImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+`;
+
 const TipContainer = styled.div`
   position: relative;
-  margin-top: 10%;
+  margin-top: 18%;
   display: flex;
 `;
 
