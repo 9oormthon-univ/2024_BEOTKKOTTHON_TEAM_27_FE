@@ -30,7 +30,7 @@ export function copyText(text: string): Promise<void> {
  * 파일 다운로드 함수
  */
 export function downloadImage(url: string): Promise<void> {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     fetch(url, {
       method: 'GET',
     })
@@ -47,10 +47,6 @@ export function downloadImage(url: string): Promise<void> {
 
         console.log('다운로드 성공!');
         resolve();
-      })
-      .catch((e) => {
-        console.error(e);
-        reject();
       });
   });
 }
