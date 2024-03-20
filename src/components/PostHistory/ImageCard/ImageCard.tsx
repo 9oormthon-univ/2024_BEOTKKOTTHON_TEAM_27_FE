@@ -2,18 +2,21 @@ import styled from 'styled-components';
 import { Instagram } from '../../../assets/svg';
 import PostImg from '../../../assets/Image/PostImg.png';
 
-export default function ImageCard() {
+interface ImageCardProps {
+  date: string;
+  imageAlt: string;
+  text: string;
+}
+
+function ImageCard({ date, imageAlt, text }: ImageCardProps) {
   return (
     <ImageCardContainer>
       <ImageCardHeader>
         <Instagram style={{ width: '2.0625rem', height: '2rem' }} />
-        <Date>2014-03-20</Date>
+        <Date>{date}</Date>
       </ImageCardHeader>
-      <img src={PostImg} alt='생성-이미지' />
-      <TextContainer>
-        진정한 감성을 맛보다! 🍟🧀 토마토 소스와 치즈가 만나 환상의 조합을 이룬 웨지 감자튀김으로
-        당신의 입맛을 사로잡아 보세요! 😋✨ #웨지감자 #치즈소스 #맛있다그램 #먹스타그램
-      </TextContainer>
+      <img src={PostImg} alt={imageAlt} />
+      <TextContainer>{text}</TextContainer>
     </ImageCardContainer>
   );
 }
@@ -36,6 +39,7 @@ const ImageCardContainer = styled.article`
     height: 16.6875rem;
   }
 `;
+
 const ImageCardHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -55,3 +59,5 @@ const TextContainer = styled.p`
   color: ${({ theme }) => theme.colors.black};
   ${({ theme }) => theme.fonts.ex_01};
 `;
+
+export default ImageCard;
