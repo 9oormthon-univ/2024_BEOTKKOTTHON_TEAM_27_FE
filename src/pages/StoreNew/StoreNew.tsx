@@ -105,9 +105,11 @@ export default function StoreNew() {
 }
 
 const MyStoreContainer = styled.div`
-  position: relative;
   width: 100vw;
   height: 100vh;
+  max-width: 360px;
+
+  position: relative;
   padding: 4rem 2rem 0; // header 4rem 영역
 
   > button {

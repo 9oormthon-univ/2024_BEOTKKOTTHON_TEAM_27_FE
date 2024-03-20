@@ -29,6 +29,8 @@ export default function PostResult() {
 
 const PostResultContainter = styled.div`
   width: 100%;
+  max-width: 360px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;

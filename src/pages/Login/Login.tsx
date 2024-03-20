@@ -70,6 +70,8 @@ export default function Login() {
 const LoginContainer = styled.div`
   width: 100vw;
   height: 100vh;
+  max-width: 360px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
