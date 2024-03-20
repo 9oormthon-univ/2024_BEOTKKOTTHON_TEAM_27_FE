@@ -4,7 +4,12 @@ import PostFooter from '../PostFooter/PostFooter';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
 
-export default function Step4() {
+interface NameInputProps {
+  onNext: VoidFunction;
+}
+
+export default function Step4(props: NameInputProps) {
+  const { onNext } = props;
   const [menu, setMenu] = useState('');
   const [price, setPrice] = useState('');
 
@@ -61,7 +66,7 @@ export default function Step4() {
         <Example>4500원</Example>
       </PriceInputContainer>
 
-      <PostFooter />
+      <PostFooter onNext={onNext} />
     </>
   );
 }

@@ -17,3 +17,13 @@ export interface AgeBoxProps {
 export interface GenderOptionProps {
   selected: boolean;
 }
+
+export type OnboardingInfo = {
+  sns: string;
+  age: Array;
+  gender: Array;
+  type: string;
+  subject: string;
+  content: string;
+  imageUrl?: string;
+};

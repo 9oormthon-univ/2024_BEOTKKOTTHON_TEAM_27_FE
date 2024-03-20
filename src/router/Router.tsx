@@ -8,6 +8,7 @@ import NotFound from '../components/Error/NotFound';
 import StoreHeaderLayout from '../layouts/StoreHeaderLayout';
 import Login from '../pages/Login/Login';
 import StoreNew from '../pages/StoreNew/StoreNew';
+import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
           {
             path: '/store-new',
             element: <StoreNew />,
+          },
+          {
+            path: '/post-history',
+            element: <PostHistoryPage />,
           },
         ],
       },
