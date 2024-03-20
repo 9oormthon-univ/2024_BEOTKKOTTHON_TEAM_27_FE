@@ -6,7 +6,6 @@ import StoreResult from '../../components/StoreNew/StoreResult';
 import { useNavigate } from 'react-router-dom';
 import { KaKaoSearchResult } from '../../types/StoreNew';
 import StoreResultNone from '../../components/StoreNew/StoreResultNone';
-import { post } from '../../apis/client';
 import { useStoreMutation } from '../../hooks/queries/store/useStoreMutation';
 
 const KAKAO_REST_API = import.meta.env.VITE_KAKAO_REST_API;
@@ -44,7 +43,7 @@ export default function StoreNew() {
   }
 
   /**
-   * useStoreMutation - 로그인 API
+   * useStoreMutation - 가게 등록 API
    */
   const { mutate } = useStoreMutation({
     onSuccess: (res) => {
