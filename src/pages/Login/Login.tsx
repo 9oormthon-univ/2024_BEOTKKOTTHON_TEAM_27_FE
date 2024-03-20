@@ -30,12 +30,12 @@ export default function Login() {
 
         // if (storeId == -1)인 경우, 가게 등록 페이지로 이동
         if (res.data.storeId === -1) {
-          navigate('/store-new');
+          navigate('/store-new', { replace: true });
           return;
         }
 
         localStorage.setItem('storeId', res.data.storeId);
-        navigate(`/`);
+        navigate(`/`, { replace: true });
       });
   }
 

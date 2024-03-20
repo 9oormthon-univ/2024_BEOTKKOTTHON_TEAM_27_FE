@@ -65,7 +65,7 @@ export default function StoreNew() {
 
         localStorage.setItem('userId', res.data.userId);
         localStorage.setItem('storeId', res.data.storeId);
-        navigate('/');
+        navigate('/', { replace: true });
       });
   }
 
