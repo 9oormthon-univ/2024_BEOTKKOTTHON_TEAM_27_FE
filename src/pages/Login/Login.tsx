@@ -4,6 +4,7 @@ import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
 import LoginInput from '../../components/Login/LoginInput';
 import LoginTop from '../../components/Login/LoginTop';
 import { useNavigate } from 'react-router-dom';
+import { post } from '../../apis/client';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -13,31 +14,32 @@ export default function Login() {
 
   async function handleSumbit() {
     const data = {
-      id: '1234567890',
-      password: 'password123',
+      loginId: 'user1',
+      password: 'password1',
     };
-    // const res = await post(/api/login', data)
-    fetch('/api/login', { method: 'POST', body: JSON.stringify(data) })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log('✈ /api/login >>', res);
+    const res = await post(`/api/login`, data);
+    console.log('✈ /api/login >>', res);
+    // fetch('/api/login', { method: 'POST', body: JSON.stringify(data) })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     console.log('✈ /api/login >>', res);
 
-        if (!res.isSuccess) {
-          alert('오류 발생!');
-          return;
-        }
+    //     if (!res.isSuccess) {
+    //       alert('오류 발생!');
+    //       return;
+    //     }
 
-        localStorage.setItem('userId', res.data.userId);
+    //     localStorage.setItem('userId', res.data.userId);
 
-        // if (storeId == -1)인 경우, 가게 등록 페이지로 이동
-        if (res.data.storeId === -1) {
-          navigate('/store-new', { replace: true });
-          return;
-        }
+    //     // if (storeId == -1)인 경우, 가게 등록 페이지로 이동
+    //     if (res.data.storeId === -1) {
+    //       navigate('/store-new', { replace: true });
+    //       return;
+    //     }
 
-        localStorage.setItem('storeId', res.data.storeId);
-        navigate(`/`, { replace: true });
-      });
+    //     localStorage.setItem('storeId', res.data.storeId);
+    //     navigate(`/`, { replace: true });
+    //   });
   }
 
   return (
