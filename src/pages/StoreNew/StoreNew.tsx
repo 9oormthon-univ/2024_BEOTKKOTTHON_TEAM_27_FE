@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
-import SearchInput from '../../components/StoreNew/SearchInput';
+import SearchInput from '../../components/StoreNew/StoreSearch';
 import StoreResult from '../../components/StoreNew/StoreResult';
 
 const KAKAO_REST_API = import.meta.env.VITE_KAKAO_REST_API;
-export default function MyStoreAdd() {
+export default function StoreNew() {
   const [result, setResult] = useState({ documents: [], meta: { total_count: 0 } });
   const [selected, setSelected] = useState(-1);
 

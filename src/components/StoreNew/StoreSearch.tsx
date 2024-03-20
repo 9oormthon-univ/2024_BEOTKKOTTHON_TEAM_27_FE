@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-interface SearchInputProps {
+interface StoreSearchProps {
   placeholder?: string;
   onClick: (query: string) => void;
 }
 
-export default function SearchInput({ placeholder, onClick }: SearchInputProps) {
+export default function StoreSearch({ placeholder, onClick }: StoreSearchProps) {
   const [query, setQuery] = useState('');
 
   return (
@@ -26,7 +26,6 @@ const SearchInputContainer = styled.div`
   position: relative;
   width: 100%;
   height: 3.125rem;
-  margin-top: 1.44rem;
   background: ${({ theme }) => theme.colors.light_gray};
   border-radius: 10px;
   margin: 1.44rem 0;
@@ -38,7 +37,6 @@ const Input = styled.input`
 
   border: none;
   padding: 0.6rem 1.25rem;
-  background: none;
 
   color: ${({ theme }) => theme.colors.black};
   ${({ theme }) => theme.fonts.subTitle};

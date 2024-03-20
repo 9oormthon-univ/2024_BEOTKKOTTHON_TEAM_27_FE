@@ -8,6 +8,7 @@ const colors = {
   light_gray: '#F9F9F9',
   deep_gray: '#727272',
   main: '#342FFF',
+  light_main: '#E2E5FF',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
   G_03: '#ECEEF4',
