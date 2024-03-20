@@ -15,3 +15,5 @@ export { default as Search } from './Search';
 export { default as Store } from './Store';
 export { default as Tip } from './Tip';
 export { default as Xmark } from './Xmark';
+export { default as IcImgEditBtn } from './IcImgEditBtn';
+export { default as IcEmptyThumbnailFinal } from './IcEmptyThumbnailFinal';
