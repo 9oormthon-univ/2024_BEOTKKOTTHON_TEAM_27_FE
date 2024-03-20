@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import PostFooter from '../PostFooter/PostFooter';
 import { CheckIcon } from '../../../assets/svg';
 import kakao from '../../../assets/Image/kakao.png';
 import carrot from '../../../assets/Image/carrot.png';
 import kakaoMap from '../../../assets/Image/kakaoMap.png';
 import insta from '../../../assets/Image/Instagram.png';
 import Step1Title from './Step1Title/Step1Title';
+import { useOnboardingContext } from '../../../context/PostNew/PonstNewContext';
 
-interface NameInputProps {
-  onNext: VoidFunction;
-}
+// interface NameInputProps {
+//   onNext: VoidFunction;
+// }
 
-export default function Step1(props: NameInputProps) {
-  const { onNext } = props;
+export default function Step1() {
   const [selectedSNS, setSelectedSNS] = useState<string | null>(null);
+  const { updatePostInfo } = useOnboardingContext(); // OnboardingContext에서 정보 가져오기
 
   const snsOptions = [
     { name: '인스타그램', icon: insta },
@@ -25,6 +25,7 @@ export default function Step1(props: NameInputProps) {
 
   const handleSelectSNS = (sns: string) => {
     setSelectedSNS(sns === selectedSNS ? null : sns);
+    updatePostInfo({ postingChannel: sns });
   };
 
   return (
@@ -47,7 +48,6 @@ export default function Step1(props: NameInputProps) {
           ))}
         </SNSOptionContainer>
       </PostTitleContainer>
-      <PostFooter onNext={onNext} />
     </>
   );
 }

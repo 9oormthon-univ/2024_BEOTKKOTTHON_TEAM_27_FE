@@ -1,25 +1,10 @@
-import { useState } from 'react';
 import styled from 'styled-components';
-import PostFooter from '../PostFooter/PostFooter';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
+import useNameInput from '../../../hooks/PostNew/useMenuInput';
 
-interface NameInputProps {
-  onNext: VoidFunction;
-}
-
-export default function Step4(props: NameInputProps) {
-  const { onNext } = props;
-  const [menu, setMenu] = useState('');
-  const [price, setPrice] = useState('');
-
-  const handleMenuClear = () => {
-    setMenu('');
-  };
-
-  const handlePriceClear = () => {
-    setPrice('');
-  };
+export default function Step4() {
+  const { onboardingInfo, handleInputChange, handleBtnClick } = useNameInput();
 
   return (
     <>
@@ -34,13 +19,13 @@ export default function Step4(props: NameInputProps) {
         <InputFieldContainer>
           <InputField
             type='text'
-            value={menu}
-            onChange={(e) => setMenu(e.target.value)}
+            value={onboardingInfo.promotionSubject}
+            onChange={handleInputChange}
             placeholder='메뉴를 입력해주세요'
           />
-          {menu && (
+          {onboardingInfo.promotionSubject && (
             <Xmark
-              onClick={handleMenuClear}
+              onClick={handleBtnClick}
               style={{ width: '1rem', position: 'absolute', right: '5%' }}
             />
           )}
@@ -48,7 +33,7 @@ export default function Step4(props: NameInputProps) {
         <Example>ex&#41; 소동 떡볶이 &#40;매운맛&#41;</Example>
       </MenuInputContainer>
 
-      <PriceInputContainer>
+      {/* <PriceInputContainer>
         <InputFieldContainer>
           <InputField
             type='text'
@@ -64,9 +49,7 @@ export default function Step4(props: NameInputProps) {
           )}
         </InputFieldContainer>
         <Example>4500원</Example>
-      </PriceInputContainer>
-
-      <PostFooter onNext={onNext} />
+      </PriceInputContainer> */}
     </>
   );
 }
@@ -78,11 +61,6 @@ const PostTitleContainer = styled.div`
 
 const MenuInputContainer = styled.div`
   margin-top: 2rem;
-  position: relative;
-`;
-
-const PriceInputContainer = styled.div`
-  margin-top: 1rem;
   position: relative;
 `;
 
@@ -113,3 +91,8 @@ const InputField = styled.input`
 const Highlight = styled.span`
   color: ${({ theme }) => theme.colors.main};
 `;
+
+// const PriceInputContainer = styled.div`
+//   margin-top: 1rem;
+//   position: relative;
+// `;

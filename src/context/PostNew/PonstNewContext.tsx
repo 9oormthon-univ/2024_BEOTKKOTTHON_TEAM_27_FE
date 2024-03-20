@@ -1,63 +1,56 @@
-import {
-  PropsWithChildren,
-  SetStateAction,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
-import { OnboardingInfo } from '../../types/PostNew';
+import { PropsWithChildren, createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { PostInfo } from '../../types/PostNew';
 
 interface OnboardingInfoContext {
-  onboardingInfo: OnboardingInfo;
-  updateOnboardingInfo: (newInfo: Partial<OnboardingInfo>) => void;
-  selectedTime: string;
-  setSelectedTime: React.Dispatch<SetStateAction<string>>;
+  onboardingInfo: PostInfo;
+  updatePostInfo: (newInfo: Partial<PostInfo>) => void;
+  updatePostingChannel: (sns: string | null) => void; // PostingChannel을 업데이트하는 함수 추가
 }
 
-const initialOnboardingInfo: OnboardingInfo = {
-  sns: '',
-  age: [],
-  gender: [],
-  type: '',
-  subject: '',
-  content: '',
-  imageUrl: '',
+const initialOnboardingInfo: PostInfo = {
+  userId: 0,
+  storeId: 0,
+  postingType: '',
+  postingChannel: '',
+  promotionType: '',
+  promotionSubject: '',
+  promotionContent: '',
+  fileName: '',
+  targetGender: [],
+  targetAge: [],
 };
 
 const OnboardingContext = createContext<OnboardingInfoContext>({
   onboardingInfo: initialOnboardingInfo,
-  updateOnboardingInfo: () => {},
-  selectedTime: '',
-  setSelectedTime: () => {},
+  updatePostInfo: () => {},
+  updatePostingChannel: () => {}, // 초기값 설정
 });
 
 export const useOnboardingContext = () => useContext(OnboardingContext);
 
 export const OnboardingProvider = ({ children }: PropsWithChildren) => {
-  const [onboardingInfo, setOnboardingInfo] = useState<OnboardingInfo>(initialOnboardingInfo);
-  const [selectedTime, setSelectedTime] = useState<string>('');
+  const [onboardingInfo, setOnboardingInfo] = useState<PostInfo>(initialOnboardingInfo);
 
-  const updateOnboardingInfo = (newInfo: Partial<OnboardingInfo>) => {
+  const updatePostInfo = (newInfo: Partial<PostInfo>) => {
     setOnboardingInfo((prev) => ({ ...prev, ...newInfo }));
   };
+
+   const updatePostingChannel = (sns: string | null) => {
+     setOnboardingInfo((prev) => ({ ...prev, postingChannel: sns }));
+   };
 
   /**@todo 전체 값 확인용 useEffect */
   useEffect(() => {
     console.log('전체 값 확인:', onboardingInfo);
-    console.log('context 속 selectedTime', selectedTime);
-    console.log('context 속 typeof selectedTime', typeof selectedTime);
-  }, [onboardingInfo, selectedTime]);
+  }, [onboardingInfo]);
 
   const OnboardingInfoContextValue = useMemo(
     () => ({
       onboardingInfo,
-      updateOnboardingInfo,
-      selectedTime,
-      setSelectedTime,
+      updatePostInfo,
+      updatePostingChannel,
     }),
-    [onboardingInfo, selectedTime],
+    [onboardingInfo],
   );
 
   return (

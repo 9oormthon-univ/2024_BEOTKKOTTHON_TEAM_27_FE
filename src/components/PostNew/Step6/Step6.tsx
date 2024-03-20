@@ -5,21 +5,67 @@ import food1 from '../../../assets/Image/food1.jpg';
 import food2 from '../../../assets/Image/food2.jpg';
 import food3 from '../../../assets/Image/food3.jpg';
 import { IcEmptyThumbnailFinal, TipBtn } from '../../../assets/svg';
-import PostFooter from '../PostFooter/PostFooter';
+import { put } from '../../../apis/client';
+import usePostOnboardingInfo from '../../../queries/PostNew/usePostInfo';
+import { useOnboardingContext } from '../../../context/PostNew/PonstNewContext';
 
 interface NameInputProps {
-  onNext: VoidFunction;
+  setUserId: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function Step6(props: NameInputProps) {
-  const { onNext } = props;
+  const { setUserId } = props;
+  const { mutation } = usePostOnboardingInfo();
+  const { onboardingInfo } = useOnboardingContext();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+
+  const postOnboarding = async () => {
+    try {
+      const response = mutation.mutate(onboardingInfo, {
+        onSuccess: (data) => {
+          console.log('step06 postOnboarding response', response);
+          const userId = data.userId;
+          setUserId(userId);
+
+          return userId;
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const uploadFile = async (file: File, fileExtension: string) => {
+    const formData = new FormData();
+    formData.append('file_content', file); // 파일 추가
+
+    try {
+      const queryParams = new URLSearchParams();
+      queryParams.append('file_extension', fileExtension);
+      const response = await put(`/api/ibm/object?${queryParams.toString()}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      if (response.status === 200) {
+        console.log('파일 업로드 성공');
+      } else {
+        console.error('파일 업로드 실패');
+      }
+    } catch (error) {
+      console.error('파일 업로드 중 오류 발생:', error);
+    }
+  };
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
     if (files && files.length > 0) {
       const selectedFiles = files as FileList;
-      setPreviewImage(URL.createObjectURL(selectedFiles[0]));
+      const file = selectedFiles[0];
+      const fileExtension = '.jpeg'; // 파일 확장자 설정
+      uploadFile(file, fileExtension); // 파일 업로드 함수 호출
+      setPreviewImage(URL.createObjectURL(file));
     }
   };
 
@@ -69,7 +115,13 @@ export default function Step6(props: NameInputProps) {
         </ImgWrapper>
       </TipImageContainer>
 
-      <PostFooter onNext={onNext} />
+      <button
+        onClick={() => {
+          postOnboarding();
+        }}
+      >
+        으아
+      </button>
     </>
   );
 }

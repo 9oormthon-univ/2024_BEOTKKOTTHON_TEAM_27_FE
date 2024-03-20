@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
-import PostFooter from '../PostFooter/PostFooter';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
 import Tip from './Tip/Tip';
+import useMenuExplain from '../../../hooks/PostNew/useMenuExplain';
 
-interface NameInputProps {
-  onNext: VoidFunction;
-}
+export default function Step5() {
+  const { onboardingInfo, handleInputChange, handleBtnClick } = useMenuExplain();
 
-export default function Step5(props: NameInputProps) {
-  const { onNext } = props;
-  const [content, setContent] = useState('');
+  // const [content, setContent] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-  };
-  const handleContentClear = () => {
-    setContent('');
-  };
+  // const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  //   setContent(e.target.value);
+  // };
 
-  const characterCount = content.length;
+  const characterCount = onboardingInfo.promotionSubject.length;
   const maxCharacters = 100;
 
   return (
@@ -34,14 +27,14 @@ export default function Step5(props: NameInputProps) {
 
       <ContentInputContainer>
         <ContentInput
-          value={content}
-          onChange={handleChange}
-          rows={1}
+          type='text'
+          value={onboardingInfo.promotionSubject}
+          onChange={handleInputChange}
           placeholder='자세히 적을 수록 AI가 더 만족스러운 결과를 생성해요.'
         />
-        {content && (
+        {onboardingInfo.promotionSubject && (
           <Xmark
-            onClick={handleContentClear}
+            onClick={handleBtnClick}
             style={{ width: '1.5rem', position: 'absolute', right: '13%', padding: '4% 0' }}
           />
         )}
@@ -50,7 +43,6 @@ export default function Step5(props: NameInputProps) {
         {characterCount}/{maxCharacters}
       </CharacterCount>
       <Tip />
-      <PostFooter onNext={onNext} />
     </>
   );
 }
@@ -65,7 +57,7 @@ const ContentInputContainer = styled.div`
   margin-top: 2rem;
 `;
 
-const ContentInput = styled.textarea`
+const ContentInput = styled.input`
   width: 100vw;
   height: auto;
   min-height: 130px;

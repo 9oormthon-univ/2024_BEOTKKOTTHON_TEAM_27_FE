@@ -18,12 +18,20 @@ export interface GenderOptionProps {
   selected: boolean;
 }
 
-export type OnboardingInfo = {
-  sns: string;
-  age: Array;
-  gender: Array;
-  type: string;
-  subject: string;
-  content: string;
-  imageUrl?: string;
+export type PostInfo = {
+  userId: number;
+  storeId: number;
+  postingType: string;
+  postingChannel: string | null;
+  promotionType: string;
+  promotionSubject: string;
+  promotionContent: string;
+  fileName: string;
+  targetGender: Array;
+  targetAge: Array;
 };
+
+export interface ImageUploadRequestType {
+  file_extension: string;
+  file_content: string;
+}
