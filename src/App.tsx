@@ -11,7 +11,7 @@ import { useMobile } from './hooks/useMobile';
 function App() {
   useMobile();
   const queryClient = new QueryClient();
-
+  useMobile();
   return (
     <>
       <QueryClientProvider client={queryClient}>

@@ -1,18 +1,22 @@
 import styled from 'styled-components';
 import { ButtonProps } from '../../../../types/PostNew';
 
-export default function ButtonFill({ width, title, onClick }: ButtonProps) {
+export default function ButtonFill({ width, height, title, enable, onClick }: ButtonProps) {
   return (
-    <ButtonFillContainer width={width} onClick={onClick}>
+    <ButtonFillContainer width={width} height={height} onClick={onClick} $enable={enable}>
       {title}
     </ButtonFillContainer>
   );
 }
 
-const ButtonFillContainer = styled.button<{ width?: string }>`
+const ButtonFillContainer = styled.button<{ width?: string; height?: string; $enable?: boolean }>`
   width: ${({ width }) => (width ? width : 'auto')};
+  height: ${({ height }) => (height ? height : 'auto')};
 
-  color: ${({ theme }) => theme.colors.white};
   border-radius: 10px;
-  background: ${({ theme }) => theme.colors.main};
+  color: ${({ theme, $enable = true }) => ($enable ? theme.colors.white : theme.colors.deep_gray)};
+  background: ${({ theme, $enable = true }) =>
+    $enable ? theme.colors.main : theme.colors.light_gray};
+  ${({ theme }) => theme.colors.heading_02};
+  pointer-events: ${({ $enable = true }) => ($enable ? 'auto' : 'none')};
 `;

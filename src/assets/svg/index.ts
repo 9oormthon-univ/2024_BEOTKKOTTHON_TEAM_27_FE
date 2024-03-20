@@ -11,6 +11,8 @@ export { default as Kakaomap } from './Kakaomap';
 export { default as Kogpt } from './Kogpt';
 export { default as MyStore } from './MyStore';
 export { default as Myposting } from './Myposting';
+export { default as Search } from './Search';
+export { default as Store } from './Store';
 export { default as TipBtn } from './Tip';
 export { default as Xmark } from './Xmark';
 export { default as IcImgEditBtn } from './IcImgEditBtn';
