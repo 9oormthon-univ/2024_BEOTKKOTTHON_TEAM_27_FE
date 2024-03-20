@@ -62,6 +62,10 @@ const ImgContainer = styled.div`
   align-items: center;
 
   gap: 1rem;
+
+  img {
+    height: 2.5rem;
+  }
 `;
 
 const SNSOptionContainer = styled.div`
