@@ -1,22 +1,42 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { post } from '../../apis/client';
 import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
 import LoginInput from '../../components/Login/LoginInput';
 import LoginTop from '../../components/Login/LoginTop';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  const navigate = useNavigate();
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
 
   async function handleSumbit() {
-    console.log('>> ', id, ' >>> ', pw);
     const data = {
       id: '1234567890',
       password: 'password123',
     };
-    const res = await post('/login', data);
-    console.log('>> ', res);
+    // const res = await post(/api/login', data)
+    fetch('/api/login', { method: 'POST', body: JSON.stringify(data) })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('✈ /api/login >>', res);
+
+        if (!res.isSuccess) {
+          alert('오류 발생!');
+          return;
+        }
+
+        localStorage.setItem('userId', res.data.userId);
+
+        // if (storeId == -1)인 경우, 가게 등록 페이지로 이동
+        if (res.data.storeId === -1) {
+          navigate('/store-new');
+          return;
+        }
+
+        localStorage.setItem('storeId', res.data.storeId);
+        navigate(`/`);
+      });
   }
 
   return (

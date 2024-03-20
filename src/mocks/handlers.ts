@@ -24,4 +24,16 @@ export const handlers = [
         'https://firebasestorage.googleapis.com/v0/b/twitter-72580.appspot.com/o/img%2Fimage_example.png?alt=media&token=5cf53d9e-93e2-4234-a075-8261c87df3ea',
     });
   }),
+  http.post('/api/login', () => {
+    return HttpResponse.json({
+      isSuccess: true,
+      data: { userId: 1, storeId: -1 },
+    });
+  }),
+  http.post('/api/store', () => {
+    return HttpResponse.json({
+      isSuccess: true,
+      data: { userId: 1, storeId: 1 },
+    });
+  }),
 ];
