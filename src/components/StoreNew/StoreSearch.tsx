@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { Search } from '../../assets/svg';
 
 interface StoreSearchProps {
   placeholder?: string;
@@ -17,7 +18,17 @@ export default function StoreSearch({ placeholder, onClick }: StoreSearchProps) 
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <Button onClick={() => onClick(query)} />
+      <Search
+        onClick={() => onClick(query)}
+        style={{
+          position: 'absolute',
+          right: '12px',
+          top: '50%',
+          width: '24px',
+          height: '24px',
+          transform: 'translate(0, -50%)',
+        }}
+      />
     </SearchInputContainer>
   );
 }
@@ -33,9 +44,10 @@ const SearchInputContainer = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  height: 100%%;
+  height: 100%;
 
   border: none;
+  background: none;
   padding: 0.6rem 1.25rem;
 
   color: ${({ theme }) => theme.colors.black};
@@ -49,13 +61,4 @@ const Input = styled.input`
     border: none;
     outline: none;
   }
-`;
-
-const Button = styled.div`
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 10%;
-  height: 100%;
-  border: 1px solid red;
 `;

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { KakaoSearchDocument } from '../../types/StoreNew';
+import StoreResultNone from './StoreResultNone';
 
 interface SearchInputProps {
   totalCount: number;
@@ -9,12 +10,23 @@ interface SearchInputProps {
 }
 
 export default function StoreResult({ totalCount, result, selected, onClick }: SearchInputProps) {
+  function handleRegisterStore() {}
+
   return (
     <>
       <StoreResultTitle>
         총 <b>{totalCount}개</b>의 검색 결과
       </StoreResultTitle>
       <StoreResultContainer>
+        {totalCount == 0 && (
+          <StoreResultNone
+            title='검색 결과가 없어요'
+            description='가게를 직접 등록하시겠어요?'
+            onClick={handleRegisterStore}
+            height='100%'
+          />
+        )}
+
         {result.map((item, index) => (
           <StoreResultBox key={index} $selected={selected == index} onClick={() => onClick(index)}>
             <h3>{item.place_name}</h3>

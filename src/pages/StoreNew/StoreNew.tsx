@@ -5,14 +5,13 @@ import SearchInput from '../../components/StoreNew/StoreSearch';
 import StoreResult from '../../components/StoreNew/StoreResult';
 import { useNavigate } from 'react-router-dom';
 import { KaKaoSearchResult } from '../../types/StoreNew';
+import StoreResultNone from '../../components/StoreNew/StoreResultNone';
 
 const KAKAO_REST_API = import.meta.env.VITE_KAKAO_REST_API;
 export default function StoreNew() {
   const navigate = useNavigate();
-  const [result, setResult] = useState<KaKaoSearchResult>({
-    documents: [],
-    meta: { total_count: 0 },
-  });
+
+  const [result, setResult] = useState<KaKaoSearchResult | null>(null);
   const [selected, setSelected] = useState(-1);
 
   function handleSelect(index: number) {
@@ -43,6 +42,11 @@ export default function StoreNew() {
   }
 
   function handleSumbit() {
+    if (result == null) {
+      alert('가게를 선택해 주세요.');
+      return;
+    }
+
     const data = {
       userId: localStorage.getItem('userId'),
       name: result.documents[selected].place_name,
@@ -71,12 +75,22 @@ export default function StoreNew() {
       <SearchInput placeholder='가게 이름으로 검색' onClick={handleSearch} />
 
       {/* 중간 영역 */}
-      <StoreResult
-        totalCount={result.meta.total_count}
-        result={result.documents}
-        selected={selected}
-        onClick={handleSelect}
-      />
+      {result === null && (
+        <StoreResultNone
+          title='내 가게를 등록하세요'
+          description='포스트 내용에 들어가는 가게 정보예요'
+          height='calc(100% - ((3.125rem + 1.44rem) + (3.125rem + 1.94rem) + 4rem))'
+        />
+      )}
+
+      {result !== null && (
+        <StoreResult
+          totalCount={result.meta.total_count}
+          result={result.documents}
+          selected={selected}
+          onClick={handleSelect}
+        />
+      )}
 
       {/* 버튼 */}
       <ButtonFill
