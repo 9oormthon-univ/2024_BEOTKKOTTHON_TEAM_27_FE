@@ -4,7 +4,7 @@ import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
 import LoginInput from '../../components/Login/LoginInput';
 import LoginTop from '../../components/Login/LoginTop';
 import { useNavigate } from 'react-router-dom';
-import { post } from '../../apis/client';
+import { useLoginMutation } from '../../hooks/queries/user/useLoginMutation';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -12,34 +12,31 @@ export default function Login() {
   const [pw, setPw] = useState('');
   const isValidate = useMemo(() => id !== '' && pw !== '', [id, pw]);
 
-  async function handleSumbit() {
-    const data = {
-      loginId: 'user1',
-      password: 'password1',
-    };
-    const res = await post(`/api/login`, data);
-    console.log('✈ /api/login >>', res);
-    // fetch('/api/login', { method: 'POST', body: JSON.stringify(data) })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     console.log('✈ /api/login >>', res);
+  /**
+   * useLoginMutation - 로그인 API
+   */
+  const { mutate } = useLoginMutation({
+    onSuccess: (res) => {
+      console.log('✈ /api/login >>', res);
+      localStorage.setItem('userId', JSON.stringify(res.userId));
 
-    //     if (!res.isSuccess) {
-    //       alert('오류 발생!');
-    //       return;
-    //     }
+      //  if 가게 미등록인 경우, 가게 등록 페이지로 이동
+      //  else, 홈으로 이동
+      if (res.storeId === -1) {
+        navigate('/store-new', { replace: true });
+      } else {
+        localStorage.setItem('storeId', JSON.stringify(res.storeId));
+        navigate(`/`, { replace: true });
+      }
+    },
+    onError: (error) => {
+      console.error('✈ /api/login ERROR >>', error);
+    },
+  });
 
-    //     localStorage.setItem('userId', res.data.userId);
-
-    //     // if (storeId == -1)인 경우, 가게 등록 페이지로 이동
-    //     if (res.data.storeId === -1) {
-    //       navigate('/store-new', { replace: true });
-    //       return;
-    //     }
-
-    //     localStorage.setItem('storeId', res.data.storeId);
-    //     navigate(`/`, { replace: true });
-    //   });
+  function handleSumbit() {
+    const body = { loginId: id, password: pw };
+    mutate(body);
   }
 
   return (

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { KaKaoSearchResult } from '../../types/StoreNew';
 import StoreResultNone from '../../components/StoreNew/StoreResultNone';
 import { post } from '../../apis/client';
+import { useStoreMutation } from '../../hooks/queries/store/useStoreMutation';
 
 const KAKAO_REST_API = import.meta.env.VITE_KAKAO_REST_API;
 export default function StoreNew() {
@@ -42,34 +43,35 @@ export default function StoreNew() {
       });
   }
 
+  /**
+   * useStoreMutation - 로그인 API
+   */
+  const { mutate } = useStoreMutation({
+    onSuccess: (res) => {
+      console.log('✈ /api/store >>', res);
+
+      localStorage.setItem('userId', JSON.stringify(res.userId));
+      localStorage.setItem('storeId', JSON.stringify(res.storeId));
+      navigate('/', { replace: true });
+    },
+    onError: (error) => {
+      console.error('✈ /api/store ERROR >>', error);
+    },
+  });
+
   async function handleSumbit() {
     if (result == null) {
       alert('가게를 선택해 주세요.');
       return;
     }
 
-    const data = {
+    const body = {
       userId: Number(localStorage.getItem('userId')),
       name: result.documents[selected].place_name,
       address: result.documents[selected].address_name,
     };
 
-    const res = await post(`/api/store`, data);
-    console.log('✈ /api/store >>', res);
-    // fetch('/api/store', { method: 'POST', body: JSON.stringify(data) })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     console.log('✈ /api/store >>', res);
-
-    //     if (!res.isSuccess) {
-    //       alert('오류 발생!');
-    //       return;
-    //     }
-
-    //     localStorage.setItem('userId', res.data.userId);
-    //     localStorage.setItem('storeId', res.data.storeId);
-    //     navigate('/', { replace: true });
-    //   });
+    mutate(body);
   }
 
   return (
