@@ -9,7 +9,10 @@ export default function MyStoreAdd() {
   const [result, setResult] = useState({ documents: [], meta: { total_count: 0 } });
   const [selected, setSelected] = useState(-1);
 
-  function handleSumbit() {}
+  function handleSelect(index: number) {
+    const newIndex = index == selected ? -1 : index;
+    setSelected(newIndex);
+  }
 
   function handleSearch(query: string) {
     setSelected(-1);
@@ -33,18 +36,19 @@ export default function MyStoreAdd() {
       });
   }
 
+  function handleSumbit() {}
+
   return (
     <MyStoreContainer>
       {/* 인풋 */}
       <SearchInput placeholder='가게 이름으로 검색' onClick={handleSearch} />
 
       {/* 중간 영역 */}
-      {selected}
       <StoreResult
         totalCount={result.meta.total_count}
         result={result.documents}
         selected={selected}
-        onChange={setSelected}
+        onClick={handleSelect}
       />
 
       {/* 버튼 */}

@@ -8,10 +8,10 @@ interface SearchInputProps {
   totalCount: number;
   result: Array<Store>;
   selected: number;
-  onChange: (index: number) => void;
+  onClick: (index: number) => void;
 }
 
-export default function StoreResult({ totalCount, result, selected, onChange }: SearchInputProps) {
+export default function StoreResult({ totalCount, result, selected, onClick }: SearchInputProps) {
   return (
     <>
       <StoreResultTitle>
@@ -19,7 +19,7 @@ export default function StoreResult({ totalCount, result, selected, onChange }: 
       </StoreResultTitle>
       <StoreResultContainer>
         {result.map((item, index) => (
-          <StoreResultBox key={index} $selected={selected == index} onClick={() => onChange(index)}>
+          <StoreResultBox key={index} $selected={selected == index} onClick={() => onClick(index)}>
             <h3>{item.place_name}</h3>
             <p>{item.address_name}</p>
             <br />
@@ -40,6 +40,7 @@ const StoreResultContainer = styled.section`
 
 const StoreResultTitle = styled.div`
   ${({ theme }) => theme.fonts.subTitle};
+  margin-left: 0.3rem;
 
   > b {
     font-weight: 700;
@@ -47,8 +48,9 @@ const StoreResultTitle = styled.div`
 `;
 
 const StoreResultBox = styled.div<{ $selected: boolean }>`
-  padding: 1rem 0;
-  background: ${({ theme, $selected }) => ($selected ? theme.colors.gray : theme.colors.white)};
+  padding: 1rem 0.3rem 0.5rem;
+  background: ${({ theme, $selected }) =>
+    $selected ? theme.colors.light_main : theme.colors.white};
 
   > h3 {
     ${({ theme }) => theme.fonts.heading_01};
