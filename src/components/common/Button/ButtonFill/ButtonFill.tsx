@@ -18,4 +18,5 @@ const ButtonFillContainer = styled.button<{ width?: string; height?: string; $en
   background: ${({ theme, $enable = true }) =>
     $enable ? theme.colors.main : theme.colors.light_gray};
   ${({ theme }) => theme.colors.heading_02};
+  pointer-events: ${({ $enable = true }) => ($enable ? 'auto' : 'none')};
 `;

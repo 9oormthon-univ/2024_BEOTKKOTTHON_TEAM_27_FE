@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
 import LoginInput from '../../components/Login/LoginInput';
 import LoginTop from '../../components/Login/LoginTop';
@@ -9,6 +9,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
+  const isValidate = useMemo(() => id !== '' && pw !== '', [id, pw]);
 
   async function handleSumbit() {
     const data = {
@@ -43,13 +44,20 @@ export default function Login() {
     <LoginContainer>
       {/* 상단 */}
       <LoginTop />
+      {isValidate}
 
       {/* 중간 */}
       <LoginInput placeholder='ID' value={id} onChange={setId} />
       <LoginInput placeholder='PW' value={pw} onChange={setPw} />
 
       {/* 버튼 */}
-      <ButtonFill title='로그인' width='100%' height='3.125rem' onClick={handleSumbit} />
+      <ButtonFill
+        title='로그인'
+        width='100%'
+        height='3.125rem'
+        enable={isValidate}
+        onClick={handleSumbit}
+      />
 
       {/* 하단 */}
       <LoginSignup>
