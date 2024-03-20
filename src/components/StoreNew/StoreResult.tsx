@@ -1,12 +1,9 @@
 import styled from 'styled-components';
+import { KakaoSearchDocument } from '../../types/StoreNew';
 
-interface Store {
-  place_name: string;
-  address_name: string;
-}
 interface SearchInputProps {
   totalCount: number;
-  result: Array<Store>;
+  result: Array<KakaoSearchDocument>;
   selected: number;
   onClick: (index: number) => void;
 }

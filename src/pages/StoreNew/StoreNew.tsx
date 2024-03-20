@@ -3,10 +3,16 @@ import styled from 'styled-components';
 import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
 import SearchInput from '../../components/StoreNew/StoreSearch';
 import StoreResult from '../../components/StoreNew/StoreResult';
+import { useNavigate } from 'react-router-dom';
+import { KaKaoSearchResult } from '../../types/StoreNew';
 
 const KAKAO_REST_API = import.meta.env.VITE_KAKAO_REST_API;
 export default function StoreNew() {
-  const [result, setResult] = useState({ documents: [], meta: { total_count: 0 } });
+  const navigate = useNavigate();
+  const [result, setResult] = useState<KaKaoSearchResult>({
+    documents: [],
+    meta: { total_count: 0 },
+  });
   const [selected, setSelected] = useState(-1);
 
   function handleSelect(index: number) {
@@ -36,7 +42,28 @@ export default function StoreNew() {
       });
   }
 
-  function handleSumbit() {}
+  function handleSumbit() {
+    const data = {
+      userId: localStorage.getItem('userId'),
+      name: result.documents[selected].place_name,
+      address: result.documents[selected].address_name,
+    };
+
+    fetch('/api/store', { method: 'POST', body: JSON.stringify(data) })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('✈ /api/store >>', res);
+
+        if (!res.isSuccess) {
+          alert('오류 발생!');
+          return;
+        }
+
+        localStorage.setItem('userId', res.data.userId);
+        localStorage.setItem('storeId', res.data.storeId);
+        navigate('/');
+      });
+  }
 
   return (
     <MyStoreContainer>
