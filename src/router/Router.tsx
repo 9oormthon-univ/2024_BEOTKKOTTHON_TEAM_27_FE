@@ -5,8 +5,9 @@ import Home from '../pages/Home/HomePage';
 import PostResult from '../pages/PostResult/PostResult';
 import HeaderLayout from '../layouts/HeaderLayout';
 import NotFound from '../components/Error/NotFound';
-import MystoreHeaderLayout from '../layouts/MystoreHeaderLayout';
-import MyStoreAdd from '../pages/MyStoreAdd/MyStoreAdd';
+import StoreHeaderLayout from '../layouts/StoreHeaderLayout';
+import Login from '../pages/Login/Login';
+import StoreNew from '../pages/StoreNew/StoreNew';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
       },
       {
         path: '/post-result',
@@ -32,11 +37,11 @@ const router = createBrowserRouter([
         ],
       },
       {
-        element: <MystoreHeaderLayout />,
+        element: <StoreHeaderLayout />,
         children: [
           {
-            path: '/store-add',
-            element: <MyStoreAdd />,
+            path: '/store-new',
+            element: <StoreNew />,
           },
         ],
       },
