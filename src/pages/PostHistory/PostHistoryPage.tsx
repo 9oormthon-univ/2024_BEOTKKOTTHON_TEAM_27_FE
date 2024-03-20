@@ -1,17 +1,21 @@
 import ImageCard from '../../components/PostHistory/ImageCard/ImageCard';
 import styled from 'styled-components';
+import TextCard from '../../components/PostHistory/TextCard/TextCard';
 
 export default function PostHistoryPage() {
   return (
     <PostHistoryPageContainer>
       <ImageCard />
+      <TextCard />
     </PostHistoryPageContainer>
-
-    //글 이미지 컴포넌트
-    // 글 컴포넌트
   );
 }
 
 const PostHistoryPageContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   margin-top: 5rem;
 `;
