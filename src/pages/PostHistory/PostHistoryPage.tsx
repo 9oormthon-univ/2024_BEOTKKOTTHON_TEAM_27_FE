@@ -1,7 +1,5 @@
-// historyPage.tsx
 import styled from 'styled-components';
 import TextCardWithImage from '../../components/PostHistory/TextCardWithImage/TextCardWithImage';
-import PostImage from '../../components/PostResult/PostImage';
 
 interface CardData {
   date: string;
