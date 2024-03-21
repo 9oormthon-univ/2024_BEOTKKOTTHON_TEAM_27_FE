@@ -3,7 +3,7 @@ import { useOnboardingContext } from '../../context/PostNew/PonstNewContext';
 const useMenuExplain = () => {
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     let inputValue = e.target.value;
     updatePostInfo({ promotionContent: inputValue });
   };

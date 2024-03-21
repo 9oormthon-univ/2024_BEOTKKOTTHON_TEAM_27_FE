@@ -14,13 +14,13 @@ import { useNavigate } from 'react-router-dom';
 import { useOnboardingContext } from '../../context/PostNew/PonstNewContext';
 
 export default function PostNew() {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const { Funnel, setStep } = useFunnel(ONBOARDING_FORM_STEP, ONBOARDING_FORM_STEP[0]);
   const [userId, setUserId] = useState<number>(0);
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
 
   console.log(userId);
-  
+
   // [이전 버튼]
   const onClickBackBtn = (stepNum: number) => {
     const stepIndex = stepNum - 1;

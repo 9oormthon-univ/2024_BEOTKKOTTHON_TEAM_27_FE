@@ -27,8 +27,7 @@ export default function Step5() {
 
       <ContentInputContainer>
         <ContentInput
-          type='text'
-          value={onboardingInfo.promotionSubject}
+          value={onboardingInfo.promotionContent}
           onChange={handleInputChange}
           placeholder='자세히 적을 수록 AI가 더 만족스러운 결과를 생성해요.'
         />
@@ -57,7 +56,7 @@ const ContentInputContainer = styled.div`
   margin-top: 2rem;
 `;
 
-const ContentInput = styled.input`
+const ContentInput = styled.textarea`
   width: 100vw;
   height: auto;
   min-height: 130px;

@@ -9,6 +9,7 @@ import StoreHeaderLayout from '../layouts/StoreHeaderLayout';
 import Login from '../pages/Login/Login';
 import StoreNew from '../pages/StoreNew/StoreNew';
 import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
+import { OnboardingProvider } from '../context/PostNew/PonstNewContext';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
         children: [
           {
             path: '/post',
-            element: <PostNew />,
+            element: (
+              <OnboardingProvider>
+                <PostNew />
+              </OnboardingProvider>
+            ),
           },
         ],
       },

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
-import useNameInput from '../../../hooks/PostNew/useMenuInput';
+import useMenuInput from '../../../hooks/PostNew/useMenuInput';
 
 export default function Step4() {
-  const { onboardingInfo, handleInputChange, handleBtnClick } = useNameInput();
+  const { onboardingInfo, handleInputChange } = useMenuInput();
+  const hasContent = onboardingInfo.promotionSubject.length > 0;
 
   return (
     <>
@@ -16,7 +17,7 @@ export default function Step4() {
       </PostTitleContainer>
 
       <MenuInputContainer>
-        <InputFieldContainer>
+        <InputFieldContainer $hasContent={hasContent}>
           <InputField
             type='text'
             value={onboardingInfo.promotionSubject}
@@ -24,10 +25,7 @@ export default function Step4() {
             placeholder='메뉴를 입력해주세요'
           />
           {onboardingInfo.promotionSubject && (
-            <Xmark
-              onClick={handleBtnClick}
-              style={{ width: '1rem', position: 'absolute', right: '5%' }}
-            />
+            <Xmark style={{ width: '1rem', position: 'absolute', right: '5%' }} />
           )}
         </InputFieldContainer>
         <Example>ex&#41; 소동 떡볶이 &#40;매운맛&#41;</Example>
@@ -70,7 +68,7 @@ export const Example = styled.div`
   ${({ theme }) => theme.fonts.ex_01};
 `;
 
-const InputFieldContainer = styled.div`
+const InputFieldContainer = styled.div<{ $hasContent: boolean }>`
   display: flex;
   align-items: center;
   position: relative;
