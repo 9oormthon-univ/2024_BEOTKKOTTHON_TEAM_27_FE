@@ -21,11 +21,6 @@ interface Post6FooterProps {
 }
 
 export default function Step6({ onClickBackBtn, stepNum }: Post6FooterProps) {
-  const userId = localStorage.getItem('userId');
-  const storeId = localStorage.getItem('storeId');
-  const parsedUserId = userId ? parseInt(userId, 10) : undefined;
-  const parsedStoreId = storeId ? parseInt(storeId, 10) : undefined;
-
   const { updatePostInfo } = useOnboardingContext();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
@@ -54,12 +49,11 @@ export default function Step6({ onClickBackBtn, stepNum }: Post6FooterProps) {
 
       if (response.status === 200) {
         setSelectedFile(fileNameString);
+
         console.log('파일 업로드 성공' + selectedFile);
         updatePostInfo({
           fileName: fileNameString,
           postingType: 'Both',
-          userId: parsedUserId,
-          storeId: parsedStoreId,
         });
       } else {
         console.error('파일 업로드 실패');
@@ -88,7 +82,7 @@ export default function Step6({ onClickBackBtn, stepNum }: Post6FooterProps) {
       const response = mutation.mutate(onboardingInfo, {
         onSuccess: (data) => {
           console.log('step06 postOnboarding response', response);
-          const userId = data.userId;
+          const userId = data;
 
           return userId;
         },
