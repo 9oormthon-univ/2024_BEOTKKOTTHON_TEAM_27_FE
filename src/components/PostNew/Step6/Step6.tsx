@@ -10,6 +10,7 @@ import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 import usePostOnboardingInfo from '../../../queries/PostNew/usePostInfo';
 import ButtonPrev from '../../common/Button/ButtonPrev/ButtonPrev';
 import ButtonFill from '../../common/Button/ButtonFill/ButtonFill';
+import Loading from '../../common/Loading/Loading';
 
 interface ServerResponse {
   file_name: string;
@@ -74,19 +75,28 @@ export default function Step6({ onClickBackBtn, stepNum }: Post6FooterProps) {
     }
   };
 
-  const { mutation } = usePostOnboardingInfo();
+  const { mutate, isPending } = usePostOnboardingInfo({
+    onSuccess: (res) => {
+      console.log('✈ /api/posting >>', res);
+
+      if (!res.isSuccess) {
+        alert(res.message);
+        return;
+      }
+
+      console.log('Refetch!');
+    },
+    onError: (error) => {
+      console.error('✈ /api/posting ERROR >>', error);
+    },
+  });
+  if (isPending) return <Loading />;
+  
   const { onboardingInfo } = useOnboardingContext();
 
   const postOnboarding = async () => {
     try {
-      const response = mutation.mutate(onboardingInfo, {
-        onSuccess: (data) => {
-          console.log('step06 postOnboarding response', response);
-          const userId = data;
-
-          return userId;
-        },
-      });
+      mutate(onboardingInfo);
     } catch (error) {
       console.log(error);
     }
