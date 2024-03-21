@@ -38,8 +38,8 @@ const GuidePageContainer = styled.section`
   justify-content: center;
   align-items: center;
 
-  width: 100vw;
-  max-width: 375px;
+  width: 100%;
+  max-width: 430px;
   padding: calc(4rem + 3.4375rem) 0; // header 4rem 영역
   posiiton: relative;
 `;
@@ -48,6 +48,7 @@ const GuideSelectorContainer = styled.div`
   display: flex;
 
   width: 100%;
+  max-width: 430px; // iPhone 14 Pro Max
   height: 3.4375rem;
   position: fixed;
   top: 4rem;
