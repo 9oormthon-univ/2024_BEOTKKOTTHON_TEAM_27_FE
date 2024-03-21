@@ -20,7 +20,9 @@ const initialPosting = {
   postingChannel: '',
   postingImage_modifiedCount: 0,
   postingText_modifiedCount: 0,
-  postingType: 'Both',
+  postingText_modifiedDate: '',
+  postingImage_modifiedDate: '',
+  postingType: '',
 };
 
 export default function PostResult() {
@@ -78,8 +80,14 @@ export default function PostResult() {
         <PostTitle onRetry={() => setIsOpen(true)} />
 
         {/* 중간 - 이미지, 텍스트 */}
-        <PostImage url={getImageFullUrl(posting.postingImage)} />
-        <PostText text={posting.postingText} />
+        {posting.postingType === 'Both' ? (
+          <>
+            <PostImage url={getImageFullUrl(posting.postingImage)} />
+            <PostText text={posting.postingText} />
+          </>
+        ) : (
+          <PostText text={posting.postingText} />
+        )}
 
         {/* 하단 */}
         <PostButton
