@@ -6,51 +6,38 @@ import food2 from '../../../assets/Image/food2.jpg';
 import food3 from '../../../assets/Image/food3.jpg';
 import { IcEmptyThumbnailFinal, TipBtn } from '../../../assets/svg';
 import { put } from '../../../apis/client';
-import usePostOnboardingInfo from '../../../queries/PostNew/usePostInfo';
-import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 
-interface NameInputProps {
-  setUserId: React.Dispatch<React.SetStateAction<number>>;
+interface ServerResponse {
+  file_name: string;
 }
 
-export default function Step6(props: NameInputProps) {
-  const { setUserId } = props;
-
-  // const { mutation } = usePostOnboardingInfo();
-  // const { onboardingInfo } = useOnboardingContext();
+export default function Step6() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
-  // const postOnboarding = async () => {
-  //   try {
-  //     const response = mutation.mutate(onboardingInfo, {
-  //       onSuccess: (data) => {
-  //         console.log('step06 postOnboarding response', response);
-  //         const userId = data.userId;
-  //         setUserId(userId);
-
-  //         return userId;
-  //       },
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
+  // 1.
+  // IBM 서버 이미지 업로드 PUT 요청 함수
+  // 추후 react-query 리팩토링 예정
   const uploadFile = async (file: File) => {
     const formData = new FormData();
     const fileExtension = `.${file.name.split('.').pop()}`;
-
-    formData.append('file_content', file); // 파일 추가
+    formData.append('file_content', file);
 
     try {
       const queryParams = new URLSearchParams();
       queryParams.append('file_extension', fileExtension);
-      console.log('으으음??' + queryParams);
-      const response = await put(`/api/ibm/object?${queryParams.toString()}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
+
+      const response = await put<ServerResponse>(
+        `/api/ibm/object?${queryParams.toString()}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         },
-      });
+      );
+
+      const fileName = response.data.file_name;
+      console.log('image response: ' + fileName);
 
       if (response.status === 200) {
         console.log('파일 업로드 성공');
@@ -68,7 +55,7 @@ export default function Step6(props: NameInputProps) {
       const selectedFiles = files as FileList;
       const file = selectedFiles[0];
 
-      uploadFile(file); // 파일 업로드 함수 호출
+      uploadFile(file);
       setPreviewImage(URL.createObjectURL(file));
     }
   };

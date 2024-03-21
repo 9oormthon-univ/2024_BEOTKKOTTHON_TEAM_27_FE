@@ -8,7 +8,6 @@ import Step4 from '../../components/PostNew/Step4/Step4';
 import Step5 from '../../components/PostNew/Step5/Step5';
 import Step6 from '../../components/PostNew/Step6/Step6';
 import ProcessBar from '../../components/common/ProcessBar/ProcessBar';
-import { useState } from 'react';
 import PostFooter from '../../components/PostNew/PostFooter/PostFooter';
 import { useNavigate } from 'react-router-dom';
 import { useOnboardingContext } from '../../context/PostNew/PostNewContext';
@@ -16,10 +15,8 @@ import { useOnboardingContext } from '../../context/PostNew/PostNewContext';
 export default function PostNew() {
   const navigate = useNavigate();
   const { Funnel, setStep } = useFunnel(ONBOARDING_FORM_STEP, ONBOARDING_FORM_STEP[0]);
-  const [userId, setUserId] = useState<number>(0);
-  const { onboardingInfo, updatePostInfo } = useOnboardingContext();
 
-  console.log(userId);
+  const { onboardingInfo, updatePostInfo } = useOnboardingContext();
 
   // [이전 버튼]
   const onClickBackBtn = (stepNum: number) => {
@@ -98,7 +95,7 @@ export default function PostNew() {
       <Funnel.Step name='POSTING_IMAGE'>
         <PostNewContainer>
           <ProcessBar currentStep={6} stepCount={6} />
-          <Step6 setUserId={setUserId} />
+          <Step6 />
           <PostFooter
             onClickBackBtn={() => onClickBackBtn(6)}
             setStep={() => setStep(() => 'POSTING_IMAGE')}
