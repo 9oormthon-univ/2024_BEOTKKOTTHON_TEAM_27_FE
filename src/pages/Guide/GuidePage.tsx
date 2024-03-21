@@ -40,7 +40,8 @@ const GuidePageContainer = styled.section`
 
   width: 100vw;
   max-width: 375px;
-  padding: 4rem 0; // header 4rem 영역
+  padding: calc(4rem + 3.4375rem) 0; // header 4rem 영역
+  posiiton: relative;
 `;
 
 const GuideSelectorContainer = styled.div`
@@ -48,6 +49,10 @@ const GuideSelectorContainer = styled.div`
 
   width: 100%;
   height: 3.4375rem;
+  position: fixed;
+  top: 4rem;
+
+  background: #fff;
 `;
 
 const GuideSelector = styled.div<{ $selected: boolean }>`
