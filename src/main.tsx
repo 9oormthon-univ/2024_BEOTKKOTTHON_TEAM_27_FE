@@ -7,6 +7,7 @@ const ignoredPaths = [
   'https://dapi.kakao.com',
   'https://objectstorage.ap-chuncheon-1.oraclecloud.com',
 ];
+
 async function enableMocking() {
   if (process.env.NODE_ENV !== 'development') {
     return;

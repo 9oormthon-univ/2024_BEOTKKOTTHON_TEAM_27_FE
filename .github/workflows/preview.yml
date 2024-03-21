@@ -29,9 +29,11 @@ jobs:
         run: |
           echo "VITE_KAKAO_REST_API=$VITE_KAKAO_REST_API" >> .env
           echo "VITE_APP_BASE_URL=$VITE_APP_BASE_URL" >> .env
+          echo "VITE_APP_IMG_URL=$VITE_APP_IMG_URL" >> .env
         env:
           VITE_KAKAO_REST_API: ${{secrets.VITE_KAKAO_REST_API}}
           VITE_APP_BASE_URL: ${{secrets.VITE_APP_BASE_URL}}
+          VITE_APP_IMG_URL: ${{secrets.VITE_APP_IMG_URL}}
 
       - name: Build
         run: yarn install && yarn build

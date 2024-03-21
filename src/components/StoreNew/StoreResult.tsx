@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { KakaoSearchDocument } from '../../types/StoreNew';
 import StoreResultNone from './StoreResultNone';
+import { KakaoSearchDocument } from '../../hooks/queries/kakao/useGetKakaoSearch';
 
 interface SearchInputProps {
   totalCount: number;

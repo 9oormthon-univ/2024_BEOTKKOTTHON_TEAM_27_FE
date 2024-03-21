@@ -5,21 +5,84 @@ import food1 from '../../../assets/Image/food1.jpg';
 import food2 from '../../../assets/Image/food2.jpg';
 import food3 from '../../../assets/Image/food3.jpg';
 import { IcEmptyThumbnailFinal, TipBtn } from '../../../assets/svg';
-import PostFooter from '../PostFooter/PostFooter';
+import { put } from '../../../apis/client';
+import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
+import usePostOnboardingInfo from '../../../queries/PostNew/usePostInfo';
 
-interface NameInputProps {
-  onNext: VoidFunction;
+interface ServerResponse {
+  file_name: string;
 }
 
-export default function Step6(props: NameInputProps) {
-  const { onNext } = props;
+export default function Step6() {
+  // const userId = localStorage.getItem('userId');
+  // const storeId = localStorage.getItem('storId');
+  // const parsedUserId = userId ? parseInt(userId, 10) : undefined;
+  // const parsedStoreId = storeId ? parseInt(storeId, 10) : undefined;
+
+  const { updatePostInfo } = useOnboardingContext();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
+
+  const uploadFile = async (file: File) => {
+    const formData = new FormData();
+    const fileExtension = `.${file.name.split('.').pop()}`;
+    formData.append('file_content', file);
+
+    try {
+      const queryParams = new URLSearchParams();
+      queryParams.append('file_extension', fileExtension);
+
+      const response = await put<ServerResponse>(
+        `/api/ibm/object?${queryParams.toString()}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        },
+      );
+
+      const fileNameString = response.data.file_name;
+      console.log('image response: ' + fileNameString);
+
+      if (response.status === 200) {
+        setSelectedFile(fileNameString);
+        console.log('파일 업로드 성공' + selectedFile);
+        updatePostInfo({ fileName: fileNameString, postingType: 'Both', userId: 1, storeId: 1 });
+      } else {
+        console.error('파일 업로드 실패');
+      }
+    } catch (error) {
+      console.error('파일 업로드 중 오류 발생:', error);
+    }
+  };
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
     if (files && files.length > 0) {
       const selectedFiles = files as FileList;
-      setPreviewImage(URL.createObjectURL(selectedFiles[0]));
+      const file = selectedFiles[0];
+
+      uploadFile(file);
+      setPreviewImage(URL.createObjectURL(file));
+    }
+  };
+
+  const { mutation } = usePostOnboardingInfo();
+  const { onboardingInfo } = useOnboardingContext();
+
+  const postOnboarding = async () => {
+    try {
+      const response = mutation.mutate(onboardingInfo, {
+        onSuccess: (data) => {
+          console.log('step06 postOnboarding response', response);
+          const userId = data.userId;
+
+          return userId;
+        },
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -37,7 +100,7 @@ export default function Step6(props: NameInputProps) {
       <IcEmptyThumbnailWrapper>
         <input
           type='file'
-          accept='image/jpeg, image/png, image/gif, image/heic '
+          accept='image/jpeg, image/png, image/gif, image/heic'
           style={{ display: 'none' }}
           id='imgInput'
           onChange={handleImageUpload}
@@ -69,7 +132,7 @@ export default function Step6(props: NameInputProps) {
         </ImgWrapper>
       </TipImageContainer>
 
-      <PostFooter onNext={onNext} />
+      <UploadButton onClick={postOnboarding}>업로드</UploadButton>
     </>
   );
 }
@@ -130,7 +193,7 @@ const SubTitle = styled.p`
   ${({ theme }) => theme.fonts.subTitle};
 `;
 
-export const IcEmptyThumbnailWrapper = styled.div`
+const IcEmptyThumbnailWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,10 +203,27 @@ export const IcEmptyThumbnailWrapper = styled.div`
   cursor: pointer;
 `;
 
-export const PreviewImg = styled.img`
+const PreviewImg = styled.img`
   width: 15rem;
   height: 15rem;
   border-radius: 10px;
   object-fit: contain;
   z-index: 9;
+`;
+
+const UploadButton = styled.button`
+  margin-top: 1rem;
+  position: absolute;
+  z-index: 9;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primaryDark};
+  }
 `;

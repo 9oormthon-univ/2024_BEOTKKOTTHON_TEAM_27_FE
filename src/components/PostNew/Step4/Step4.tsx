@@ -1,25 +1,11 @@
-import { useState } from 'react';
 import styled from 'styled-components';
-import PostFooter from '../PostFooter/PostFooter';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
+import useMenuInput from '../../../hooks/PostNew/useMenuInput';
 
-interface NameInputProps {
-  onNext: VoidFunction;
-}
-
-export default function Step4(props: NameInputProps) {
-  const { onNext } = props;
-  const [menu, setMenu] = useState('');
-  const [price, setPrice] = useState('');
-
-  const handleMenuClear = () => {
-    setMenu('');
-  };
-
-  const handlePriceClear = () => {
-    setPrice('');
-  };
+export default function Step4() {
+  const { onboardingInfo, handleInputChange } = useMenuInput();
+  const hasContent = onboardingInfo.promotionSubject.length > 0;
 
   return (
     <>
@@ -31,24 +17,21 @@ export default function Step4(props: NameInputProps) {
       </PostTitleContainer>
 
       <MenuInputContainer>
-        <InputFieldContainer>
+        <InputFieldContainer $hasContent={hasContent}>
           <InputField
             type='text'
-            value={menu}
-            onChange={(e) => setMenu(e.target.value)}
+            value={onboardingInfo.promotionSubject}
+            onChange={handleInputChange}
             placeholder='메뉴를 입력해주세요'
           />
-          {menu && (
-            <Xmark
-              onClick={handleMenuClear}
-              style={{ width: '1rem', position: 'absolute', right: '5%' }}
-            />
+          {onboardingInfo.promotionSubject && (
+            <Xmark style={{ width: '1rem', position: 'absolute', right: '5%' }} />
           )}
         </InputFieldContainer>
         <Example>ex&#41; 소동 떡볶이 &#40;매운맛&#41;</Example>
       </MenuInputContainer>
 
-      <PriceInputContainer>
+      {/* <PriceInputContainer>
         <InputFieldContainer>
           <InputField
             type='text'
@@ -64,9 +47,7 @@ export default function Step4(props: NameInputProps) {
           )}
         </InputFieldContainer>
         <Example>4500원</Example>
-      </PriceInputContainer>
-
-      <PostFooter onNext={onNext} />
+      </PriceInputContainer> */}
     </>
   );
 }
@@ -81,18 +62,13 @@ const MenuInputContainer = styled.div`
   position: relative;
 `;
 
-const PriceInputContainer = styled.div`
-  margin-top: 1rem;
-  position: relative;
-`;
-
 export const Example = styled.div`
   margin: 0.5rem 0 0 0.5rem;
   color: ${({ theme }) => theme.colors.G_06};
   ${({ theme }) => theme.fonts.ex_01};
 `;
 
-const InputFieldContainer = styled.div`
+const InputFieldContainer = styled.div<{ $hasContent: boolean }>`
   display: flex;
   align-items: center;
   position: relative;
@@ -113,3 +89,8 @@ const InputField = styled.input`
 const Highlight = styled.span`
   color: ${({ theme }) => theme.colors.main};
 `;
+
+// const PriceInputContainer = styled.div`
+//   margin-top: 1rem;
+//   position: relative;
+// `;
