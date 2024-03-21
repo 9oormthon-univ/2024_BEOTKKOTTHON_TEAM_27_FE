@@ -50,6 +50,7 @@ const fonts = {
     font-weight: 700;
     line-height: 125%;
   `,
+
   description: css`
     font-family: 'Pretendard';
     font-size: 1rem;
@@ -133,6 +134,21 @@ const fonts = {
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
+    line-height: 125%;
+  `,
+  select_off: css`
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%;
+    color: #21212166;
+  `,
+  select_on: css`
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
     line-height: 125%;
   `,
 };
