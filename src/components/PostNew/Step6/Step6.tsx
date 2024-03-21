@@ -8,16 +8,23 @@ import { IcEmptyThumbnailFinal, TipBtn } from '../../../assets/svg';
 import { put } from '../../../apis/client';
 import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 import usePostOnboardingInfo from '../../../queries/PostNew/usePostInfo';
+import ButtonPrev from '../../common/Button/ButtonPrev/ButtonPrev';
+import ButtonFill from '../../common/Button/ButtonFill/ButtonFill';
 
 interface ServerResponse {
   file_name: string;
 }
 
-export default function Step6() {
-  // const userId = localStorage.getItem('userId');
-  // const storeId = localStorage.getItem('storId');
-  // const parsedUserId = userId ? parseInt(userId, 10) : undefined;
-  // const parsedStoreId = storeId ? parseInt(storeId, 10) : undefined;
+interface Post6FooterProps {
+  onClickBackBtn: (stemNum: number | undefined) => void;
+  stepNum?: number | undefined;
+}
+
+export default function Step6({ onClickBackBtn, stepNum }: Post6FooterProps) {
+  const userId = localStorage.getItem('userId');
+  const storeId = localStorage.getItem('storeId');
+  const parsedUserId = userId ? parseInt(userId, 10) : undefined;
+  const parsedStoreId = storeId ? parseInt(storeId, 10) : undefined;
 
   const { updatePostInfo } = useOnboardingContext();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
@@ -48,7 +55,12 @@ export default function Step6() {
       if (response.status === 200) {
         setSelectedFile(fileNameString);
         console.log('파일 업로드 성공' + selectedFile);
-        updatePostInfo({ fileName: fileNameString, postingType: 'Both', userId: 1, storeId: 1 });
+        updatePostInfo({
+          fileName: fileNameString,
+          postingType: 'Both',
+          userId: parsedUserId,
+          storeId: parsedStoreId,
+        });
       } else {
         console.error('파일 업로드 실패');
       }
@@ -132,10 +144,24 @@ export default function Step6() {
         </ImgWrapper>
       </TipImageContainer>
 
-      <UploadButton onClick={postOnboarding}>업로드</UploadButton>
+      <PostFooterContainer>
+        <ButtonPrev title='이전' width='7.6rem' onClick={() => onClickBackBtn(stepNum)} />
+        <ButtonFill title='다음' width='11.5rem' onClick={postOnboarding} />
+      </PostFooterContainer>
     </>
   );
 }
+const PostFooterContainer = styled.footer`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 0.6rem;
+  bottom: 3%;
+`;
 
 const ImgWrapper = styled.div`
   img {
@@ -209,21 +235,4 @@ const PreviewImg = styled.img`
   border-radius: 10px;
   object-fit: contain;
   z-index: 9;
-`;
-
-const UploadButton = styled.button`
-  margin-top: 1rem;
-  position: absolute;
-  z-index: 9;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.primaryDark};
-  }
 `;
