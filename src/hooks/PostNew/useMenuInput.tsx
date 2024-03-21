@@ -1,4 +1,4 @@
-import { useOnboardingContext } from '../../context/PostNew/PonstNewContext';
+import { useOnboardingContext } from '../../context/PostNew/PostNewContext';
 
 const useMenuInput = () => {
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { GenderOptionProps } from '../../../../types/PostNew';
-import { useOnboardingContext } from '../../../../context/PostNew/PonstNewContext';
+import { useOnboardingContext } from '../../../../context/PostNew/PostNewContext';
 
 export default function SelectGender() {
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();

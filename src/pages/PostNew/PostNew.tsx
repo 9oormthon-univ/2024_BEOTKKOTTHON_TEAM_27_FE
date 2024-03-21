@@ -11,7 +11,7 @@ import ProcessBar from '../../components/common/ProcessBar/ProcessBar';
 import { useState } from 'react';
 import PostFooter from '../../components/PostNew/PostFooter/PostFooter';
 import { useNavigate } from 'react-router-dom';
-import { useOnboardingContext } from '../../context/PostNew/PonstNewContext';
+import { useOnboardingContext } from '../../context/PostNew/PostNewContext';
 
 export default function PostNew() {
   const navigate = useNavigate();

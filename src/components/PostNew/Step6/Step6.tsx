@@ -7,7 +7,7 @@ import food3 from '../../../assets/Image/food3.jpg';
 import { IcEmptyThumbnailFinal, TipBtn } from '../../../assets/svg';
 import { put } from '../../../apis/client';
 import usePostOnboardingInfo from '../../../queries/PostNew/usePostInfo';
-import { useOnboardingContext } from '../../../context/PostNew/PonstNewContext';
+import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 
 interface NameInputProps {
   setUserId: React.Dispatch<React.SetStateAction<number>>;

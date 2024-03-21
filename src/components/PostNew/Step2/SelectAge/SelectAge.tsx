@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { AgeBoxProps } from '../../../../types/PostNew';
-import { useOnboardingContext } from '../../../../context/PostNew/PonstNewContext';
+import { useOnboardingContext } from '../../../../context/PostNew/PostNewContext';
 
 export default function SelectAge() {
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();

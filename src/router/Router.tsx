@@ -9,7 +9,7 @@ import StoreHeaderLayout from '../layouts/StoreHeaderLayout';
 import Login from '../pages/Login/Login';
 import StoreNew from '../pages/StoreNew/StoreNew';
 import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
-import { OnboardingProvider } from '../context/PostNew/PonstNewContext';
+import { OnboardingProvider } from '../context/PostNew/PostNewContext';
 
 const router = createBrowserRouter([
   {

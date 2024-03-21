@@ -1,13 +1,12 @@
 import { PropsWithChildren, createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { PostInfo } from '../../types/PostNew';
 
-interface OnboardingInfoContext {
+interface PostInfoContext {
   onboardingInfo: PostInfo;
   updatePostInfo: (newInfo: Partial<PostInfo>) => void;
-  updatePostingChannel: (sns: string | null) => void; // PostingChannel을 업데이트하는 함수 추가
 }
 
-const initialOnboardingInfo: PostInfo = {
+export const initialOnboardingInfo: PostInfo = {
   userId: 0,
   storeId: 0,
   postingType: '',
@@ -20,10 +19,9 @@ const initialOnboardingInfo: PostInfo = {
   targetAge: [],
 };
 
-const OnboardingContext = createContext<OnboardingInfoContext>({
+const OnboardingContext = createContext<PostInfoContext>({
   onboardingInfo: initialOnboardingInfo,
   updatePostInfo: () => {},
-  updatePostingChannel: () => {}, // 초기값 설정
 });
 
 export const useOnboardingContext = () => useContext(OnboardingContext);
@@ -35,10 +33,6 @@ export const OnboardingProvider = ({ children }: PropsWithChildren) => {
     setOnboardingInfo((prev) => ({ ...prev, ...newInfo }));
   };
 
-   const updatePostingChannel = (sns: string | null) => {
-     setOnboardingInfo((prev) => ({ ...prev, postingChannel: sns }));
-   };
-
   /**@todo 전체 값 확인용 useEffect */
   useEffect(() => {
     console.log('전체 값 확인:', onboardingInfo);
@@ -48,7 +42,6 @@ export const OnboardingProvider = ({ children }: PropsWithChildren) => {
     () => ({
       onboardingInfo,
       updatePostInfo,
-      updatePostingChannel,
     }),
     [onboardingInfo],
   );

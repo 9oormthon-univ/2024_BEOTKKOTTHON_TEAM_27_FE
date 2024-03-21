@@ -6,7 +6,7 @@ import carrot from '../../../assets/Image/carrot.png';
 import kakaoMap from '../../../assets/Image/kakaoMap.png';
 import insta from '../../../assets/Image/Instagram.png';
 import Step1Title from './Step1Title/Step1Title';
-import { useOnboardingContext } from '../../../context/PostNew/PonstNewContext';
+import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 
 export default function Step1() {
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
