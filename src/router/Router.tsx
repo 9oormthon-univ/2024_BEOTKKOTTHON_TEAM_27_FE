@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: '/post-result',
+        path: '/post-result/:id',
         element: <PostResult />,
       },
       {
