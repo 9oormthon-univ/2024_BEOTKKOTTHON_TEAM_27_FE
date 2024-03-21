@@ -1,17 +1,20 @@
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import { Image, Text } from '../../assets/svg';
 import styled from 'styled-components';
-import { Posting } from '../../types/Post';
 
 interface PostBottomSheetProps {
   open: boolean;
-  posting?: Posting | {};
+  imgCnt: number;
+  txtCnt: number;
+  type: string;
   onDismiss: VoidFunction;
   onSelect: (type: string) => void;
 }
 export default function PostBottomSheet({
-  posting,
   open,
+  imgCnt,
+  txtCnt,
+  type,
   onDismiss,
   onSelect,
 }: PostBottomSheetProps) {
@@ -26,13 +29,16 @@ export default function PostBottomSheet({
 
         {/* 중간 - 선택 */}
         <BottomSheetSelectContainer>
-          <BottomSheetSelect onClick={() => onSelect('Image')}>
-            <Image style={{ width: '110px' }} />
-            <p>이미지 생성하기</p> <div>{posting.postingImage_modifiedCount}/3</div>
-          </BottomSheetSelect>
+          {type == 'Both' && (
+            <BottomSheetSelect onClick={() => onSelect('Image')}>
+              <Image style={{ width: '110px' }} />
+              <p>이미지 생성하기</p> <div>{imgCnt}/3</div>
+            </BottomSheetSelect>
+          )}
+
           <BottomSheetSelect onClick={() => onSelect('Text')}>
             <Text style={{ width: '110px' }} />
-            <p>글 생성하기</p> <div>{posting.postingText_modifiedCount}/3</div>
+            <p>글 생성하기</p> <div>{txtCnt}/3</div>
           </BottomSheetSelect>
         </BottomSheetSelectContainer>
       </BottomSheetContainer>

@@ -14,6 +14,15 @@ import { useGetPost } from '../../hooks/queries/post/useGetPost';
 import { usePutPost } from '../../hooks/mutations/post/usePutPost';
 import Loading from '../../components/common/Loading/Loading';
 
+const initialPosting = {
+  postingImage: '',
+  postingText: '',
+  postingChannel: '',
+  postingImage_modifiedCount: 0,
+  postingText_modifiedCount: 0,
+  postingType: 'Both',
+};
+
 export default function PostResult() {
   const { width, height } = useWindowSize();
   const { id = '' } = useParams();
@@ -27,7 +36,7 @@ export default function PostResult() {
     storeId: storeId,
     postingId: id,
   });
-  const posting = data?.data.posting || {};
+  const posting = data?.data.posting || initialPosting;
 
   // POST - 포스트 수정
   const [isOpen, setIsOpen] = useState(false);
@@ -82,7 +91,9 @@ export default function PostResult() {
         {/* 기타 - 컨페티, 바텀시트 */}
         <Confetti width={width} height={height} recycle={false} />
         <PostBottomSheet
-          posting={posting}
+          txtCnt={posting.postingText_modifiedCount}
+          imgCnt={posting.postingImage_modifiedCount}
+          type={posting.postingType}
           open={isOpen}
           onDismiss={() => setIsOpen(false)}
           onSelect={handleRetry}
