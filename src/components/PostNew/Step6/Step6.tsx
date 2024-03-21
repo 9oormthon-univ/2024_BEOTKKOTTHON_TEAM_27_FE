@@ -11,6 +11,7 @@ import ButtonPrev from '../../common/Button/ButtonPrev/ButtonPrev';
 import ButtonFill from '../../common/Button/ButtonFill/ButtonFill';
 import Loading from '../../common/Loading/Loading';
 import { put } from '../../../apis/fastClient';
+import { useNavigate } from 'react-router-dom';
 
 interface ServerResponse {
   file_name: string;
@@ -23,6 +24,7 @@ interface Post6FooterProps {
 
 export default function Step6({ onClickBackBtn, stepNum }: Post6FooterProps) {
   const { updatePostInfo } = useOnboardingContext();
+  const navigate = useNavigate();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
 
@@ -80,18 +82,17 @@ export default function Step6({ onClickBackBtn, stepNum }: Post6FooterProps) {
       console.log('✈ /api/posting >>', res);
 
       if (!res.isSuccess) {
-        alert(res.message);
-        return;
       }
 
-      console.log('Refetch!');
+      navigate(`/post-result/${res.data.postingId}`);
     },
+
     onError: (error) => {
       console.error('✈ /api/posting ERROR >>', error);
     },
   });
   if (isPending) return <Loading />;
-  
+
   const { onboardingInfo } = useOnboardingContext();
 
   const postOnboarding = async () => {
