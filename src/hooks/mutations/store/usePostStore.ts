@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { post } from '../../../apis/client';
+import { BaseResponse } from '../../../types/Response';
 
 interface CreateStoreRequest {
   userId: number;
@@ -7,10 +8,7 @@ interface CreateStoreRequest {
   address: string;
 }
 
-interface CreateStoreResponse {
-  userId: number;
-  storeId: number;
-}
+interface CreateStoreResponse extends BaseResponse<{ userId: number; storeId: number }> {}
 
 export const createStore = async (body: CreateStoreRequest) => {
   const { data } = await post<CreateStoreResponse>('/api/store', body);

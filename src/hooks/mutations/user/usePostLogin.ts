@@ -1,15 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
 import { post } from '../../../apis/client';
+import { BaseResponse } from '../../../types/Response';
 
 interface LoginRequest {
   loginId: string;
   password: string;
 }
 
-interface LoginResponse {
-  userId: number;
-  storeId: number;
-}
+interface LoginResponse extends BaseResponse<{ userId: number; storeId: number }> {}
 
 export const login = async (body: LoginRequest) => {
   const { data } = await post<LoginResponse>('/api/login', body);

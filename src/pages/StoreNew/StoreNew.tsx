@@ -49,8 +49,13 @@ export default function StoreNew() {
     onSuccess: (res) => {
       console.log('✈ /api/store >>', res);
 
-      localStorage.setItem('userId', JSON.stringify(res.userId));
-      localStorage.setItem('storeId', JSON.stringify(res.storeId));
+      if (!res.isSuccess) {
+        alert(res.message);
+        return;
+      }
+
+      localStorage.setItem('userId', JSON.stringify(res.data.userId));
+      localStorage.setItem('storeId', JSON.stringify(res.data.storeId));
       navigate('/', { replace: true });
     },
     onError: (error) => {

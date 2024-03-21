@@ -18,14 +18,20 @@ export default function Login() {
   const { mutate } = usePostLogin({
     onSuccess: (res) => {
       console.log('✈ /api/login >>', res);
-      localStorage.setItem('userId', JSON.stringify(res.userId));
+
+      if (!res.isSuccess) {
+        alert(res.message);
+        return;
+      }
+
+      localStorage.setItem('userId', JSON.stringify(res.data.userId));
 
       //  if 가게 미등록인 경우, 가게 등록 페이지로 이동
       //  else, 홈으로 이동
-      if (res.storeId === -1) {
+      if (res.data.storeId === -1) {
         navigate('/store-new', { replace: true });
       } else {
-        localStorage.setItem('storeId', JSON.stringify(res.storeId));
+        localStorage.setItem('storeId', JSON.stringify(res.data.storeId));
         navigate(`/`, { replace: true });
       }
     },
