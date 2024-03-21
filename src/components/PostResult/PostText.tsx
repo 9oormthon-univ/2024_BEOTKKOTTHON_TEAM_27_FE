@@ -3,24 +3,25 @@ import Toggle from '../../components/common/Toggle/Toggle';
 import { useState } from 'react';
 
 interface PostTextProps {
+  width?: string;
   text: string;
 }
-export default function PostText({ text }: PostTextProps) {
+export default function PostText({ width, text }: PostTextProps) {
   const [isBig, setIsBig] = useState(false);
   function handleToggle() {
     setIsBig(!isBig);
   }
 
   return (
-    <PostTextContainer>
+    <PostTextContainer width={width}>
       <Toggle label='큰글씨' checked={isBig} onChange={handleToggle} />
       <Text $isbig={isBig.toString()}>{text}</Text>
     </PostTextContainer>
   );
 }
 
-const PostTextContainer = styled.div`
-  width: 80%;
+const PostTextContainer = styled.div<{ width?: string }>`
+  width: ${({ width }) => (width ? width : '80%')};
 
   > label {
     justify-content: right;

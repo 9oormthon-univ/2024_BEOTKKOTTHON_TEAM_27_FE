@@ -10,6 +10,7 @@ import Login from '../pages/Login/Login';
 import StoreNew from '../pages/StoreNew/StoreNew';
 import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
 import { OnboardingProvider } from '../context/PostNew/PostNewContext';
+import PostDetailPage from '../pages/PostDetail/PostDetailPage';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
           {
             path: '/post-history',
             element: <PostHistoryPage />,
+          },
+          {
+            path: '/post-detail/:id',
+            element: <PostDetailPage />,
           },
         ],
       },

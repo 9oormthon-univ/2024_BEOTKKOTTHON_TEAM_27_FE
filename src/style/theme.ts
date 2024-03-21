@@ -135,6 +135,14 @@ const fonts = {
     font-weight: 500;
     line-height: 144.583%;
   `,
+  date: css`
+    color: #757373;
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 144.583%;
+  `,
   content_01: css`
     font-family: Pretendard;
     font-size: 16px;
