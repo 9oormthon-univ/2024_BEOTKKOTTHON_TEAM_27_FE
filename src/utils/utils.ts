@@ -69,3 +69,15 @@ export function getImageFullUrl(filename: string): string {
   if (!filename) return '';
   return `${BASE_URL}/api/ibm/object/${filename.replace('.', '/.')}`;
 }
+
+/**
+ * 시간 비교하는 함수 (sec)
+ * @param date
+ */
+export function isOverThan(dateStr: string, sec: number): boolean {
+  const date = new Date(dateStr);
+  const now = new Date();
+  const diff = now.getTime() - date.getTime();
+
+  return diff / 1000 >= sec;
+}

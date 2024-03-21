@@ -9,7 +9,7 @@ import PostBottomSheet from '../../components/PostResult/PostBottomSheet';
 import { useState } from 'react';
 import 'react-spring-bottom-sheet/dist/style.css';
 import { useParams } from 'react-router';
-import { getImageFullUrl } from '../../utils/utils';
+import { getImageFullUrl, isOverThan } from '../../utils/utils';
 import { useGetPost } from '../../hooks/queries/post/useGetPost';
 import { usePutPost } from '../../hooks/mutations/post/usePutPost';
 import Loading from '../../components/common/Loading/Loading';
@@ -43,7 +43,16 @@ export default function PostResult() {
       console.error('✈ /api/posting ERROR >>', error);
     },
   });
+
   function handleRetry(type: string) {
+    const lastModifiedDate =
+      type === 'Text' ? posting.postingText_modifiedDate : posting.postingImage_modifiedDate;
+    if (!isOverThan(lastModifiedDate, 15)) {
+      console.log('>> 15초가 지나지 않음!!');
+      alert('15초 후에 재생성 가능합니다. ');
+      return;
+    }
+
     setIsOpen(false);
     mutate({ userId: userId, postingId: id, modifyTarget: type });
   }
