@@ -12,6 +12,7 @@ function App() {
   const queryClient = new QueryClient();
   useMobile();
 
+  return (
     <>
       <QueryClientProvider client={queryClient}>
         <QueryErrorResetBoundary>
