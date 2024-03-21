@@ -1,17 +1,22 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { GenderOptionProps } from '../../../../types/PostNew';
+import { useOnboardingContext } from '../../../../context/PostNew/PostNewContext';
 
 export default function SelectType() {
-  const [selectedType, setSelectedType] = useState<string | null>(null);
+  const { onboardingInfo, updatePostInfo } = useOnboardingContext();
+  const [selectedType, setSelectedType] = useState<string | null>(
+    onboardingInfo.promotionType || null,
+  );
 
   function handleGenderSelect(type: string) {
     setSelectedType(type);
+    updatePostInfo({ promotionType: type });
   }
 
   const typeOptions = [
-    { label: '이벤트 홍보', value: 'event', emoji: '🎊' },
-    { label: '메뉴 홍보', value: 'menu', emoji: '📢' },
+    { label: '이벤트 홍보', value: '이벤트', emoji: '🎊' },
+    { label: '메뉴 홍보', value: '메뉴', emoji: '📢' },
   ];
 
   return (
@@ -60,7 +65,6 @@ const TypeOption = styled.div<GenderOptionProps>`
   background: #fff;
   box-shadow: 1px 1px 13px 1px rgba(0, 0, 0, 0.07);
 
-  ${({ theme }) => theme.fonts.heading_01};
-  border: ${({ selected }) => (selected ? '1px solid #402FFF' : 'none')};
-  color: ${({ selected }) => (selected ? '#402FFF' : '#9D9D9D')};
+  ${({ theme, selected }) =>
+    selected ? `border: 1px solid ${theme.colors.main}; color: ${theme.colors.main}; ` : ''}
 `;
