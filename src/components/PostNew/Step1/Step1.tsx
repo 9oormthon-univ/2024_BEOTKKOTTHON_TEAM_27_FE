@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { CheckIcon } from '../../../assets/svg';
 import kakao from '../../../assets/Image/kakao.png';
@@ -22,13 +22,12 @@ export default function Step1() {
   ];
 
   const handleSelectSNS = (sns: string) => {
-    setSelectedSNS((prev) => (prev === sns ? null : sns));
-    updatePostInfo({ postingChannel: sns });
+    setSelectedSNS((prev) => {
+      const newSelectedSNS = prev === sns ? null : sns;
+      updatePostInfo({ postingChannel: newSelectedSNS });
+      return newSelectedSNS;
+    });
   };
-
-  useEffect(() => {
-    setSelectedSNS(onboardingInfo.postingChannel || null); // 이전 스텝에서 설정된 값이 있을 경우 업데이트
-  }, [onboardingInfo.postingChannel]);
 
   return (
     <>
