@@ -4,7 +4,7 @@ import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
 import LoginInput from '../../components/Login/LoginInput';
 import LoginTop from '../../components/Login/LoginTop';
 import { useNavigate } from 'react-router-dom';
-import { useLoginMutation } from '../../hooks/queries/user/useLoginMutation';
+import { usePostLogin } from '../../hooks/mutations/user/usePostLogin';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function Login() {
   /**
    * useLoginMutation - 로그인 API
    */
-  const { mutate } = useLoginMutation({
+  const { mutate } = usePostLogin({
     onSuccess: (res) => {
       console.log('✈ /api/login >>', res);
       localStorage.setItem('userId', JSON.stringify(res.userId));

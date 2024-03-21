@@ -22,7 +22,7 @@ interface StoreMutationProps {
   onError: (e: Error) => void;
 }
 
-export const useStoreMutation = ({ onSuccess, onError }: StoreMutationProps) => {
+export const usePostStore = ({ onSuccess, onError }: StoreMutationProps) => {
   return useMutation({
     mutationFn: (body: CreateStoreRequest) => createStore(body),
     onSuccess: onSuccess,

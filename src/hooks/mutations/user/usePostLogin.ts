@@ -21,7 +21,7 @@ interface LoginMutationProps {
   onError: (e: Error) => void;
 }
 
-export const useLoginMutation = ({ onSuccess, onError }: LoginMutationProps) => {
+export const usePostLogin = ({ onSuccess, onError }: LoginMutationProps) => {
   return useMutation({
     mutationFn: (body: LoginRequest) => login(body),
     onSuccess: onSuccess,
