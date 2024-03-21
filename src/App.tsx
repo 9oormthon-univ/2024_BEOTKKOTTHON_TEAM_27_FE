@@ -6,9 +6,11 @@ import FallbackUI from './pages/FallbackUI/FallbackUI';
 import { Suspense } from 'react';
 import Loading from './pages/Loading/Loading';
 import GlobalStyle from './style/GlobalStyle';
+import { useMobile } from './hooks/useMobile';
 
 function App() {
   const queryClient = new QueryClient();
+  useMobile();
 
   return (
     <>

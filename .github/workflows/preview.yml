@@ -1,54 +1,64 @@
 name: Cloudflare Pages Preview
 # Preview - main, develop PR open 시
 on:
-    pull_request:
-        types:
-            - opened
-            - reopened
-            - synchronize
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
 
-        branches: [main, develop]
+    branches: [main, develop]
 
 env:
-    CI: false
+  CI: false
 
 permissions:
-    contents: read
-    deployments: write
-    pull-requests: write
+  contents: read
+  deployments: write
+  pull-requests: write
 
 jobs:
-    publish:
-        runs-on: ubuntu-latest
-        name: Publish to Cloudflare Pages
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
+  publish:
+    runs-on: ubuntu-latest
+    name: Publish to Cloudflare Pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-            - name: Build
-              run: yarn install && yarn build
+      - name: Generate Env File
+        run: |
+          echo "VITE_KAKAO_REST_API=$VITE_KAKAO_REST_API" >> .env
+          echo "VITE_APP_BASE_URL=$VITE_APP_BASE_URL" >> .env
+          echo "VITE_APP_IMG_URL=$VITE_APP_IMG_URL" >> .env
+        env:
+          VITE_KAKAO_REST_API: ${{secrets.VITE_KAKAO_REST_API}}
+          VITE_APP_BASE_URL: ${{secrets.VITE_APP_BASE_URL}}
+          VITE_APP_IMG_URL: ${{secrets.VITE_APP_IMG_URL}}
 
-            - name: Publish to Cloudflare Pages
-              uses: cloudflare/pages-action@v1
-              id: cloudflare
-              with:
-                  apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-                  accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-                  projectName: sodong
-                  directory: dist
-                  gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build
+        run: yarn install && yarn build
 
-            - name: Comment PR
-              uses: mshick/add-pr-comment@v2
-              with:
-                  message-id: cloudflare-preview
-                  message: |
-                      ### 👀 Preview Success! 
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        id: cloudflare
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: sodong
+          directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
-                      |  Name | Link |
-                      |---------------------------------|------------------------|
-                      |<span aria-hidden="true">🔨</span> Latest commit | ${{ github.sha }} |
-                      |<span aria-hidden="true">🔍</span> Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
-                      |<span aria-hidden="true">🖇️</span> Deploy Preview Url | [${{ steps.cloudflare.outputs.url }}](${{ steps.cloudflare.outputs.url }}) |
-                      |<span aria-hidden="true">🌳</span> Environment | ${{ steps.cloudflare.outputs.environment }} |
-                      ---
+      - name: Comment PR
+        uses: mshick/add-pr-comment@v2
+        with:
+          message-id: cloudflare-preview
+          message: |
+            ### 👀 Preview Success! 
+
+            |  Name | Link |
+            |---------------------------------|------------------------|
+            |<span aria-hidden="true">🔨</span> Latest commit | ${{ github.sha }} |
+            |<span aria-hidden="true">🔍</span> Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
+            |<span aria-hidden="true">🖇️</span> Deploy Preview Url | [${{ steps.cloudflare.outputs.url }}](${{ steps.cloudflare.outputs.url }}) |
+            |<span aria-hidden="true">🌳</span> Environment | ${{ steps.cloudflare.outputs.environment }} |
+            ---
