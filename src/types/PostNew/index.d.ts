@@ -35,3 +35,8 @@ export interface ImageUploadRequestType {
   file_extension: string;
   file_content: string;
 }
+
+export interface PostInfoContext {
+  onboardingInfo: PostInfo;
+  updatePostInfo: (newInfo: Partial<PostInfo>) => void;
+}
