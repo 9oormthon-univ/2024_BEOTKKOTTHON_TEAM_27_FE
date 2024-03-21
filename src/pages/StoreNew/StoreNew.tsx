@@ -4,69 +4,62 @@ import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
 import SearchInput from '../../components/StoreNew/StoreSearch';
 import StoreResult from '../../components/StoreNew/StoreResult';
 import { useNavigate } from 'react-router-dom';
-import { KaKaoSearchResult } from '../../types/StoreNew';
 import StoreResultNone from '../../components/StoreNew/StoreResultNone';
+import { usePostStore } from '../../hooks/mutations/store/usePostStore';
+import { useGetKakaoSearch } from '../../hooks/queries/kakao/useGetKakaoSearch';
 
-const KAKAO_REST_API = import.meta.env.VITE_KAKAO_REST_API;
 export default function StoreNew() {
   const navigate = useNavigate();
 
-  const [result, setResult] = useState<KaKaoSearchResult | null>(null);
   const [selected, setSelected] = useState(-1);
-
   function handleSelect(index: number) {
     const newIndex = index == selected ? -1 : index;
     setSelected(newIndex);
   }
 
-  function handleSearch(query: string) {
+  /**
+   * useGetKakaoSearch - 가게 카카오 검색 API
+   */
+  const { data: result = null, setQuery } = useGetKakaoSearch();
+  async function handleSearch(query: string) {
     setSelected(-1);
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `KakaoAK ${KAKAO_REST_API}`,
-      },
-    };
-
-    fetch(`https://dapi.kakao.com/v2/local/search/keyword.json?query=${query}`, requestOptions)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setResult(data);
-        console.log(data);
-      });
+    setQuery(query);
   }
 
-  function handleSumbit() {
+  /**
+   * useStoreMutation - 가게 등록 API
+   */
+  const { mutate } = usePostStore({
+    onSuccess: (res) => {
+      console.log('✈ /api/store >>', res);
+
+      if (!res.isSuccess) {
+        alert(res.message);
+        return;
+      }
+
+      localStorage.setItem('userId', JSON.stringify(res.data.userId));
+      localStorage.setItem('storeId', JSON.stringify(res.data.storeId));
+      navigate('/', { replace: true });
+    },
+    onError: (error) => {
+      console.error('✈ /api/store ERROR >>', error);
+    },
+  });
+
+  async function handleSumbit() {
     if (result == null) {
       alert('가게를 선택해 주세요.');
       return;
     }
 
-    const data = {
-      userId: localStorage.getItem('userId'),
+    const body = {
+      userId: Number(localStorage.getItem('userId')),
       name: result.documents[selected].place_name,
       address: result.documents[selected].address_name,
     };
 
-    fetch('/api/store', { method: 'POST', body: JSON.stringify(data) })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log('✈ /api/store >>', res);
-
-        if (!res.isSuccess) {
-          alert('오류 발생!');
-          return;
-        }
-
-        localStorage.setItem('userId', res.data.userId);
-        localStorage.setItem('storeId', res.data.storeId);
-        navigate('/', { replace: true });
-      });
+    mutate(body);
   }
 
   return (
