@@ -15,33 +15,37 @@ interface NameInputProps {
 
 export default function Step6(props: NameInputProps) {
   const { setUserId } = props;
-  const { mutation } = usePostOnboardingInfo();
-  const { onboardingInfo } = useOnboardingContext();
+
+  // const { mutation } = usePostOnboardingInfo();
+  // const { onboardingInfo } = useOnboardingContext();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
-  const postOnboarding = async () => {
-    try {
-      const response = mutation.mutate(onboardingInfo, {
-        onSuccess: (data) => {
-          console.log('step06 postOnboarding response', response);
-          const userId = data.userId;
-          setUserId(userId);
+  // const postOnboarding = async () => {
+  //   try {
+  //     const response = mutation.mutate(onboardingInfo, {
+  //       onSuccess: (data) => {
+  //         console.log('step06 postOnboarding response', response);
+  //         const userId = data.userId;
+  //         setUserId(userId);
 
-          return userId;
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //         return userId;
+  //       },
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const uploadFile = async (file: File, fileExtension: string) => {
+  const uploadFile = async (file: File) => {
     const formData = new FormData();
+    const fileExtension = `.${file.name.split('.').pop()}`;
+
     formData.append('file_content', file); // 파일 추가
 
     try {
       const queryParams = new URLSearchParams();
       queryParams.append('file_extension', fileExtension);
+      console.log('으으음??' + queryParams);
       const response = await put(`/api/ibm/object?${queryParams.toString()}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -63,8 +67,8 @@ export default function Step6(props: NameInputProps) {
     if (files && files.length > 0) {
       const selectedFiles = files as FileList;
       const file = selectedFiles[0];
-      const fileExtension = '.jpeg'; // 파일 확장자 설정
-      uploadFile(file, fileExtension); // 파일 업로드 함수 호출
+
+      uploadFile(file); // 파일 업로드 함수 호출
       setPreviewImage(URL.createObjectURL(file));
     }
   };
@@ -83,7 +87,7 @@ export default function Step6(props: NameInputProps) {
       <IcEmptyThumbnailWrapper>
         <input
           type='file'
-          accept='image/jpeg, image/png, image/gif, image/heic '
+          accept='image/jpeg, image/png, image/gif, image/heic'
           style={{ display: 'none' }}
           id='imgInput'
           onChange={handleImageUpload}
@@ -115,13 +119,7 @@ export default function Step6(props: NameInputProps) {
         </ImgWrapper>
       </TipImageContainer>
 
-      <button
-        onClick={() => {
-          postOnboarding();
-        }}
-      >
-        으아
-      </button>
+      <UploadButton>업로드</UploadButton>
     </>
   );
 }
@@ -182,7 +180,7 @@ const SubTitle = styled.p`
   ${({ theme }) => theme.fonts.subTitle};
 `;
 
-export const IcEmptyThumbnailWrapper = styled.div`
+const IcEmptyThumbnailWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -192,10 +190,25 @@ export const IcEmptyThumbnailWrapper = styled.div`
   cursor: pointer;
 `;
 
-export const PreviewImg = styled.img`
+const PreviewImg = styled.img`
   width: 15rem;
   height: 15rem;
   border-radius: 10px;
   object-fit: contain;
   z-index: 9;
+`;
+
+const UploadButton = styled.button`
+  margin-top: 1rem;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primaryDark};
+  }
 `;
