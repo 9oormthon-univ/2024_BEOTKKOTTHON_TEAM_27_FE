@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { CheckIcon } from '../../../assets/svg';
 import kakao from '../../../assets/Image/kakao.png';
@@ -8,13 +8,11 @@ import insta from '../../../assets/Image/Instagram.png';
 import Step1Title from './Step1Title/Step1Title';
 import { useOnboardingContext } from '../../../context/PostNew/PonstNewContext';
 
-// interface NameInputProps {
-//   onNext: VoidFunction;
-// }
-
 export default function Step1() {
-  const [selectedSNS, setSelectedSNS] = useState<string | null>(null);
-  const { updatePostInfo } = useOnboardingContext(); // OnboardingContext에서 정보 가져오기
+  const { onboardingInfo, updatePostInfo } = useOnboardingContext();
+  const [selectedSNS, setSelectedSNS] = useState<string | null>(
+    onboardingInfo.postingChannel || null,
+  );
 
   const snsOptions = [
     { name: '인스타그램', icon: insta },
@@ -24,9 +22,13 @@ export default function Step1() {
   ];
 
   const handleSelectSNS = (sns: string) => {
-    setSelectedSNS(sns === selectedSNS ? null : sns);
+    setSelectedSNS((prev) => (prev === sns ? null : sns));
     updatePostInfo({ postingChannel: sns });
   };
+
+  useEffect(() => {
+    setSelectedSNS(onboardingInfo.postingChannel || null); // 이전 스텝에서 설정된 값이 있을 경우 업데이트
+  }, [onboardingInfo.postingChannel]);
 
   return (
     <>
@@ -43,7 +45,7 @@ export default function Step1() {
                 <img src={sns.icon} alt={sns.name} />
                 {sns.name}
               </ImgContainer>
-              {selectedSNS === sns.name && <CheckIcon style={{ width: '1.2rem' }} />}{' '}
+              {selectedSNS === sns.name && <CheckIcon style={{ width: '1.2rem' }} />}
             </SNSOption>
           ))}
         </SNSOptionContainer>
@@ -60,7 +62,6 @@ const ImgContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 1rem;
 
   img {
@@ -72,7 +73,6 @@ const SNSOptionContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   margin-top: 1.6rem;
   flex-direction: column;
   gap: 1rem;
@@ -82,13 +82,11 @@ const SNSOption = styled.div<{ selected: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 0.5rem 1rem;
   border-radius: 8px;
   width: 19.9375rem;
   height: 4.375rem;
   cursor: pointer;
-
   ${({ theme }) => theme.fonts.subTitle};
   border: ${({ selected, theme }) => (selected ? `1px solid ${theme.colors.main}` : 'none')};
   box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
