@@ -82,6 +82,13 @@ const fonts = {
     font-weight: 500;
     line-height: 160%; /* 32px */
   `,
+  p_01: css`
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 32px */
+  `,
   footer_01: css`
     text-align: center;
     font-family: Pretendard;

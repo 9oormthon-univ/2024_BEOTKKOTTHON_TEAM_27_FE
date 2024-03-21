@@ -5,12 +5,12 @@ import food1 from '../../../assets/Image/food1.jpg';
 import food2 from '../../../assets/Image/food2.jpg';
 import food3 from '../../../assets/Image/food3.jpg';
 import { IcEmptyThumbnailFinal, TipBtn } from '../../../assets/svg';
-import { put } from '../../../apis/client';
 import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 import usePostOnboardingInfo from '../../../queries/PostNew/usePostInfo';
 import ButtonPrev from '../../common/Button/ButtonPrev/ButtonPrev';
 import ButtonFill from '../../common/Button/ButtonFill/ButtonFill';
 import Loading from '../../common/Loading/Loading';
+import { put } from '../../../apis/fastClient';
 
 interface ServerResponse {
   file_name: string;

@@ -9,9 +9,11 @@ const LoadingContainer = styled.div`
   justify-content: center;
   align-items: center;
   color: #fff;
+
   width: 100vw;
   height: 100vh;
   background: rgba(1, 1, 1, 0.5);
+
   position: absolute;
   top: 0;
   left: 0;

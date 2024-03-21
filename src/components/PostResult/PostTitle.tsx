@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
-export default function PostTitle() {
+interface PostTitleProps {
+  onRetry: VoidFunction;
+}
+export default function PostTitle({ onRetry }: PostTitleProps) {
   return (
     <PostResultTitleContainer>
       <PostResultTitle>
         <span>포스트</span>가 완성되었어요!
       </PostResultTitle>
-      <PostRetry>다시 만들어 주세요</PostRetry>
+      <PostRetry onClick={onRetry}>다시 만들어 주세요</PostRetry>
     </PostResultTitleContainer>
   );
 }
