@@ -6,17 +6,17 @@ import food2 from '../../../assets/Image/food2.jpg';
 import food3 from '../../../assets/Image/food3.jpg';
 import { IcEmptyThumbnailFinal, TipBtn } from '../../../assets/svg';
 import { put } from '../../../apis/client';
+import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 
 interface ServerResponse {
   file_name: string;
 }
 
 export default function Step6() {
+  const { updatePostInfo } = useOnboardingContext();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
 
-  // 1.
-  // IBM 서버 이미지 업로드 PUT 요청 함수
-  // 추후 react-query 리팩토링 예정
   const uploadFile = async (file: File) => {
     const formData = new FormData();
     const fileExtension = `.${file.name.split('.').pop()}`;
@@ -36,11 +36,13 @@ export default function Step6() {
         },
       );
 
-      const fileName = response.data.file_name;
-      console.log('image response: ' + fileName);
+      const fileNameString = response.data.file_name;
+      console.log('image response: ' + fileNameString);
 
       if (response.status === 200) {
-        console.log('파일 업로드 성공');
+        setSelectedFile(fileNameString);
+        console.log('파일 업로드 성공' + selectedFile);
+        updatePostInfo({ fileName: fileNameString });
       } else {
         console.error('파일 업로드 실패');
       }

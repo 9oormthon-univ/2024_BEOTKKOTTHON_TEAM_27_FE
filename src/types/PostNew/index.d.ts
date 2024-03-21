@@ -26,7 +26,7 @@ export type PostInfo = {
   promotionType: string;
   promotionSubject: string;
   promotionContent: string;
-  fileName: string;
+  fileName: string | null;
   targetGender: Array;
   targetAge: Array;
 };
