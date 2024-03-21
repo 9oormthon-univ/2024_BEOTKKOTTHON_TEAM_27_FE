@@ -15,8 +15,8 @@ export default function SelectType() {
   }
 
   const typeOptions = [
-    { label: '이벤트 홍보', value: 'event', emoji: '🎊' },
-    { label: '메뉴 홍보', value: 'menu', emoji: '📢' },
+    { label: '이벤트 홍보', value: '이벤트', emoji: '🎊' },
+    { label: '메뉴 홍보', value: '메뉴', emoji: '📢' },
   ];
 
   return (
