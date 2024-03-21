@@ -59,3 +59,13 @@ export function getPackageName(sns: string): string {
   else if (sns == 'kakaotalk') return 'com.kakao.talk';
   else return '';
 }
+
+/**
+ * 이미지 Full Url 가져오는 함수
+ * @param filename - 파일명
+ */
+export function getImageFullUrl(filename: string): string {
+  const BASE_URL = import.meta.env.VITE_APP_FAST_URL;
+  if (!filename) return '';
+  return `${BASE_URL}/api/ibm/object/${filename.replace('.', '/.')}`;
+}
