@@ -19,8 +19,8 @@ export interface GenderOptionProps {
 }
 
 export type PostInfo = {
-  userId: number;
-  storeId: number;
+  userId: number | undefined;
+  storeId: number | undefined;
   postingType: string;
   postingChannel: string | null;
   promotionType: string;

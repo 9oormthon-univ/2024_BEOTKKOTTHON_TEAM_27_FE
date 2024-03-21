@@ -42,7 +42,7 @@ export default function Step6() {
       if (response.status === 200) {
         setSelectedFile(fileNameString);
         console.log('파일 업로드 성공' + selectedFile);
-        updatePostInfo({ fileName: fileNameString });
+        updatePostInfo({ fileName: fileNameString, postingType: 'Both' });
       } else {
         console.error('파일 업로드 실패');
       }

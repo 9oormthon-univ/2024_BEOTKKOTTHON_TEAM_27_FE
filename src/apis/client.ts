@@ -21,7 +21,7 @@ export const imageinstance = axios.create({
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL,
-  withCredentials: false,
+  withCredentials: true,
   headers: {},
 });
 

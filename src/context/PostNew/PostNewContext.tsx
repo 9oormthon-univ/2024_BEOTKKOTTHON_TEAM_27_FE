@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useContext, useMemo, useState } from 'react';
+import { PropsWithChildren, createContext, useContext,  useMemo, useState } from 'react';
 import { PostInfo, PostInfoContext } from '../../types/PostNew';
 
 // 1.
@@ -6,7 +6,7 @@ import { PostInfo, PostInfoContext } from '../../types/PostNew';
 export const initialOnboardingInfo: PostInfo = {
   userId: 0,
   storeId: 0,
-  postingType: '',
+  postingType: 'Text',
   postingChannel: '',
   promotionType: '',
   promotionSubject: '',
