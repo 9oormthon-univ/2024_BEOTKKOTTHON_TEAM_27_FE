@@ -25,10 +25,10 @@ export const getPost = async ({ userId, storeId, postingId }: GetPostRequest) =>
 
 const POST_QUERY_KEY = 'POST_QUERY_KEY';
 export const useGetPost = (GetPostRequest: GetPostRequest) => {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: [POST_QUERY_KEY],
     queryFn: () => getPost(GetPostRequest).then((res) => res),
   });
 
-  return { data, isLoading, isError };
+  return { data, isLoading, isError, refetch };
 };

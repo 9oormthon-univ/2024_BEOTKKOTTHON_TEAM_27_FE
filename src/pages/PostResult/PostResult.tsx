@@ -11,6 +11,8 @@ import 'react-spring-bottom-sheet/dist/style.css';
 import { useParams } from 'react-router';
 import { getImageFullUrl } from '../../utils/utils';
 import { useGetPost } from '../../hooks/queries/post/useGetPost';
+import { usePutPost } from '../../hooks/mutations/post/usePutPost';
+import Loading from '../../components/common/Loading/Loading';
 
 export default function PostResult() {
   const { width, height } = useWindowSize();
@@ -20,14 +22,30 @@ export default function PostResult() {
   const userId = localStorage.getItem('userId') || '';
   const storeId = localStorage.getItem('storeId') || '';
 
-  const { data } = useGetPost({ userId: userId, storeId: storeId, postingId: id });
+  const { data, refetch } = useGetPost({ userId: userId, storeId: storeId, postingId: id });
   const posting = data?.data.posting || {};
 
   // POST - 포스트 수정
   const [isOpen, setIsOpen] = useState(false);
+  const { mutate, isPending } = usePutPost({
+    onSuccess: (res) => {
+      console.log('✈ /api/posting >>', res);
+
+      if (!res.isSuccess) {
+        alert(res.message);
+        return;
+      }
+
+      console.log('Refetch!');
+      refetch();
+    },
+    onError: (error) => {
+      console.error('✈ /api/posting ERROR >>', error);
+    },
+  });
   function handleRetry(type: string) {
     setIsOpen(false);
-    console.log('Retry - > ', type);
+    mutate({ userId: userId, postingId: id, modifyTarget: type });
   }
 
   return (
@@ -48,7 +66,14 @@ export default function PostResult() {
 
       {/* 기타 - 컨페티, 바텀시트 */}
       <Confetti width={width} height={height} recycle={false} />
-      <PostBottomSheet open={isOpen} onDismiss={() => setIsOpen(false)} onSelect={handleRetry} />
+      <PostBottomSheet
+        posting={posting}
+        open={isOpen}
+        onDismiss={() => setIsOpen(false)}
+        onSelect={handleRetry}
+      />
+
+      {isPending && <Loading />}
     </PostResultContainter>
   );
 }

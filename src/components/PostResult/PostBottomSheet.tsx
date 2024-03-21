@@ -1,31 +1,38 @@
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import { Image, Text } from '../../assets/svg';
 import styled from 'styled-components';
+import { Posting } from '../../types/Post';
 
 interface PostBottomSheetProps {
   open: boolean;
+  posting?: Posting;
   onDismiss: VoidFunction;
   onSelect: (type: string) => void;
 }
-export default function PostBottomSheet({ open, onDismiss, onSelect }: PostBottomSheetProps) {
+export default function PostBottomSheet({
+  posting,
+  open,
+  onDismiss,
+  onSelect,
+}: PostBottomSheetProps) {
   return (
     <BottomSheet open={open} onDismiss={onDismiss}>
       <BottomSheetContainer>
         {/* 상단 */}
         <BottomSheetTitle>포스트 다시 생성하기</BottomSheetTitle>
         <BottomSheetSubtitle>
-          다시 생성하기는 <b>15초</b> 이후, 최대 <b>2회</b>까지 가능해요
+          다시 생성하기는 <b>15초</b> 이후, 최대 <b>3회</b>까지 가능해요
         </BottomSheetSubtitle>
 
         {/* 중간 - 선택 */}
         <BottomSheetSelectContainer>
           <BottomSheetSelect onClick={() => onSelect('Image')}>
             <Image style={{ width: '110px' }} />
-            <p>이미지 생성하기</p> <div>0/3</div>
+            <p>이미지 생성하기</p> <div>{posting.postingImage_modifiedCount}/3</div>
           </BottomSheetSelect>
           <BottomSheetSelect onClick={() => onSelect('Text')}>
             <Text style={{ width: '110px' }} />
-            <p>글 생성하기</p> <div>3/3</div>
+            <p>글 생성하기</p> <div>{posting.postingText_modifiedCount}/3</div>
           </BottomSheetSelect>
         </BottomSheetSelectContainer>
       </BottomSheetContainer>
