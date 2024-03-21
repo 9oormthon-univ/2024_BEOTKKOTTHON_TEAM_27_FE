@@ -22,7 +22,11 @@ export default function PostResult() {
   const userId = localStorage.getItem('userId') || '';
   const storeId = localStorage.getItem('storeId') || '';
 
-  const { data, refetch } = useGetPost({ userId: userId, storeId: storeId, postingId: id });
+  const { data, refetch } = useGetPost({
+    userId: userId,
+    storeId: storeId,
+    postingId: id,
+  });
   const posting = data?.data.posting || {};
 
   // POST - 포스트 수정
@@ -43,6 +47,7 @@ export default function PostResult() {
       console.error('✈ /api/posting ERROR >>', error);
     },
   });
+  if (isPending) return <Loading />;
 
   function handleRetry(type: string) {
     const lastModifiedDate =
@@ -57,34 +62,34 @@ export default function PostResult() {
     mutate({ userId: userId, postingId: id, modifyTarget: type });
   }
 
-  return (
-    <PostResultContainter>
-      {/* 상단 */}
-      <PostTitle onRetry={() => setIsOpen(true)} />
+  if (Object.keys(posting).length > 0)
+    return (
+      <PostResultContainter>
+        {/* 상단 */}
+        <PostTitle onRetry={() => setIsOpen(true)} />
 
-      {/* 중간 - 이미지, 텍스트 */}
-      <PostImage url={getImageFullUrl(posting.postingImage)} />
-      <PostText text={posting.postingText} />
+        {/* 중간 - 이미지, 텍스트 */}
+        <PostImage url={getImageFullUrl(posting.postingImage)} />
+        <PostText text={posting.postingText} />
 
-      {/* 하단 */}
-      <PostButton
-        image={posting.postingImage}
-        text={posting.postingText}
-        sns={posting.postingChannel}
-      />
+        {/* 하단 */}
+        <PostButton
+          image={posting.postingImage}
+          text={posting.postingText}
+          sns={posting.postingChannel}
+        />
 
-      {/* 기타 - 컨페티, 바텀시트 */}
-      <Confetti width={width} height={height} recycle={false} />
-      <PostBottomSheet
-        posting={posting}
-        open={isOpen}
-        onDismiss={() => setIsOpen(false)}
-        onSelect={handleRetry}
-      />
-
-      {isPending && <Loading />}
-    </PostResultContainter>
-  );
+        {/* 기타 - 컨페티, 바텀시트 */}
+        <Confetti width={width} height={height} recycle={false} />
+        <PostBottomSheet
+          posting={posting}
+          open={isOpen}
+          onDismiss={() => setIsOpen(false)}
+          onSelect={handleRetry}
+        />
+      </PostResultContainter>
+    );
+  else return <PostResultContainter>데이터가 없습니다.</PostResultContainter>;
 }
 
 const PostResultContainter = styled.div`

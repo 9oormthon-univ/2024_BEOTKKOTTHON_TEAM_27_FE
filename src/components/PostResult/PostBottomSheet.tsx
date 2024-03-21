@@ -5,7 +5,7 @@ import { Posting } from '../../types/Post';
 
 interface PostBottomSheetProps {
   open: boolean;
-  posting?: Posting;
+  posting?: Posting | {};
   onDismiss: VoidFunction;
   onSelect: (type: string) => void;
 }
