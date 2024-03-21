@@ -4,42 +4,26 @@ import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
 import SearchInput from '../../components/StoreNew/StoreSearch';
 import StoreResult from '../../components/StoreNew/StoreResult';
 import { useNavigate } from 'react-router-dom';
-import { KaKaoSearchResult } from '../../types/StoreNew';
 import StoreResultNone from '../../components/StoreNew/StoreResultNone';
 import { usePostStore } from '../../hooks/mutations/store/usePostStore';
+import { useGetKakaoSearch } from '../../hooks/queries/kakao/useGetKakaoSearch';
 
-const KAKAO_REST_API = import.meta.env.VITE_KAKAO_REST_API;
 export default function StoreNew() {
   const navigate = useNavigate();
 
-  const [result, setResult] = useState<KaKaoSearchResult | null>(null);
   const [selected, setSelected] = useState(-1);
-
   function handleSelect(index: number) {
     const newIndex = index == selected ? -1 : index;
     setSelected(newIndex);
   }
 
-  function handleSearch(query: string) {
+  /**
+   * useGetKakaoSearch - 가게 카카오 검색 API
+   */
+  const { data: result = null, setQuery } = useGetKakaoSearch();
+  async function handleSearch(query: string) {
     setSelected(-1);
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        Authorization: `KakaoAK ${KAKAO_REST_API}`,
-      },
-    };
-
-    fetch(`https://dapi.kakao.com/v2/local/search/keyword.json?query=${query}`, requestOptions)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setResult(data);
-        console.log(data);
-      });
+    setQuery(query);
   }
 
   /**
