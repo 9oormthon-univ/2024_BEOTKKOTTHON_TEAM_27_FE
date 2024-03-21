@@ -1,17 +1,23 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { GenderOptionProps } from '../../../../types/PostNew';
+import { useOnboardingContext } from '../../../../context/PostNew/PonstNewContext';
 
 export default function SelectGender() {
-  const [selectedGender, setSelectedGender] = useState<string | null>(null);
+  const { onboardingInfo, updatePostInfo } = useOnboardingContext();
+  const [selectedGender, setSelectedGender] = useState<string[]>(onboardingInfo.targetGender || []);
 
   function handleGenderSelect(gender: string) {
-    setSelectedGender(gender);
+    const updatedGender = selectedGender.includes(gender)
+      ? selectedGender.filter((item) => item !== gender)
+      : [...selectedGender, gender];
+    setSelectedGender(updatedGender);
+    updatePostInfo({ targetGender: updatedGender });
   }
 
   const genderOptions = [
-    { label: '남자', value: 'male', emoji: '🙋🏻‍♂️' },
-    { label: '여자', value: 'female', emoji: '🙋🏻‍♀️' },
+    { label: '남자', value: '남자', emoji: '🙋🏻‍♂️' },
+    { label: '여자', value: '여자', emoji: '🙋🏻‍♀️' },
   ];
 
   return (
@@ -19,7 +25,7 @@ export default function SelectGender() {
       {genderOptions.map((option) => (
         <GenderOption
           key={option.value}
-          selected={selectedGender === option.value}
+          selected={selectedGender.includes(option.value)}
           onClick={() => handleGenderSelect(option.value)}
         >
           <span role='img' aria-label={option.label} style={{ fontSize: '60px' }}>

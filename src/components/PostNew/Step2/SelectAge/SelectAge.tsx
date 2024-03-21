@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { AgeBoxProps } from '../../../../types/PostNew';
+import { useOnboardingContext } from '../../../../context/PostNew/PonstNewContext';
 
 export default function SelectAge() {
-  const [selectedAges, setSelectedAges] = useState<string[]>([]);
+  const { onboardingInfo, updatePostInfo } = useOnboardingContext();
+  const [selectedAges, setSelectedAges] = useState<string[]>(onboardingInfo.targetAge || []);
 
   function toggleAge(age: string) {
-    if (selectedAges.includes(age)) {
-      setSelectedAges(selectedAges.filter((item) => item !== age));
-    } else {
-      setSelectedAges([...selectedAges, age]);
-    }
+    const updatedAges = selectedAges.includes(age)
+      ? selectedAges.filter((item) => item !== age)
+      : [...selectedAges, age];
+    setSelectedAges(updatedAges);
+    updatePostInfo({ targetAge: updatedAges });
   }
 
   const ageGroups = ['10대', '20대', '30대', '40대', '50대', '기타'];
