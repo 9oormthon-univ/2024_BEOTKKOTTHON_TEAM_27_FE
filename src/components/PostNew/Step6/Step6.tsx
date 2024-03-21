@@ -7,12 +7,18 @@ import food3 from '../../../assets/Image/food3.jpg';
 import { IcEmptyThumbnailFinal, TipBtn } from '../../../assets/svg';
 import { put } from '../../../apis/client';
 import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
+import usePostOnboardingInfo from '../../../queries/PostNew/usePostInfo';
 
 interface ServerResponse {
   file_name: string;
 }
 
 export default function Step6() {
+  // const userId = localStorage.getItem('userId');
+  // const storeId = localStorage.getItem('storId');
+  // const parsedUserId = userId ? parseInt(userId, 10) : undefined;
+  // const parsedStoreId = storeId ? parseInt(storeId, 10) : undefined;
+
   const { updatePostInfo } = useOnboardingContext();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
@@ -42,7 +48,7 @@ export default function Step6() {
       if (response.status === 200) {
         setSelectedFile(fileNameString);
         console.log('파일 업로드 성공' + selectedFile);
-        updatePostInfo({ fileName: fileNameString, postingType: 'Both' });
+        updatePostInfo({ fileName: fileNameString, postingType: 'Both', userId: 1, storeId: 1 });
       } else {
         console.error('파일 업로드 실패');
       }
@@ -59,6 +65,24 @@ export default function Step6() {
 
       uploadFile(file);
       setPreviewImage(URL.createObjectURL(file));
+    }
+  };
+
+  const { mutation } = usePostOnboardingInfo();
+  const { onboardingInfo } = useOnboardingContext();
+
+  const postOnboarding = async () => {
+    try {
+      const response = mutation.mutate(onboardingInfo, {
+        onSuccess: (data) => {
+          console.log('step06 postOnboarding response', response);
+          const userId = data.userId;
+
+          return userId;
+        },
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -108,7 +132,7 @@ export default function Step6() {
         </ImgWrapper>
       </TipImageContainer>
 
-      <UploadButton>업로드</UploadButton>
+      <UploadButton onClick={postOnboarding}>업로드</UploadButton>
     </>
   );
 }
@@ -189,6 +213,8 @@ const PreviewImg = styled.img`
 
 const UploadButton = styled.button`
   margin-top: 1rem;
+  position: absolute;
+  z-index: 9;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.white};
   padding: 0.5rem 1rem;

@@ -14,7 +14,7 @@ export const cleanHeaderInstance = axios.create({
 // [이미지 업로드]
 // 8002 포트번호 다른 이유로 인스턴스 생성
 export const imageinstance = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_URL,
+  baseURL: import.meta.env.VITE_APP_IMG_URL,
   withCredentials: false,
   headers: {},
 });

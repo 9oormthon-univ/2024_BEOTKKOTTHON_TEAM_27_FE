@@ -9,7 +9,7 @@ interface PostOnboardingInfoRes {
 }
 
 const postOnboardingInfo = async (postInfo: PostInfo) => {
-  const response = await post<PostOnboardingInfoRes>(`/posting`, postInfo);
+  const response = await post<PostOnboardingInfoRes>(`/api/posting`, postInfo);
   return response.data;
 };
 
