@@ -6,13 +6,6 @@ import useMenuExplain from '../../../hooks/PostNew/useMenuExplain';
 
 export default function Step5() {
   const { onboardingInfo, handleInputChange, handleBtnClick } = useMenuExplain();
-
-  // const [content, setContent] = useState('');
-
-  // const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-  //   setContent(e.target.value);
-  // };
-
   const characterCount = onboardingInfo.promotionSubject.length;
   const maxCharacters = 100;
 
