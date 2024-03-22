@@ -9,16 +9,20 @@ interface PostFooterProps {
   stepNum?: number | undefined;
 }
 
-export default function PostFooter({ setStep, onClickBackBtn, stepNum }: PostFooterProps) {
+export default function PostFooter({
+  setStep,
+  onClickBackBtn,
+  stepNum,
+  isActivated,
+}: PostFooterProps) {
   const onClick = () => {
     setStep((prev) => prev + 1);
   };
 
-
   return (
     <PostFooterContainer>
       <ButtonPrev title='이전' width='7.6rem' onClick={() => onClickBackBtn(stepNum)} />
-      <ButtonFill title='다음' width='11.5rem' onClick={onClick} />
+      <ButtonFill title='다음' width='11.5rem' onClick={onClick} enable={isActivated} />
     </PostFooterContainer>
   );
 }

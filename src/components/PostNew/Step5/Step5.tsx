@@ -3,11 +3,22 @@ import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
 import Tip from './Tip/Tip';
 import useMenuExplain from '../../../hooks/PostNew/useMenuExplain';
+import { StepProps } from '../Step1/Step1';
+import { useEffect } from 'react';
 
-export default function Step5() {
+export default function Step5({ setIsValidate }: StepProps) {
+  useEffect(() => {
+    setIsValidate(false);
+  }, []);
   const { onboardingInfo, handleInputChange, handleBtnClick } = useMenuExplain();
   const characterCount = onboardingInfo.promotionSubject.length;
   const maxCharacters = 100;
+
+  // textarea 값이 변할 때마다 setIsValidate를 호출하여 isValidate를 true로 설정합니다.
+  const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handleInputChange(event); // textarea 입력값 업데이트
+    setIsValidate(true); // isValidate를 true로 설정
+  };
 
   return (
     <>
@@ -21,7 +32,7 @@ export default function Step5() {
       <ContentInputContainer>
         <ContentInput
           value={onboardingInfo.promotionContent}
-          onChange={handleInputChange}
+          onChange={handleTextareaChange}
           placeholder='자세히 적을 수록 AI가 더 만족스러운 결과를 생성해요.'
         />
         {onboardingInfo.promotionSubject && (

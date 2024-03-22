@@ -11,10 +11,12 @@ import ProcessBar from '../../components/common/ProcessBar/ProcessBar';
 import PostFooter from '../../components/PostNew/PostFooter/PostFooter';
 import { useNavigate } from 'react-router-dom';
 import { useOnboardingContext } from '../../context/PostNew/PostNewContext';
+import { useState } from 'react';
 
 export default function PostNew() {
   const navigate = useNavigate();
   const { Funnel, setStep } = useFunnel(ONBOARDING_FORM_STEP, ONBOARDING_FORM_STEP[0]);
+  const [isValidate, setIsValidate] = useState<boolean>(false);
 
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
 
@@ -40,10 +42,11 @@ export default function PostNew() {
       <Funnel.Step name='POSTING_CHANNEL'>
         <PostNewContainer>
           <ProcessBar currentStep={1} stepCount={6} />
-          <Step1 />
+          <Step1 setIsValidate={setIsValidate} />
           <PostFooter
             onClickBackBtn={() => onClickBackBtn(1)}
             setStep={() => setStep(() => 'AGE_GENDER')}
+            isActivated={isValidate}
           />
         </PostNewContainer>
       </Funnel.Step>
@@ -51,10 +54,11 @@ export default function PostNew() {
       <Funnel.Step name='AGE_GENDER'>
         <PostNewContainer>
           <ProcessBar currentStep={2} stepCount={6} />
-          <Step2 />
+          <Step2 setIsValidate={setIsValidate} />
           <PostFooter
             onClickBackBtn={() => onClickBackBtn(2)}
             setStep={() => setStep(() => 'TYPE')}
+            isActivated={isValidate}
           />
         </PostNewContainer>
       </Funnel.Step>
@@ -62,10 +66,11 @@ export default function PostNew() {
       <Funnel.Step name='TYPE'>
         <PostNewContainer>
           <ProcessBar currentStep={3} stepCount={6} />
-          <Step3 />
+          <Step3 setIsValidate={setIsValidate} />
           <PostFooter
             onClickBackBtn={() => onClickBackBtn(3)}
             setStep={() => setStep(() => 'POSTING_SUBJECT')}
+            isActivated={isValidate}
           />
         </PostNewContainer>
       </Funnel.Step>
@@ -73,10 +78,11 @@ export default function PostNew() {
       <Funnel.Step name='POSTING_SUBJECT'>
         <PostNewContainer>
           <ProcessBar currentStep={4} stepCount={6} />
-          <Step4 />
+          <Step4 setIsValidate={setIsValidate} />
           <PostFooter
             onClickBackBtn={() => onClickBackBtn(4)}
             setStep={() => setStep(() => 'POSTING_CONTENT')}
+            isActivated={isValidate}
           />
         </PostNewContainer>
       </Funnel.Step>
@@ -84,10 +90,11 @@ export default function PostNew() {
       <Funnel.Step name='POSTING_CONTENT'>
         <PostNewContainer>
           <ProcessBar currentStep={5} stepCount={6} />
-          <Step5 />
+          <Step5 setIsValidate={setIsValidate} />
           <PostFooter
             onClickBackBtn={() => onClickBackBtn(5)}
             setStep={() => setStep(() => 'POSTING_IMAGE')}
+            isActivated={isValidate}
           />
         </PostNewContainer>
       </Funnel.Step>

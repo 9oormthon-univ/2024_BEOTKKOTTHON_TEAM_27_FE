@@ -27,6 +27,7 @@ export default function Step6({ onClickBackBtn, stepNum }: Post6FooterProps) {
   const navigate = useNavigate();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
+  const [isValidate, setIsValidate] = useState<boolean>(false);
 
   const uploadFile = async (file: File) => {
     const formData = new FormData();
@@ -58,6 +59,8 @@ export default function Step6({ onClickBackBtn, stepNum }: Post6FooterProps) {
           fileName: fileNameString,
           postingType: 'Both',
         });
+
+        setIsValidate(true);
       } else {
         console.error('파일 업로드 실패');
       }
@@ -151,7 +154,7 @@ export default function Step6({ onClickBackBtn, stepNum }: Post6FooterProps) {
 
       <PostFooterContainer>
         <ButtonPrev title='이전' width='7.6rem' onClick={() => onClickBackBtn(stepNum)} />
-        <ButtonFill title='다음' width='11.5rem' onClick={postOnboarding} />
+        <ButtonFill title='다음' width='11.5rem' onClick={postOnboarding} enable={isValidate} />
       </PostFooterContainer>
     </>
   );
