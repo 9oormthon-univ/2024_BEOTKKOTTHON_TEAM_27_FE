@@ -47,7 +47,7 @@ export function downloadImage(url: string): Promise<string> {
         aTag.download = 'sodong_image.png';
         aTag.click();
 
-        resolve('');
+        resolve('sodong_image.png');
       });
   });
 }
