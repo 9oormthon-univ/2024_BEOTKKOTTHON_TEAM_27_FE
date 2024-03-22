@@ -7,7 +7,7 @@ import HeaderLayout from '../layouts/HeaderLayout';
 import NotFound from '../components/Error/NotFound';
 import StoreHeaderLayout from '../layouts/StoreHeaderLayout';
 import Login from '../pages/Login/Login';
-import StoreNew from '../pages/StoreNew/StoreNew';
+import StoreNewPage from '../pages/StoreNew/StoreNewPage';
 import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
 import { OnboardingProvider } from '../context/PostNew/PostNewContext';
 import PostDetailPage from '../pages/PostDetail/PostDetailPage';
@@ -35,14 +35,6 @@ const router = createBrowserRouter([
         element: <HeaderLayout />,
         children: [
           {
-            path: '/post',
-            element: (
-              <OnboardingProvider>
-                <PostNew />
-              </OnboardingProvider>
-            ),
-          },
-          {
             path: '/guide',
             element: <GuidePage />,
           },
@@ -52,7 +44,11 @@ const router = createBrowserRouter([
           },
           {
             path: '/store-new',
-            element: <StoreNew />,
+            element: <StoreNewPage />,
+          },
+          {
+            path: '/post-history',
+            element: <PostHistoryPage />,
           },
         ],
       },
@@ -60,8 +56,12 @@ const router = createBrowserRouter([
         element: <StoreHeaderLayout />,
         children: [
           {
-            path: '/post-history',
-            element: <PostHistoryPage />,
+            path: '/post',
+            element: (
+              <OnboardingProvider>
+                <PostNew />
+              </OnboardingProvider>
+            ),
           },
         ],
       },

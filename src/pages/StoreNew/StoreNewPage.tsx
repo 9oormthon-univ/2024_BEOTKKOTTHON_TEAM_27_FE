@@ -10,7 +10,7 @@ import { useGetKakaoSearch } from '../../hooks/queries/kakao/useGetKakaoSearch';
 import { useOutletContext } from 'react-router-dom';
 import { HeaderLayoutContext } from '../../layouts/HeaderLayout';
 
-export default function StoreNew() {
+export default function StoreNewPage() {
   const navigate = useNavigate();
 
   /**
