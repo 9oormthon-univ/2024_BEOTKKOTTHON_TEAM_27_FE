@@ -18,6 +18,14 @@ const ProgressBar = styled.div`
   left: 0;
   top: 4rem;
   background-color: ${({ theme }) => theme.colors.main};
+  animation: ani;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  @keyframes ani {
+    0% {
+      width: 0; 
+    }
+  }
 `;
 
 export default ProcessBar;
