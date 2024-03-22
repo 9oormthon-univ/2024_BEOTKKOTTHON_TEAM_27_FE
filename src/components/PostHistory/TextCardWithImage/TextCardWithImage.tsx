@@ -1,22 +1,38 @@
 import styled from 'styled-components';
 import { Instagram } from '../../../assets/svg';
+import { getImageFullUrl } from '../../../utils/utils';
+import { useNavigate } from 'react-router-dom';
 
 interface TextCardWithImageProps {
   date: string;
   text: string;
-  imageUrl?: string; // 이미지 옵셔널 처리
+  postingId: number;
+  imageUrl?: string;
   imageAlt?: string;
 }
 
-function TextCardWithImage({ date, text, imageUrl, imageAlt }: TextCardWithImageProps) {
+export default function TextCardWithImage({
+  date,
+  text,
+  postingId,
+  imageUrl,
+  imageAlt,
+}: TextCardWithImageProps) {
+  const navigate = useNavigate();
+
+  const dateTostring = date.substring(0, 10);
+
+  const handleCardClick = (postingId: number) => {
+    navigate(`/post-detail/${postingId}`);
+  };
+
   return (
-    <TextCardContainer>
+    <TextCardContainer onClick={() => handleCardClick(postingId)}>
       <TextCardHeader>
         <Instagram style={{ width: '2.0625rem', height: '2rem' }} />
-        <Date>{date}</Date>
+        <Date>{dateTostring}</Date>
       </TextCardHeader>
-      {imageUrl && <img src={imageUrl} alt={imageAlt} />}{' '}
-      {/* 이미지가 주어진 경우에만 이미지를 렌더링 */}
+      {imageUrl && <img src={getImageFullUrl(imageUrl)} alt={imageAlt} />}
       <TextContent>{text}</TextContent>
     </TextCardContainer>
   );
@@ -59,5 +75,3 @@ const TextContent = styled.p`
   color: ${({ theme }) => theme.colors.black};
   ${({ theme }) => theme.fonts.ex_01};
 `;
-
-export default TextCardWithImage;

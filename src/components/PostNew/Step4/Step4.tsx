@@ -2,10 +2,20 @@ import styled from 'styled-components';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
 import useMenuInput from '../../../hooks/PostNew/useMenuInput';
+import { StepProps } from '../Step1/Step1';
+import { useEffect } from 'react';
 
-export default function Step4() {
+export default function Step4({ setIsValidate }: StepProps) {
+  useEffect(() => {
+    setIsValidate(false);
+  }, []);
   const { onboardingInfo, handleInputChange } = useMenuInput();
   const hasContent = onboardingInfo.promotionSubject.length > 0;
+
+  const handleInputValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleInputChange(event); // 입력값 업데이트
+    setIsValidate(true); // isValidate를 true로 설정
+  };
 
   return (
     <>
@@ -21,7 +31,7 @@ export default function Step4() {
           <InputField
             type='text'
             value={onboardingInfo.promotionSubject}
-            onChange={handleInputChange}
+            onChange={handleInputValueChange}
             placeholder='메뉴를 입력해주세요'
           />
           {onboardingInfo.promotionSubject && (

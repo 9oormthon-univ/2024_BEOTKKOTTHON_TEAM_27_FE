@@ -2,8 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { GenderOptionProps } from '../../../../types/PostNew';
 import { useOnboardingContext } from '../../../../context/PostNew/PostNewContext';
+import { StepProps } from '../../Step1/Step1';
 
-export default function SelectType() {
+export default function SelectType({ setIsValidate }: StepProps) {
   const userId = localStorage.getItem('userId');
   const storeId = localStorage.getItem('storeId');
   const parsedUserId = userId ? parseInt(userId, 10) : undefined;
@@ -14,8 +15,9 @@ export default function SelectType() {
     onboardingInfo.promotionType || null,
   );
 
-  function handleGenderSelect(type: string) {
+  function handleMenuSelect(type: string) {
     setSelectedType(type);
+    setIsValidate(true);
     updatePostInfo({ promotionType: type, userId: parsedUserId, storeId: parsedStoreId });
   }
 
@@ -30,7 +32,7 @@ export default function SelectType() {
         <TypeOption
           key={option.value}
           selected={selectedType === option.value}
-          onClick={() => handleGenderSelect(option.value)}
+          onClick={() => handleMenuSelect(option.value)}
         >
           <span
             role='img'

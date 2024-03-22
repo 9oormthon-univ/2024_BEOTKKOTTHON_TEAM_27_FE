@@ -2,8 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { AgeBoxProps } from '../../../../types/PostNew';
 import { useOnboardingContext } from '../../../../context/PostNew/PostNewContext';
+import { StepProps } from '../../Step1/Step1';
 
-export default function SelectAge() {
+export default function SelectAge({ setIsValidate }: StepProps) {
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
   const [selectedAges, setSelectedAges] = useState<string[]>(onboardingInfo.targetAge || []);
 
@@ -12,6 +13,7 @@ export default function SelectAge() {
       ? selectedAges.filter((item) => item !== age)
       : [...selectedAges, age];
     setSelectedAges(updatedAges);
+    setIsValidate(true);
     updatePostInfo({ targetAge: updatedAges });
   }
 

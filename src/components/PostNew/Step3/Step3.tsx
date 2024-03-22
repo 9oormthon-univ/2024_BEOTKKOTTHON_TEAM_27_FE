@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 import SelectType from './SelectType/SelectType';
 import Title from '../../common/Title/Title';
+import { StepProps } from '../Step1/Step1';
+import { useEffect } from 'react';
 
-export default function Step3() {
+export default function Step3({ setIsValidate }: StepProps) {
+  useEffect(() => {
+    setIsValidate(false);
+  }, []);
+
   return (
     <>
       <PostTitleContainer>
@@ -15,7 +21,7 @@ export default function Step3() {
         </SubTitle>
       </PostTitleContainer>
 
-      <SelectType />
+      <SelectType setIsValidate={setIsValidate} />
     </>
   );
 }

@@ -8,7 +8,11 @@ import insta from '../../../assets/Image/Instagram.png';
 import Step1Title from './Step1Title/Step1Title';
 import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 
-export default function Step1() {
+export interface StepProps {
+  setIsValidate: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Step1({ setIsValidate }: StepProps) {
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
   const [selectedSNS, setSelectedSNS] = useState<string | null>(
     onboardingInfo.postingChannel || null,
@@ -25,6 +29,7 @@ export default function Step1() {
     setSelectedSNS((prev) => {
       const newSelectedSNS = prev === sns ? null : sns;
       updatePostInfo({ postingChannel: newSelectedSNS });
+      setIsValidate(true);
       return newSelectedSNS;
     });
   };
