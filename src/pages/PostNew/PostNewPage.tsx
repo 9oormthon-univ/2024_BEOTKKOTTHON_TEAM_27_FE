@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { useOnboardingContext } from '../../context/PostNew/PostNewContext';
 import { useState } from 'react';
 
-export default function PostNew() {
+export default function PostNewPage() {
   const navigate = useNavigate();
   const { Funnel, setStep } = useFunnel(ONBOARDING_FORM_STEP, ONBOARDING_FORM_STEP[0]);
   const [isValidate, setIsValidate] = useState<boolean>(false);

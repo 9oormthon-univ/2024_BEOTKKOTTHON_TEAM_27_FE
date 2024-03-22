@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout';
-import PostNew from '../pages/PostNew/PostNew';
 import Home from '../pages/Home/HomePage';
 import PostResultPage from '../pages/PostResult/PostResultPage';
 import HeaderLayout from '../layouts/HeaderLayout';
@@ -12,6 +11,7 @@ import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
 import { OnboardingProvider } from '../context/PostNew/PostNewContext';
 import PostDetailPage from '../pages/PostDetail/PostDetailPage';
 import GuidePage from '../pages/Guide/GuidePage';
+import PostNewPage from '../pages/PostNew/PostNewPage';
 
 const router = createBrowserRouter([
   {
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
             path: '/post',
             element: (
               <OnboardingProvider>
-                <PostNew />
+                <PostNewPage />
               </OnboardingProvider>
             ),
           },
