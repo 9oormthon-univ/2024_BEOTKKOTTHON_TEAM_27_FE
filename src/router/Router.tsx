@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout';
 import PostNew from '../pages/PostNew/PostNew';
 import Home from '../pages/Home/HomePage';
-import PostResult from '../pages/PostResult/PostResult';
+import PostResultPage from '../pages/PostResult/PostResultPage';
 import HeaderLayout from '../layouts/HeaderLayout';
 import NotFound from '../components/Error/NotFound';
 import StoreHeaderLayout from '../layouts/StoreHeaderLayout';
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/post-result/:id',
-        element: <PostResult />,
+        element: <PostResultPage />,
       },
       {
         element: <HeaderLayout />,
