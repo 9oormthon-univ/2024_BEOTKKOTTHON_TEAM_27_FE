@@ -6,8 +6,8 @@ import ImageInsta from '../../assets/Image/Instagram.png';
 import { getFormattedDate } from '../../utils/utils';
 
 interface PostTopProps {
-  channel: string;
-  createdDate: string;
+  channel?: string;
+  createdDate?: string;
 }
 
 export default function PostTop({ channel, createdDate }: PostTopProps) {
@@ -17,6 +17,15 @@ export default function PostTop({ channel, createdDate }: PostTopProps) {
     ['카카오톡 채널', ImageKakao],
     ['카카오 동네소식', ImageKakaoMap],
   ]);
+
+  if (!channel || !createdDate) {
+    return (
+      <PostTopContainer>
+        <SkeletonPostTopChannel />
+        <SkeletonPostTopDate />
+      </PostTopContainer>
+    );
+  }
 
   return (
     <PostTopContainer>
@@ -52,4 +61,20 @@ const PostTopChannel = styled.div`
 
 const PostTopDate = styled.div`
   ${({ theme }) => theme.fonts.date};
+`;
+
+const SkeletonPostTopChannel = styled.div`
+  width: 50%;
+  height: 1.3rem;
+  border-radius: 0.5rem;
+
+  ${({ theme }) => theme.mixins.skeleton};
+`;
+
+const SkeletonPostTopDate = styled.div`
+  width: 30%;
+  height: 1.3rem;
+  border-radius: 0.5rem;
+
+  ${({ theme }) => theme.mixins.skeleton};
 `;

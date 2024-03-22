@@ -3,21 +3,8 @@ import PostImage from '../../components/Post/PostImage';
 import PostText from '../../components/Post/PostText';
 import PostButton from '../../components/Post/PostButton';
 import { useParams } from 'react-router';
-import { getImageFullUrl } from '../../utils/utils';
 import { useGetPost } from '../../hooks/queries/post/useGetPost';
 import PostTop from '../../components/Post/PostTop';
-
-const initialPosting = {
-  postingImage: '',
-  postingText: '',
-  postingChannel: '인스타그램',
-  postingImage_modifiedCount: 0,
-  postingText_modifiedCount: 0,
-  postingText_modifiedDate: '',
-  postingImage_modifiedDate: '',
-  postingText_createdDate: new Date().toString(),
-  postingType: '',
-};
 
 export default function PostDetailPage() {
   const { id = '' } = useParams();
@@ -31,35 +18,37 @@ export default function PostDetailPage() {
     storeId: storeId,
     postingId: id,
   });
-  const posting = data?.data.posting || initialPosting;
+  const posting = data?.data.posting;
 
   return (
     <PostDetailContainter>
       {/* 상단 - 채널, 처음 생성된 날짜 */}
-      <PostTop channel={posting.postingChannel} createdDate={posting.postingText_createdDate} />
+      <PostTop channel={posting?.postingChannel} createdDate={posting?.postingText_createdDate} />
 
       {/* 중간 - 이미지, 텍스트 */}
-      {posting.postingType === 'Both' ? (
+      {posting?.postingType === 'Text' ? (
         <>
-          <PostImage url={getImageFullUrl(posting.postingImage)} width='100%' />
-          <PostText text={posting.postingText} width='100%' />
+          <PostText text={posting?.postingText} width='100%' />
         </>
       ) : (
-        <PostText text={posting.postingText} width='100%' />
+        <>
+          <PostImage url={posting?.postingImage} width='100%' />
+          <PostText text={posting?.postingText} width='100%' />
+        </>
       )}
 
       {/* 하단 */}
       <PostButton
-        image={posting.postingImage}
-        text={posting.postingText}
-        sns={posting.postingChannel}
+        image={posting?.postingImage}
+        text={posting?.postingText}
+        sns={posting?.postingChannel}
       />
     </PostDetailContainter>
   );
 }
 
 const PostDetailContainter = styled.div`
-  width: 100%;
+  width: 100vw;
   max-width: 360px;
 
   display: flex;
@@ -67,7 +56,5 @@ const PostDetailContainter = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 100%;
-  height: 100%;
   padding: 4rem 2rem calc(3.125rem + 3.125rem + 1rem + 1rem);
 `;

@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css, keyframes } from 'styled-components';
 
 /** 컬러 코드 나오면 추가 될 예정 */
 const colors = {
@@ -168,6 +168,45 @@ const fonts = {
   `,
 };
 
-const theme = { colors, fonts };
+/* 믹스인 */
+const mixins = {
+  flexBox: (direction = 'row', align = 'center', justify = 'center') => css`
+    display: flex;
+    flex-direction: ${direction};
+    align-items: ${align};
+    justify-content: ${justify};
+  `,
+  skeleton: () => {
+    const moveRight = keyframes`
+      0% {
+        transform: translateX(-200%);
+      }
+      100% {
+        transform: translateX(1100%);
+      }
+    `;
+
+    return css`
+      position: relative;
+
+      background: #e5e7eb;
+      overflow: hidden;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10%;
+        height: 100%;
+        background: #d1d5db;
+        box-shadow: 0px 0px 50px 30px #d1d5db;
+        animation: ${moveRight} 1s infinite linear;
+      }
+    `;
+  },
+};
+
+const theme = { colors, fonts, mixins };
 
 export default theme;
