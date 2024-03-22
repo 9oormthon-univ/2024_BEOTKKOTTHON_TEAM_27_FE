@@ -6,9 +6,6 @@ import { useEffect } from 'react';
 import { useGetHistory } from '../../hooks/queries/post/useGetHistory';
 
 export default function PostHistoryPage() {
-  /**
-   * 헤더 타이틀 변경
-   */
   const { setTitle } = useOutletContext<HeaderLayoutContext>();
   useEffect(() => {
     setTitle('내가 만든 포스팅');
@@ -23,7 +20,6 @@ export default function PostHistoryPage() {
   });
 
   const posting = data?.data.postingList;
-  console.log('data는', posting);
 
   return (
     <HistoryPageContainer>
@@ -32,6 +28,7 @@ export default function PostHistoryPage() {
           return (
             <TextCardWithImage
               key={index}
+              postingId={data.postingId}
               date={data.postingImage_createdDate}
               text={data.postingText}
               imageUrl={data.postingImage}
@@ -42,6 +39,7 @@ export default function PostHistoryPage() {
           return (
             <TextCardWithImage
               key={index}
+              postingId={data.postingId}
               date={data.postingText_createdDate}
               text={data.postingText}
             />
