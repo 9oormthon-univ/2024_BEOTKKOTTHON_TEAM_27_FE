@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Toggle from '../../components/common/Toggle/Toggle';
+import Toggle from '../common/Toggle/Toggle';
 import { useState } from 'react';
 
 interface PostTextProps {

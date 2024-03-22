@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import PostImage from '../../components/PostResult/PostImage';
-import PostText from '../../components/PostResult/PostText';
-import PostButton from '../../components/PostResult/PostButton';
-import 'react-spring-bottom-sheet/dist/style.css';
+import PostImage from '../../components/Post/PostImage';
+import PostText from '../../components/Post/PostText';
+import PostButton from '../../components/Post/PostButton';
 import { useParams } from 'react-router';
-import { getFormattedDate, getImageFullUrl } from '../../utils/utils';
+import { getImageFullUrl } from '../../utils/utils';
 import { useGetPost } from '../../hooks/queries/post/useGetPost';
+import PostTop from '../../components/Post/PostTop';
 
 const initialPosting = {
   postingImage: '',
   postingText: '',
-  postingChannel: '',
+  postingChannel: '인스타그램',
   postingImage_modifiedCount: 0,
   postingText_modifiedCount: 0,
   postingText_modifiedDate: '',
@@ -35,10 +35,8 @@ export default function PostDetailPage() {
 
   return (
     <PostDetailContainter>
-      <PostDetailTitleContainer>
-        <PostDetailTitle>{posting.postingChannel}</PostDetailTitle>
-        <PostDetailDate>{getFormattedDate(posting.postingText_createdDate)}</PostDetailDate>
-      </PostDetailTitleContainer>
+      {/* 상단 - 채널, 처음 생성된 날짜 */}
+      <PostTop channel={posting.postingChannel} createdDate={posting.postingText_createdDate} />
 
       {/* 중간 - 이미지, 텍스트 */}
       {posting.postingType === 'Both' ? (
@@ -72,23 +70,4 @@ const PostDetailContainter = styled.div`
   width: 100%;
   height: 100%;
   padding: 4rem 2rem calc(3.125rem + 3.125rem + 1rem + 1rem);
-`;
-
-const PostDetailTitleContainer = styled.section`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin: 2.5rem 0 1.75rem;
-`;
-
-const PostDetailTitle = styled.div`
-  display: flex;
-  gap: 7px;
-  align-items: center;
-
-  ${({ theme }) => theme.fonts.subTitle};
-`;
-
-const PostDetailDate = styled.div`
-  ${({ theme }) => theme.fonts.date};
 `;

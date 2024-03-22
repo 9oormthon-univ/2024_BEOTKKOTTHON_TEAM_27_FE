@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import PostTitle from '../../components/PostResult/PostTitle';
-import PostImage from '../../components/PostResult/PostImage';
-import PostText from '../../components/PostResult/PostText';
-import PostButton from '../../components/PostResult/PostButton';
+import PostResultTitle from '../../components/Post/PostResultTitle';
+import PostImage from '../../components/Post/PostImage';
+import PostText from '../../components/Post/PostText';
+import PostButton from '../../components/Post/PostButton';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import Confetti from 'react-confetti';
-import PostBottomSheet from '../../components/PostResult/PostBottomSheet';
+import PostBottomSheet from '../../components/Post/PostBottomSheet';
 import { useState } from 'react';
 import 'react-spring-bottom-sheet/dist/style.css';
 import { useParams } from 'react-router';
@@ -77,7 +77,7 @@ export default function PostResult() {
     return (
       <PostResultContainter>
         {/* 상단 */}
-        <PostTitle onRetry={() => setIsOpen(true)} />
+        <PostResultTitle onRetry={() => setIsOpen(true)} />
 
         {/* 중간 - 이미지, 텍스트 */}
         {posting.postingType === 'Both' ? (

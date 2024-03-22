@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ButtonWithTip from '../../components/common/Button/ButtonWithTip/ButtonWithTip';
+import ButtonWithTip from '../common/Button/ButtonWithTip/ButtonWithTip';
 import { SetStateAction, useState } from 'react';
 import { copyText, downloadImage, getPackageName, isAndroid } from '../../utils/utils';
 
