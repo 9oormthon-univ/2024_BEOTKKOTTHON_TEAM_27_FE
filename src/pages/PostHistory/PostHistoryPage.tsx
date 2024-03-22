@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import TextCardWithImage from '../../components/PostHistory/TextCardWithImage/TextCardWithImage';
+import { useOutletContext } from 'react-router-dom';
+import { HeaderLayoutContext } from '../../layouts/HeaderLayout';
+import { useEffect } from 'react';
 
 interface CardData {
   date: string;
@@ -9,6 +12,14 @@ interface CardData {
 }
 
 export default function PostHistoryPage() {
+  /**
+   * 헤더 타이틀 변경
+   */
+  const { setTitle } = useOutletContext<HeaderLayoutContext>();
+  useEffect(() => {
+    setTitle('내가 만든 포스팅');
+  }, [setTitle]);
+
   const cardData: CardData[] = [
     {
       date: '2024-03-22',
