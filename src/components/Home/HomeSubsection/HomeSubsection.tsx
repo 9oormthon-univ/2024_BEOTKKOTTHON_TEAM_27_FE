@@ -14,6 +14,11 @@ export default function HomeSubsection() {
   const handlePostHistory = () => {
     navigate(`/post-history`);
   };
+
+  const handleGuide = () => {
+    navigate(`/guide`);
+  };
+
   return (
     <HomeSubSectionContainer>
       <PostCreation onClick={handlePostCreate}>
@@ -39,7 +44,7 @@ export default function HomeSubsection() {
             포스팅
             <Myposting style={{ height: '2.5rem' }} />
           </DataLookup>
-          <UserGuide>이용가이드</UserGuide>
+          <UserGuide onClick={handleGuide}>이용가이드</UserGuide>
         </StoreContainer>
       </PostContainer>
     </HomeSubSectionContainer>

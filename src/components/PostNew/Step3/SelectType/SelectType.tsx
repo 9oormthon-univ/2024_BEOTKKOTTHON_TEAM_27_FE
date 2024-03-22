@@ -4,6 +4,11 @@ import { GenderOptionProps } from '../../../../types/PostNew';
 import { useOnboardingContext } from '../../../../context/PostNew/PostNewContext';
 
 export default function SelectType() {
+  const userId = localStorage.getItem('userId');
+  const storeId = localStorage.getItem('storeId');
+  const parsedUserId = userId ? parseInt(userId, 10) : undefined;
+  const parsedStoreId = storeId ? parseInt(storeId, 10) : undefined;
+
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
   const [selectedType, setSelectedType] = useState<string | null>(
     onboardingInfo.promotionType || null,
@@ -11,7 +16,7 @@ export default function SelectType() {
 
   function handleGenderSelect(type: string) {
     setSelectedType(type);
-    updatePostInfo({ promotionType: type });
+    updatePostInfo({ promotionType: type, userId: parsedUserId, storeId: parsedStoreId });
   }
 
   const typeOptions = [

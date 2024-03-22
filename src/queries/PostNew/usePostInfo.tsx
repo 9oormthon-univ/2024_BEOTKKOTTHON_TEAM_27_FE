@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { post } from '../../apis/client';
 import { PostInfo } from '../../types/PostNew';
+import { BaseResponse } from '../../types/Response';
 
 interface PostOnboardingInfoRes {
   userId: number;
@@ -8,19 +9,22 @@ interface PostOnboardingInfoRes {
   postingId: number;
 }
 
-const postOnboardingInfo = async (postInfo: PostInfo) => {
-  const response = await post<PostOnboardingInfoRes>(`/api/posting`, postInfo);
-  return response.data;
+const postOnboardingInfo = async (body: PostInfo) => {
+  const { data } = await post<BaseResponse<PostOnboardingInfoRes>>(`/api/posting`, body);
+  return data;
 };
 
-const usePostOnboardingInfo = () => {
-  const mutation = useMutation({
-    mutationFn: postOnboardingInfo,
-    onSuccess: (data) => {
-      console.log('포스팅 생성 성공?', data);
-    },
+interface PutPostProps {
+  onSuccess: (res: BaseResponse<PostOnboardingInfoRes>) => void;
+  onError: (e: Error) => void;
+}
+
+const usePostOnboardingInfo = ({ onSuccess, onError }: PutPostProps) => {
+  return useMutation({
+    mutationFn: (body: PostInfo) => postOnboardingInfo(body),
+    onSuccess: onSuccess,
+    onError: onError,
   });
-
-  return { mutation };
 };
+
 export default usePostOnboardingInfo;

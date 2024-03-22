@@ -11,6 +11,7 @@ import StoreNew from '../pages/StoreNew/StoreNew';
 import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
 import { OnboardingProvider } from '../context/PostNew/PostNewContext';
 import PostDetailPage from '../pages/PostDetail/PostDetailPage';
+import GuidePage from '../pages/Guide/GuidePage';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
           {
             path: '/post-detail/:id',
             element: <PostDetailPage />,
+          },
+          {
+            path: '/guide',
+            element: <GuidePage />,
           },
         ],
       },
