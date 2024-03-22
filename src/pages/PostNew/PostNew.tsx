@@ -95,11 +95,7 @@ export default function PostNew() {
       <Funnel.Step name='POSTING_IMAGE'>
         <PostNewContainer>
           <ProcessBar currentStep={6} stepCount={6} />
-          <Step6 />
-          <PostFooter
-            onClickBackBtn={() => onClickBackBtn(6)}
-            setStep={() => setStep(() => 'POSTING_IMAGE')}
-          />
+          <Step6 onClickBackBtn={() => onClickBackBtn(6)} />
         </PostNewContainer>
       </Funnel.Step>
     </Funnel>
