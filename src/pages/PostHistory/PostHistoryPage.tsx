@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import TextCardWithImage from '../../components/PostHistory/TextCardWithImage/TextCardWithImage';
+import TextCardWithImage from '../../components/PostHistory/TextCardWithImage';
 import { useOutletContext } from 'react-router-dom';
 import { HeaderLayoutContext } from '../../layouts/HeaderLayout';
 import { useEffect } from 'react';
