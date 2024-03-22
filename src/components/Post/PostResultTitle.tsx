@@ -3,12 +3,12 @@ import styled from 'styled-components';
 interface PostTitleProps {
   onRetry: VoidFunction;
 }
-export default function PostTitle({ onRetry }: PostTitleProps) {
+export default function PostResultTitle({ onRetry }: PostTitleProps) {
   return (
     <PostResultTitleContainer>
-      <PostResultTitle>
+      <h1>
         <span>포스트</span>가 완성되었어요!
-      </PostResultTitle>
+      </h1>
       <PostRetry onClick={onRetry}>다시 만들어 주세요</PostRetry>
     </PostResultTitleContainer>
   );
@@ -21,13 +21,13 @@ const PostResultTitleContainer = styled.div`
   align-items: center;
 
   margin: 2.5rem 0 2rem;
-`;
 
-const PostResultTitle = styled.h1`
-  ${({ theme }) => theme.fonts.PostingTitle};
+  > h1 {
+    ${({ theme }) => theme.fonts.PostingTitle};
 
-  > span {
-    color: ${({ theme }) => theme.colors.main};
+    > span {
+      color: ${({ theme }) => theme.colors.main};
+    }
   }
 `;
 

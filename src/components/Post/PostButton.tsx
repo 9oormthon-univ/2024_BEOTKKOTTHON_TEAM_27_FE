@@ -1,12 +1,18 @@
 import styled from 'styled-components';
-import ButtonWithTip from '../../components/common/Button/ButtonWithTip/ButtonWithTip';
+import ButtonWithTip from '../common/Button/ButtonWithTip/ButtonWithTip';
 import { SetStateAction, useState } from 'react';
-import { copyText, downloadImage, getPackageName, isAndroid } from '../../utils/utils';
+import {
+  copyText,
+  downloadImage,
+  getImageFullUrl,
+  getPackageName,
+  isAndroid,
+} from '../../utils/utils';
 
 interface PostButtonProps {
-  image: string;
-  text: string;
-  sns: string;
+  image?: string;
+  text?: string;
+  sns?: string;
 }
 
 export default function PostButton({ image, text, sns }: PostButtonProps) {
@@ -18,10 +24,13 @@ export default function PostButton({ image, text, sns }: PostButtonProps) {
   // (1) [한번에 저장하기]
   // 텍스트 복사 -> 이미지 저장 -> 모두 성공 시, isSaved
   function handleSaveAll() {
-    // [TODO] 지울 것. CORS 문제로 풀려 있는 이미지 사용
-    const url =
-      'https://objectstorage.ap-chuncheon-1.oraclecloud.com/p/NFhdxT-Gf5qr8V_6_oDec6dx_DSu5LL4E8ZXQsTEeTJaTt2j7KWRFJae6hi5V1fC/n/axn4dve0qg0d/b/sejong-uni-cafeteria-notifier/o/z9.png';
-    console.log(url);
+    if (!text || !image) {
+      alert('포스팅 조회 후 저장 가능합니다.');
+      return;
+    }
+
+    const url = getImageFullUrl(image);
+    console.log('🔗 이미지 URL', url);
 
     const saveFunc = isAndroid() ? saveImage : downloadImage;
     Promise.all([saveFunc(url), copyText(text)])
@@ -38,7 +47,7 @@ export default function PostButton({ image, text, sns }: PostButtonProps) {
 
   function saveImage() {
     return new Promise<String>((resolve, reject) => {
-      const uri = Android.downloadImage(image);
+      const uri = Android.downloadImage(image!!);
       if (uri === '') reject();
       else resolve(uri);
     });
@@ -48,6 +57,7 @@ export default function PostButton({ image, text, sns }: PostButtonProps) {
   // Android인 경우, openApp() / else인 경우, 지원 X
   function handleShare() {
     try {
+      if (!sns) throw new Error('공유할 SNS가 선택되지 않았습니다.');
       if (!isAndroid()) throw new Error('공유하기 기능을 지원하지 않는 기기입니다.');
       if (file == '') throw new Error('이미지를 다시 저장해 주세요.');
 

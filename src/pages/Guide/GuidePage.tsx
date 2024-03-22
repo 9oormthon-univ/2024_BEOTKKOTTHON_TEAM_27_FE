@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ImgGuideCreate from '../../assets/Image/guide_create.webp';
 import ImgGuideUse from '../../assets/Image/guide_use.webp';
 import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
 import { useNavigate } from 'react-router';
+import { useOutletContext } from 'react-router-dom';
+import { HeaderLayoutContext } from '../../layouts/HeaderLayout';
 
 const tabs = ['포스팅 생성 방법', '포스팅 활용 방법'];
 
@@ -11,12 +13,20 @@ export default function GuidePage() {
   const navigation = useNavigate();
   const [tab, setTab] = useState(0);
 
+  /**
+   * 헤더 타이틀 변경
+   */
+  const { setTitle } = useOutletContext<HeaderLayoutContext>();
+  useEffect(() => {
+    setTitle('이용 가이드');
+  }, [setTitle]);
+
   return (
     <GuidePageContainer>
       {/* 탭 영역 */}
       <GuideSelectorContainer>
         {tabs.map((title, idx) => (
-          <GuideSelector $selected={idx == tab} onClick={() => setTab(idx)}>
+          <GuideSelector key={idx} $selected={idx == tab} onClick={() => setTab(idx)}>
             {title}
           </GuideSelector>
         ))}
