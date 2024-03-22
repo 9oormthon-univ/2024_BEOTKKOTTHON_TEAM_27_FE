@@ -3,21 +3,17 @@ import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
 import Tip from './Tip/Tip';
 import useMenuExplain from '../../../hooks/PostNew/useMenuExplain';
-import { StepProps } from '../Step1/Step1';
-import { useEffect } from 'react';
+import { NameInputProps } from '../Step1/Step1';
+import NextButton from '../PostFooter/NextButton';
 
-export default function Step5({ setIsValidate }: StepProps) {
-  useEffect(() => {
-    setIsValidate(false);
-  }, []);
-  const { onboardingInfo, handleInputChange, handleBtnClick } = useMenuExplain();
-  const characterCount = onboardingInfo.promotionSubject.length;
+export default function Step5(props: NameInputProps) {
+  const { onNext } = props;
+  const { onboardingInfo, handleInputChange, handleBtnClick, isActivated } = useMenuExplain();
+  const characterCount = onboardingInfo.promotionContent.length;
   const maxCharacters = 100;
 
-  // textarea 값이 변할 때마다 setIsValidate를 호출하여 isValidate를 true로 설정합니다.
   const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    handleInputChange(event); // textarea 입력값 업데이트
-    setIsValidate(true); // isValidate를 true로 설정
+    handleInputChange(event);
   };
 
   return (
@@ -46,6 +42,9 @@ export default function Step5({ setIsValidate }: StepProps) {
         {characterCount}/{maxCharacters}
       </CharacterCount>
       <Tip />
+      <NextButton isActivated={isActivated} setStep={onNext}>
+        다음
+      </NextButton>
     </>
   );
 }

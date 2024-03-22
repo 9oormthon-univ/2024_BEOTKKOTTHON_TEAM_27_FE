@@ -1,4 +1,4 @@
-import { css, keyframes } from 'styled-components';
+import { css } from 'styled-components';
 
 /** 컬러 코드 나오면 추가 될 예정 */
 const colors = {
@@ -9,6 +9,7 @@ const colors = {
   deep_gray: '#727272',
   main: '#342FFF',
   light_main: '#E2E5FF',
+  main_blue: '#402FFF',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
   G_03: '#ECEEF4',
@@ -136,14 +137,6 @@ const fonts = {
     font-weight: 500;
     line-height: 144.583%;
   `,
-  date: css`
-    color: #757373;
-    font-family: Pretendard;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 144.583%;
-  `,
   content_01: css`
     font-family: Pretendard;
     font-size: 16px;
@@ -168,45 +161,6 @@ const fonts = {
   `,
 };
 
-/* 믹스인 */
-const mixins = {
-  flexBox: (direction = 'row', align = 'center', justify = 'center') => css`
-    display: flex;
-    flex-direction: ${direction};
-    align-items: ${align};
-    justify-content: ${justify};
-  `,
-  skeleton: () => {
-    const moveRight = keyframes`
-      0% {
-        transform: translateX(-200%);
-      }
-      100% {
-        transform: translateX(1100%);
-      }
-    `;
-
-    return css`
-      position: relative;
-
-      background: #e5e7eb;
-      overflow: hidden;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 10%;
-        height: 100%;
-        background: #d1d5db;
-        box-shadow: 0px 0px 50px 30px #d1d5db;
-        animation: ${moveRight} 1s infinite linear;
-      }
-    `;
-  },
-};
-
-const theme = { colors, fonts, mixins };
+const theme = { colors, fonts };
 
 export default theme;

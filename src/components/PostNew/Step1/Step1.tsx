@@ -5,14 +5,16 @@ import kakao from '../../../assets/Image/kakao.png';
 import carrot from '../../../assets/Image/carrot.png';
 import kakaoMap from '../../../assets/Image/kakaoMap.png';
 import insta from '../../../assets/Image/Instagram.png';
-import Step1Title from './Step1Title/Step1Title';
 import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
+import Step1Title from './Step1Title/Step1Title';
+import NextButton from '../PostFooter/NextButton';
 
-export interface StepProps {
-  setIsValidate: React.Dispatch<React.SetStateAction<boolean>>;
+export interface NameInputProps {
+  onNext: VoidFunction;
 }
 
-export default function Step1({ setIsValidate }: StepProps) {
+export default function Step1(props: NameInputProps) {
+  const { onNext } = props;
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
   const [selectedSNS, setSelectedSNS] = useState<string | null>(
     onboardingInfo.postingChannel || null,
@@ -29,7 +31,6 @@ export default function Step1({ setIsValidate }: StepProps) {
     setSelectedSNS((prev) => {
       const newSelectedSNS = prev === sns ? null : sns;
       updatePostInfo({ postingChannel: newSelectedSNS });
-      setIsValidate(true);
       return newSelectedSNS;
     });
   };
@@ -53,6 +54,9 @@ export default function Step1({ setIsValidate }: StepProps) {
             </SNSOption>
           ))}
         </SNSOptionContainer>
+        <NextButton isActivated={!!selectedSNS} setStep={onNext}>
+          다음
+        </NextButton>
       </PostTitleContainer>
     </>
   );

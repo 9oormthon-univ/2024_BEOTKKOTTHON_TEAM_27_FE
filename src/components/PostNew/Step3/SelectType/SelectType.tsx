@@ -2,22 +2,25 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { GenderOptionProps } from '../../../../types/PostNew';
 import { useOnboardingContext } from '../../../../context/PostNew/PostNewContext';
-import { StepProps } from '../../Step1/Step1';
+import NextButton from '../../PostFooter/NextButton';
+import { NameInputProps } from '../../Step1/Step1';
 
-export default function SelectType({ setIsValidate }: StepProps) {
+export default function SelectType(props: NameInputProps) {
+  const { onNext } = props;
   const userId = localStorage.getItem('userId');
   const storeId = localStorage.getItem('storeId');
   const parsedUserId = userId ? parseInt(userId, 10) : undefined;
   const parsedStoreId = storeId ? parseInt(storeId, 10) : undefined;
 
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
+  const [visible, setVisible] = useState(false);
   const [selectedType, setSelectedType] = useState<string | null>(
     onboardingInfo.promotionType || null,
   );
 
   function handleMenuSelect(type: string) {
+    setVisible(true);
     setSelectedType(type);
-    setIsValidate(true);
     updatePostInfo({ promotionType: type, userId: parsedUserId, storeId: parsedStoreId });
   }
 
@@ -27,24 +30,29 @@ export default function SelectType({ setIsValidate }: StepProps) {
   ];
 
   return (
-    <TypeSelection>
-      {typeOptions.map((option) => (
-        <TypeOption
-          key={option.value}
-          selected={selectedType === option.value}
-          onClick={() => handleMenuSelect(option.value)}
-        >
-          <span
-            role='img'
-            aria-label={option.label}
-            style={{ fontSize: '60px', margin: '0 0 1rem 0' }}
+    <>
+      <TypeSelection>
+        {typeOptions.map((option) => (
+          <TypeOption
+            key={option.value}
+            selected={selectedType === option.value}
+            onClick={() => handleMenuSelect(option.value)}
           >
-            {option.emoji}
-          </span>
-          {option.label}
-        </TypeOption>
-      ))}
-    </TypeSelection>
+            <span
+              role='img'
+              aria-label={option.label}
+              style={{ fontSize: '60px', margin: '0 0 1rem 0' }}
+            >
+              {option.emoji}
+            </span>
+            {option.label}
+          </TypeOption>
+        ))}
+      </TypeSelection>
+      <NextButton isActivated={visible} setStep={onNext}>
+        다음
+      </NextButton>
+    </>
   );
 }
 

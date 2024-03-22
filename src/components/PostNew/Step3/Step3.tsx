@@ -1,14 +1,9 @@
 import styled from 'styled-components';
 import SelectType from './SelectType/SelectType';
 import Title from '../../common/Title/Title';
-import { StepProps } from '../Step1/Step1';
-import { useEffect } from 'react';
+import { NameInputProps } from '../Step1/Step1';
 
-export default function Step3({ setIsValidate }: StepProps) {
-  useEffect(() => {
-    setIsValidate(false);
-  }, []);
-
+export default function Step3(props: NameInputProps) {
   return (
     <>
       <PostTitleContainer>
@@ -20,8 +15,7 @@ export default function Step3({ setIsValidate }: StepProps) {
           각 홍보에 목적에 따라 <br /> 다른 형식의 포스팅이 작성됩니다!
         </SubTitle>
       </PostTitleContainer>
-
-      <SelectType setIsValidate={setIsValidate} />
+      <SelectType {...props} />
     </>
   );
 }

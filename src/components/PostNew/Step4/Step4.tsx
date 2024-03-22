@@ -2,19 +2,16 @@ import styled from 'styled-components';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
 import useMenuInput from '../../../hooks/PostNew/useMenuInput';
-import { StepProps } from '../Step1/Step1';
-import { useEffect } from 'react';
+import { NameInputProps } from '../Step1/Step1';
+import NextButton from '../PostFooter/NextButton';
 
-export default function Step4({ setIsValidate }: StepProps) {
-  useEffect(() => {
-    setIsValidate(false);
-  }, []);
-  const { onboardingInfo, handleInputChange } = useMenuInput();
+export default function Step4(props: NameInputProps) {
+  const { onNext } = props;
+  const { onboardingInfo, handleInputChange, isActivated } = useMenuInput();
   const hasContent = onboardingInfo.promotionSubject.length > 0;
 
   const handleInputValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handleInputChange(event); // 입력값 업데이트
-    setIsValidate(true); // isValidate를 true로 설정
+    handleInputChange(event);
   };
 
   return (
@@ -40,24 +37,9 @@ export default function Step4({ setIsValidate }: StepProps) {
         </InputFieldContainer>
         <Example>ex&#41; 소동 떡볶이 &#40;매운맛&#41;</Example>
       </MenuInputContainer>
-
-      {/* <PriceInputContainer>
-        <InputFieldContainer>
-          <InputField
-            type='text'
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            placeholder='가격을 입력해주세요'
-          />
-          {price && (
-            <Xmark
-              onClick={handlePriceClear}
-              style={{ width: '1rem', position: 'absolute', right: '5%' }}
-            />
-          )}
-        </InputFieldContainer>
-        <Example>4500원</Example>
-      </PriceInputContainer> */}
+      <NextButton isActivated={isActivated} setStep={onNext}>
+        다음
+      </NextButton>
     </>
   );
 }
@@ -99,8 +81,3 @@ const InputField = styled.input`
 const Highlight = styled.span`
   color: ${({ theme }) => theme.colors.main};
 `;
-
-// const PriceInputContainer = styled.div`
-//   margin-top: 1rem;
-//   position: relative;
-// `;
