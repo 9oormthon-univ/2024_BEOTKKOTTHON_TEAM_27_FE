@@ -6,6 +6,7 @@ export { default as CheckIcon } from './CheckIcon';
 export { default as Confetti } from './Confetti';
 export { default as Confetti2 } from './Confetti2';
 export { default as Hat } from './Hat';
+export { default as IcArrow } from './IcArrow';
 export { default as Image } from './Image';
 export { default as Kakao } from './Kakao';
 export { default as Kakaomap } from './Kakaomap';

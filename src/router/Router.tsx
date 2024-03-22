@@ -2,14 +2,15 @@ import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout';
 import PostNew from '../pages/PostNew/PostNew';
 import Home from '../pages/Home/HomePage';
-import PostResult from '../pages/PostResult/PostResult';
+import PostResultPage from '../pages/PostResult/PostResultPage';
 import HeaderLayout from '../layouts/HeaderLayout';
 import NotFound from '../components/Error/NotFound';
 import StoreHeaderLayout from '../layouts/StoreHeaderLayout';
 import Login from '../pages/Login/Login';
-import StoreNew from '../pages/StoreNew/StoreNew';
+import StoreNewPage from '../pages/StoreNew/StoreNewPage';
 import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
 import { OnboardingProvider } from '../context/PostNew/PostNewContext';
+import PostDetailPage from '../pages/PostDetail/PostDetailPage';
 import GuidePage from '../pages/Guide/GuidePage';
 
 const router = createBrowserRouter([
@@ -28,10 +29,31 @@ const router = createBrowserRouter([
       },
       {
         path: '/post-result/:id',
-        element: <PostResult />,
+        element: <PostResultPage />,
       },
       {
         element: <HeaderLayout />,
+        children: [
+          {
+            path: '/guide',
+            element: <GuidePage />,
+          },
+          {
+            path: '/post-detail/:id',
+            element: <PostDetailPage />,
+          },
+          {
+            path: '/store-new',
+            element: <StoreNewPage />,
+          },
+          {
+            path: '/post-history',
+            element: <PostHistoryPage />,
+          },
+        ],
+      },
+      {
+        element: <StoreHeaderLayout />,
         children: [
           {
             path: '/post',
@@ -40,23 +62,6 @@ const router = createBrowserRouter([
                 <PostNew />
               </OnboardingProvider>
             ),
-          },
-        ],
-      },
-      {
-        element: <StoreHeaderLayout />,
-        children: [
-          {
-            path: '/store-new',
-            element: <StoreNew />,
-          },
-          {
-            path: '/post-history',
-            element: <PostHistoryPage />,
-          },
-          {
-            path: '/guide',
-            element: <GuidePage />,
           },
         ],
       },

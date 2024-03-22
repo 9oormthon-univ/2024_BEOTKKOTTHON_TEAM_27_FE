@@ -64,7 +64,7 @@ export function getPackageName(sns: string): string {
  * 이미지 Full Url 가져오는 함수
  * @param filename - 파일명
  */
-export function getImageFullUrl(filename: string): string {
+export function getImageFullUrl(filename?: string): string {
   const BASE_URL = import.meta.env.VITE_APP_FAST_URL;
   if (!filename) return '';
   return `${BASE_URL}/api/ibm/object/${filename.replace('.', '/.')}`;
@@ -80,4 +80,17 @@ export function isOverThan(dateStr: string, sec: number): boolean {
   const diff = now.getTime() - date.getTime();
 
   return diff / 1000 >= sec;
+}
+
+/**
+ *  날짜 포맷팅 함수 (YYYY-MM-DD)
+ * @param dateStr
+ */
+export function getFormattedDate(dateStr: string): string {
+  const date = new Date(dateStr);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
 }
