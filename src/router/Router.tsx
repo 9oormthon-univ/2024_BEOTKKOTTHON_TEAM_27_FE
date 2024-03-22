@@ -42,26 +42,26 @@ const router = createBrowserRouter([
               </OnboardingProvider>
             ),
           },
-        ],
-      },
-      {
-        element: <StoreHeaderLayout />,
-        children: [
           {
-            path: '/store-new',
-            element: <StoreNew />,
-          },
-          {
-            path: '/post-history',
-            element: <PostHistoryPage />,
+            path: '/guide',
+            element: <GuidePage />,
           },
           {
             path: '/post-detail/:id',
             element: <PostDetailPage />,
           },
           {
-            path: '/guide',
-            element: <GuidePage />,
+            path: '/store-new',
+            element: <StoreNew />,
+          },
+        ],
+      },
+      {
+        element: <StoreHeaderLayout />,
+        children: [
+          {
+            path: '/post-history',
+            element: <PostHistoryPage />,
           },
         ],
       },

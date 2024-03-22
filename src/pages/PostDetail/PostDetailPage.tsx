@@ -5,11 +5,22 @@ import PostButton from '../../components/Post/PostButton';
 import { useParams } from 'react-router';
 import { useGetPost } from '../../hooks/queries/post/useGetPost';
 import PostTop from '../../components/Post/PostTop';
+import { useOutletContext } from 'react-router-dom';
+import { HeaderLayoutContext } from '../../layouts/HeaderLayout';
+import { useEffect } from 'react';
 
 export default function PostDetailPage() {
   const { id = '' } = useParams();
 
-  // GET - 포스트 조회
+  /**
+   * 헤더 타이틀 변경
+   */
+  const { setTitle } = useOutletContext<HeaderLayoutContext>();
+  useEffect(() => {
+    setTitle('포스트 상세');
+  }, [setTitle]);
+
+  // GET - 포스트 조회 API
   const userId = localStorage.getItem('userId') || '';
   const storeId = localStorage.getItem('storeId') || '';
 

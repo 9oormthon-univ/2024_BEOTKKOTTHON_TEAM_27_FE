@@ -39,5 +39,6 @@ const HeaderContainer = styled.div`
 
   > p {
     margin: 0 auto;
+    padding-right: 24px; // 버튼 크기 고려
   }
 `;
