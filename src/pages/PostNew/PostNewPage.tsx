@@ -10,6 +10,7 @@ import Step4 from '../../components/PostNew/Step4/Step4';
 import Step5 from '../../components/PostNew/Step5/Step5';
 import Step6 from '../../components/PostNew/Step6/Step6';
 import ProcessBar from '../../components/common/ProcessBar/ProcessBar';
+import PostNewHeader from '../../components/PostNew/PostHeader/PostNewHeader';
 
 export default function PostNewPage() {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ export default function PostNewPage() {
     <Funnel>
       <Funnel.Step name='POSTING_CHANNEL'>
         <PostNewContainer>
+          <PostNewHeader onClickBackBtn={() => onClickBackBtn(1)} />
           <ProcessBar currentStep={1} stepCount={6} />
           <Step1 onNext={() => setStep(() => 'AGE_GENDER')} />
         </PostNewContainer>
@@ -44,6 +46,7 @@ export default function PostNewPage() {
 
       <Funnel.Step name='AGE_GENDER'>
         <PostNewContainer>
+          <PostNewHeader onClickBackBtn={() => onClickBackBtn(2)} />
           <ProcessBar currentStep={2} stepCount={6} />
           <Step2 onNext={() => setStep(() => 'TYPE')} />
         </PostNewContainer>
@@ -51,6 +54,7 @@ export default function PostNewPage() {
 
       <Funnel.Step name='TYPE'>
         <PostNewContainer>
+          <PostNewHeader onClickBackBtn={() => onClickBackBtn(3)} />
           <ProcessBar currentStep={3} stepCount={6} />
           <Step3 onNext={() => setStep(() => 'POSTING_SUBJECT')} />
         </PostNewContainer>
@@ -58,6 +62,7 @@ export default function PostNewPage() {
 
       <Funnel.Step name='POSTING_SUBJECT'>
         <PostNewContainer>
+          <PostNewHeader onClickBackBtn={() => onClickBackBtn(4)} />
           <ProcessBar currentStep={4} stepCount={6} />
           <Step4 onNext={() => setStep(() => 'POSTING_CONTENT')} />
         </PostNewContainer>
@@ -65,6 +70,7 @@ export default function PostNewPage() {
 
       <Funnel.Step name='POSTING_CONTENT'>
         <PostNewContainer>
+          <PostNewHeader onClickBackBtn={() => onClickBackBtn(5)} />
           <ProcessBar currentStep={5} stepCount={6} />
           <Step5 onNext={() => setStep(() => 'POSTING_IMAGE')} />
         </PostNewContainer>
@@ -72,6 +78,7 @@ export default function PostNewPage() {
 
       <Funnel.Step name='POSTING_IMAGE'>
         <PostNewContainer>
+          <PostNewHeader onClickBackBtn={() => onClickBackBtn(6)} />
           <ProcessBar currentStep={6} stepCount={6} />
           <Step6 onClickBackBtn={() => onClickBackBtn(6)} />
         </PostNewContainer>

@@ -32,6 +32,14 @@ const router = createBrowserRouter([
         element: <PostResultPage />,
       },
       {
+        path: '/post',
+        element: (
+          <OnboardingProvider>
+            <PostNewPage />
+          </OnboardingProvider>
+        ),
+      },
+      {
         element: <HeaderLayout />,
         children: [
           {
@@ -49,19 +57,6 @@ const router = createBrowserRouter([
           {
             path: '/post-history',
             element: <PostHistoryPage />,
-          },
-        ],
-      },
-      {
-        element: <StoreHeaderLayout />,
-        children: [
-          {
-            path: '/post',
-            element: (
-              <OnboardingProvider>
-                <PostNewPage />
-              </OnboardingProvider>
-            ),
           },
         ],
       },
