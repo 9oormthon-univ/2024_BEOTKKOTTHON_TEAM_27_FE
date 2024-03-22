@@ -1,21 +1,29 @@
 import styled from 'styled-components';
 import { Instagram } from '../../../assets/svg';
+import { getImageFullUrl } from '../../../utils/utils';
 
 interface TextCardWithImageProps {
   date: string;
   text: string;
-  imageUrl?: string; // 이미지 옵셔널 처리
+  imageUrl?: string;
   imageAlt?: string;
 }
 
-function TextCardWithImage({ date, text, imageUrl, imageAlt }: TextCardWithImageProps) {
+export default function TextCardWithImage({
+  date,
+  text,
+  imageUrl,
+  imageAlt,
+}: TextCardWithImageProps) {
+  const dateTostring = date.substring(0, 10);
+
   return (
     <TextCardContainer>
       <TextCardHeader>
         <Instagram style={{ width: '2.0625rem', height: '2rem' }} />
-        <Date>{date}</Date>
+        <Date>{dateTostring}</Date>
       </TextCardHeader>
-      {imageUrl && <img src={imageUrl} alt={imageAlt} />}{' '}
+      {imageUrl && <img src={getImageFullUrl(imageUrl)} alt={imageAlt} />}{' '}
       {/* 이미지가 주어진 경우에만 이미지를 렌더링 */}
       <TextContent>{text}</TextContent>
     </TextCardContainer>
@@ -59,5 +67,3 @@ const TextContent = styled.p`
   color: ${({ theme }) => theme.colors.black};
   ${({ theme }) => theme.fonts.ex_01};
 `;
-
-export default TextCardWithImage;
