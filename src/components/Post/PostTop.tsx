@@ -43,7 +43,7 @@ const PostTopContainer = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2.5rem 0 1.75rem;
+  margin: 0 0 0.8rem;
 `;
 
 const PostTopChannel = styled.div`
@@ -51,7 +51,7 @@ const PostTopChannel = styled.div`
   gap: 7px;
   align-items: center;
 
-  ${({ theme }) => theme.fonts.subTitle};
+  ${({ theme }) => theme.fonts.content_01};
 
   > img {
     width: 32px;

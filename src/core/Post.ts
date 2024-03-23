@@ -1,8 +1,8 @@
 export const POSTING_CHANNEL = Object.freeze({
   INSTAGRAM: `인스타그램`,
   DANGUEN: `당근마켓`,
-  KAKAO_CHANNEL: '카카오톡 채널,',
-  KAKAO_TALK: '카카오톡 동네소식',
+  KAKAO_CHANNEL: `카카오톡 채널`,
+  KAKAO_TALK: `카카오톡 동네소식`,
 });
 
 export const POSTING_TYPE = Object.freeze({
