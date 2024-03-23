@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
 import LoginInput from '../../components/Login/LoginInput';
 import LoginTop from '../../components/Login/LoginTop';
@@ -11,6 +11,17 @@ export default function Login() {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const isValidate = useMemo(() => id !== '' && pw !== '', [id, pw]);
+
+  // 자동 로그인
+  useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    const storeId = localStorage.getItem('storeId');
+
+    console.log('✅ AutoLogin');
+    if (userId && storeId) {
+      navigate(`/home`, { replace: true });
+    }
+  }, []);
 
   /**
    * useLoginMutation - 로그인 API
