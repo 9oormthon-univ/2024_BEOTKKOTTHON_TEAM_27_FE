@@ -77,6 +77,13 @@ const fonts = {
     font-weight: 700;
     line-height: normal;
   `,
+  subheading_02: css`
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  `,
   heading_03: css`
     font-family: Pretendard;
     font-size: 20px;

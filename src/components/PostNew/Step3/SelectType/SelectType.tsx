@@ -25,8 +25,8 @@ export default function SelectType(props: NameInputProps) {
   }
 
   const typeOptions = [
-    { label: '이벤트 홍보', value: '이벤트', emoji: '🎊' },
     { label: '메뉴 홍보', value: '메뉴', emoji: '📢' },
+    { label: '이벤트 홍보', value: '이벤트', emoji: '🎊' },
   ];
 
   return (
@@ -41,7 +41,7 @@ export default function SelectType(props: NameInputProps) {
             <span
               role='img'
               aria-label={option.label}
-              style={{ fontSize: '60px', margin: '0 0 1rem 0' }}
+              style={{ fontSize: '60px', margin: '0 0  0' }}
             >
               {option.emoji}
             </span>
@@ -62,7 +62,7 @@ const TypeSelection = styled.div`
   align-items: center;
 
   margin-top: 5rem;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 const TypeOption = styled.div<GenderOptionProps>`
@@ -79,6 +79,8 @@ const TypeOption = styled.div<GenderOptionProps>`
   border-radius: 0.625rem;
   background: #fff;
   box-shadow: 1px 1px 13px 1px rgba(0, 0, 0, 0.07);
+
+  ${({ theme }) => theme.fonts.subheading_02};
 
   ${({ theme, selected }) =>
     selected ? `border: 1px solid ${theme.colors.main}; color: ${theme.colors.main}; ` : ''}
