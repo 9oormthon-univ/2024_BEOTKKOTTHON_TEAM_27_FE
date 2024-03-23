@@ -18,12 +18,15 @@ export default function PostNewHeader({ onClickBackBtn, stepNum }: OnBoardingHea
 
 const OnBoardingHeaderWrapper = styled.div`
   display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  right: 0;
+  height: 4rem;
   flex-direction: row;
   align-items: center;
-  position: absolute;
 
-  width: 88%;
-  top: 2%;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const HeaderText = styled.p`

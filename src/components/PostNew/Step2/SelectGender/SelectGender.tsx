@@ -57,9 +57,9 @@ const GenderOption = styled.div<GenderOptionProps>`
   height: 6.5rem;
   cursor: pointer;
   border-radius: 10px;
-  border: ${({ selected }) => (selected ? '1px solid #402fff;' : '1px solid #9D9D9D;')};
+  border: ${({ selected }) => (selected ? '1px solid #402fff;' : '1px solid #BDBDBD;')};
   ${({ theme }) => theme.fonts.heading_01};
-  color: ${({ selected }) => (selected ? '#402FFF' : '#9D9D9D')};
+  color: ${({ selected }) => (selected ? '#402FFF' : '#BDBDBD')};
 
   img {
     width: 2.75rem;
