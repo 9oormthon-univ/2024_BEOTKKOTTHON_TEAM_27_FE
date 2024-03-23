@@ -63,7 +63,7 @@ export default function Step1(props: NameInputProps) {
 }
 
 const PostTitleContainer = styled.div`
-  margin-top: 7.5rem;
+  margin-top: 6.5rem;
 `;
 
 const ImgContainer = styled.div`

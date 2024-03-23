@@ -2,6 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { GenderOptionProps } from '../../../../types/PostNew';
 import { useOnboardingContext } from '../../../../context/PostNew/PostNewContext';
+import maleIc from '../../../../assets/Icon/maleIc.png';
+import femaleIc from '../../../../assets/Icon/femalIc.png';
 
 export default function SelectGender() {
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
@@ -16,8 +18,8 @@ export default function SelectGender() {
   }
 
   const genderOptions = [
-    { label: '남자', value: '남자', emoji: '🙋🏻‍♂️' },
-    { label: '여자', value: '여자', emoji: '🙋🏻‍♀️' },
+    { label: '남자', value: '남자', image: maleIc },
+    { label: '여자', value: '여자', image: femaleIc },
   ];
 
   return (
@@ -28,9 +30,7 @@ export default function SelectGender() {
           selected={selectedGender.includes(option.value)}
           onClick={() => handleGenderSelect(option.value)}
         >
-          <span role='img' aria-label={option.label} style={{ fontSize: '60px' }}>
-            {option.emoji}
-          </span>
+          <img src={option.image} />
           {option.label}
         </GenderOption>
       ))}
@@ -43,8 +43,8 @@ const GenderSelection = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin-top: 5rem;
-  gap: 3rem;
+  margin-top: 2rem;
+  gap: 2rem;
 `;
 
 const GenderOption = styled.div<GenderOptionProps>`
@@ -52,8 +52,17 @@ const GenderOption = styled.div<GenderOptionProps>`
   flex-direction: column;
   align-items: center;
 
-  gap: 2rem;
+  gap: 1rem;
+  width: 4.6875rem;
+  height: 6.5rem;
   cursor: pointer;
+  border-radius: 10px;
+  border: ${({ selected }) => (selected ? '1px solid #402fff;' : '1px solid #9D9D9D;')};
   ${({ theme }) => theme.fonts.heading_01};
   color: ${({ selected }) => (selected ? '#402FFF' : '#9D9D9D')};
+
+  img {
+    width: 2.75rem;
+    margin-top: 16%;
+  }
 `;

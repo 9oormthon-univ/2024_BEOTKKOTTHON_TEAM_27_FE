@@ -10,6 +10,7 @@ const colors = {
   main: '#342FFF',
   light_main: '#E2E5FF',
   main_blue: '#402FFF',
+  sub_blue: '#8E85FF',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
   G_03: '#ECEEF4',
@@ -21,6 +22,7 @@ const colors = {
   G_09: '#686566',
   G_10: '#BDBDBD',
   G_11: '#848485',
+  G_12: '#EEEEEE',
 };
 
 /** 폰트 결정 시 수정 될 예정 */
@@ -84,6 +86,13 @@ const fonts = {
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
+    line-height: normal;
+  `,
+  subheading_03: css`
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
     line-height: normal;
   `,
   heading_03: css`
