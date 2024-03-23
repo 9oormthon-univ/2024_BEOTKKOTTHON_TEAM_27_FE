@@ -7,7 +7,6 @@ import food3 from '../../../assets/Image/food3.jpg';
 import { IcEmptyThumbnailFinal, TipBtn } from '../../../assets/svg';
 import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 import usePostOnboardingInfo from '../../../queries/PostNew/usePostInfo';
-import ButtonPrev from '../../common/Button/ButtonPrev/ButtonPrev';
 import ButtonFill from '../../common/Button/ButtonFill/ButtonFill';
 import Loading from '../../common/Loading/Loading';
 import { put } from '../../../apis/fastClient';
@@ -17,12 +16,7 @@ interface ServerResponse {
   file_name: string;
 }
 
-interface Post6FooterProps {
-  onClickBackBtn: (stemNum: number | undefined) => void;
-  stepNum?: number | undefined;
-}
-
-export default function Step6({ onClickBackBtn, stepNum }: Post6FooterProps) {
+export default function Step6() {
   const { updatePostInfo } = useOnboardingContext();
   const navigate = useNavigate();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
@@ -153,8 +147,7 @@ export default function Step6({ onClickBackBtn, stepNum }: Post6FooterProps) {
       </TipImageContainer>
 
       <PostFooterContainer>
-        <ButtonPrev title='이전' width='7.6rem' onClick={() => onClickBackBtn(stepNum)} />
-        <ButtonFill title='다음' width='11.5rem' onClick={postOnboarding} enable={isValidate} />
+        <ButtonFill title='다음' width='20rem' onClick={postOnboarding} enable={isValidate} />
       </PostFooterContainer>
     </>
   );

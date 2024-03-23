@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Instagram } from '../../../assets/svg';
-import { getImageFullUrl } from '../../../utils/utils';
+import { Instagram } from '../../assets/svg';
+import { getImageFullUrl } from '../../utils/utils';
 import { useNavigate } from 'react-router-dom';
 
 interface TextCardWithImageProps {

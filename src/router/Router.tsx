@@ -1,17 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout';
-import PostNew from '../pages/PostNew/PostNew';
 import Home from '../pages/Home/HomePage';
 import PostResultPage from '../pages/PostResult/PostResultPage';
 import HeaderLayout from '../layouts/HeaderLayout';
 import NotFound from '../components/Error/NotFound';
-import StoreHeaderLayout from '../layouts/StoreHeaderLayout';
 import Login from '../pages/Login/Login';
 import StoreNewPage from '../pages/StoreNew/StoreNewPage';
 import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
 import { OnboardingProvider } from '../context/PostNew/PostNewContext';
 import PostDetailPage from '../pages/PostDetail/PostDetailPage';
 import GuidePage from '../pages/Guide/GuidePage';
+import PostNewPage from '../pages/PostNew/PostNewPage';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +31,14 @@ const router = createBrowserRouter([
         element: <PostResultPage />,
       },
       {
+        path: '/post',
+        element: (
+          <OnboardingProvider>
+            <PostNewPage />
+          </OnboardingProvider>
+        ),
+      },
+      {
         element: <HeaderLayout />,
         children: [
           {
@@ -49,19 +56,6 @@ const router = createBrowserRouter([
           {
             path: '/post-history',
             element: <PostHistoryPage />,
-          },
-        ],
-      },
-      {
-        element: <StoreHeaderLayout />,
-        children: [
-          {
-            path: '/post',
-            element: (
-              <OnboardingProvider>
-                <PostNew />
-              </OnboardingProvider>
-            ),
           },
         ],
       },
