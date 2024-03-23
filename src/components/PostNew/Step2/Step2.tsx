@@ -9,9 +9,9 @@ import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 
 export default function Step2(props: NameInputProps) {
   const { onNext } = props;
-  const [visible, setVisible] = useState(false);
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
   const [selectedAges, setSelectedAges] = useState<string[]>(onboardingInfo.targetAge || []);
+  const [visible, setVisible] = useState<boolean>(selectedAges.length > 0);
 
   function toggleAge(age: string) {
     const updatedAges = selectedAges.includes(age)

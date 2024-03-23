@@ -13,7 +13,7 @@ export default function SelectType(props: NameInputProps) {
   const parsedStoreId = storeId ? parseInt(storeId, 10) : undefined;
 
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState<boolean>(!!onboardingInfo.promotionType);
   const [selectedType, setSelectedType] = useState<string | null>(
     onboardingInfo.promotionType || null,
   );
