@@ -7,16 +7,22 @@ interface PostImageProps {
   height?: string;
   url?: string;
   alt?: string;
+  onLoad?: () => void;
 }
 
-export default function PostImage({ width, height, url, alt }: PostImageProps) {
+export default function PostImage({ width, height, url, alt, onLoad }: PostImageProps) {
   const [isLoading, setIsLoading] = useState(true);
+
+  function handleOnLoad() {
+    setIsLoading(false);
+    if (onLoad) onLoad();
+  }
 
   return (
     <PostImageContainer width={width} height={height}>
       {(!url || isLoading) && <SkeletonPostImage />}
 
-      <PostImageImg src={getImageFullUrl(url)} alt={alt} onLoad={() => setIsLoading(false)} />
+      <PostImageImg src={getImageFullUrl(url)} alt={alt} onLoad={handleOnLoad} />
     </PostImageContainer>
   );
 }
