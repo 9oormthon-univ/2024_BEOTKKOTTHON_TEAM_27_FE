@@ -28,13 +28,17 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 0.6rem;
+  bottom: 3%;
 `;
 
 export const Container = styled.button<{ $isActivated: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
 
   border: none;
   outline: none;
@@ -42,7 +46,7 @@ export const Container = styled.button<{ $isActivated: boolean }>`
   height: 3.125rem;
   padding: 1rem 1.1rem 1rem 2rem;
   border-radius: 10px;
-  bottom: 2rem;
+  bottom: 0;
   ${({ $isActivated, theme: { colors } }) =>
     $isActivated
       ? `
