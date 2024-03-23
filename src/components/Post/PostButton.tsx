@@ -73,13 +73,13 @@ export default function PostButton({ image, text, sns }: PostButtonProps) {
   return (
     <ButtonContainer>
       <ButtonWithTip
-        label='✅ 한번에 저장하기'
+        label='한번에 저장하기'
         tooltip='이미지와 글을 한번에 저장할 수 있어요'
         onClick={handleSaveAll}
         primary={!isSaved}
       />
 
-      {isSaved && <ButtonWithTip label='🔗 SNS에 공유하기' primary={true} onClick={handleShare} />}
+      {isSaved && <ButtonWithTip label='SNS에 공유하기' primary={true} onClick={handleShare} />}
     </ButtonContainer>
   );
 }

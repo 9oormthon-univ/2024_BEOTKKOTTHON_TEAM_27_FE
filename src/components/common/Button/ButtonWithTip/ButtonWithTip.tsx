@@ -31,8 +31,7 @@ const Button = styled.button<{ $primary?: boolean }>`
   height: 100%;
 
   border-radius: 0.625rem;
-  box-shadow: 0px 4px 30px 0px rgba(52, 47, 255, 0.1);
-  background: ${({ theme }) => theme.colors.white};
 
+  background: ${({ theme, $primary }) => ($primary ? theme.colors.main : theme.colors.white)};
   ${({ theme, $primary }) => ($primary ? theme.fonts.button_01 : theme.fonts.button_02)};
 `;

@@ -37,12 +37,14 @@ const Tip = styled.div<{ $top?: string; $visible: boolean }>`
   top: ${({ $top }) => $top || '-2.3rem'};
 
   ${({ theme }) => theme.fonts.tooltip};
-  background: ${({ theme }) => theme.colors.main};
-  color: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.main};
   border-radius: 0.625rem;
 
   opacity: ${({ $visible }) => ($visible ? '1' : '0')};
   transition: opacity 0.5s;
+
+  box-shadow: 0px 4px 30px 0px rgba(52, 47, 255, 0.1);
 
   &:after {
     position: absolute;
@@ -50,7 +52,8 @@ const Tip = styled.div<{ $top?: string; $visible: boolean }>`
     right: 20px;
 
     content: '';
-    color: ${({ theme }) => theme.colors.main};
+    color: ${({ theme }) => theme.colors.white};
+    box-shadow: 0px 4px 30px 0px rgba(52, 47, 255, 0.1);
 
     border-bottom: 8px solid;
     border-left: 6px solid transparent;

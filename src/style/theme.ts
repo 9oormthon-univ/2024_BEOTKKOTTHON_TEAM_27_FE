@@ -111,13 +111,13 @@ const fonts = {
     font-weight: 500;
   `,
   button_01: css`
-    color: #342fff;
+    color: #fff;
     font-family: 'Pretendard';
     font-size: 1.125rem;
     font-weight: 700;
   `,
   button_02: css`
-    color: #727272;
+    color: ##402fff;
     font-family: 'Pretendard';
     font-size: 1.125rem;
     font-weight: 500;
@@ -126,7 +126,7 @@ const fonts = {
     font-family: 'Pretendard';
     font-size: 0.8rem;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 500;
     line-height: 144.583%; /* 1.08438rem */
   `,
   ex_01: css`
