@@ -46,7 +46,7 @@ export default function StoreNewPage() {
 
       localStorage.setItem('userId', JSON.stringify(res.data.userId));
       localStorage.setItem('storeId', JSON.stringify(res.data.storeId));
-      navigate('/', { replace: true });
+      navigate('/home', { replace: true });
     },
     onError: (error) => {
       console.error('✈ /api/store ERROR >>', error);

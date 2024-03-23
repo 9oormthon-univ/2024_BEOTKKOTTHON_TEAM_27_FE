@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Instagram } from '../../assets/svg';
-import { getImageFullUrl } from '../../utils/utils';
 import { useNavigate } from 'react-router-dom';
+import PostImage from '../Post/PostImage';
+import PostTop from '../Post/PostTop';
 
 interface TextCardWithImageProps {
   date: string;
@@ -9,6 +9,7 @@ interface TextCardWithImageProps {
   postingId: number;
   imageUrl?: string;
   imageAlt?: string;
+  channel: string;
 }
 
 export default function TextCardWithImage({
@@ -17,10 +18,9 @@ export default function TextCardWithImage({
   postingId,
   imageUrl,
   imageAlt,
+  channel,
 }: TextCardWithImageProps) {
   const navigate = useNavigate();
-
-  const dateTostring = date.substring(0, 10);
 
   const handleCardClick = (postingId: number) => {
     navigate(`/post-detail/${postingId}`);
@@ -28,12 +28,12 @@ export default function TextCardWithImage({
 
   return (
     <TextCardContainer onClick={() => handleCardClick(postingId)}>
-      <TextCardHeader>
-        <Instagram style={{ width: '2.0625rem', height: '2rem' }} />
-        <Date>{dateTostring}</Date>
-      </TextCardHeader>
-      {imageUrl && <img src={getImageFullUrl(imageUrl)} alt={imageAlt} />}
-      <TextContent>{text}</TextContent>
+      <PostTop channel={channel} createdDate={date} />
+
+      <TextWithImageContainer>
+        {imageUrl && <PostImage url={imageUrl} alt={imageAlt} />}
+        <TextContent>{text}</TextContent>
+      </TextWithImageContainer>
     </TextCardContainer>
   );
 }
@@ -43,35 +43,35 @@ const TextCardContainer = styled.article`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   width: 19.6875rem;
   height: auto;
-  border-radius: 0.625rem;
+
+  border-radius: 0.3125rem;
   background: #fff;
-  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
+
   padding: 1.5rem;
   margin-bottom: 1rem;
+`;
 
-  img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
+const TextWithImageContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.87rem;
+
+  > div {
+    flex: 1;
   }
 `;
 
-const TextCardHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 1rem;
-`;
-
-const Date = styled.p`
-  color: ${({ theme }) => theme.colors.G_07};
-  ${({ theme }) => theme.fonts.ex_01};
-`;
-
-const TextContent = styled.p`
+const TextContent = styled.div`
+  width: 50%;
   color: ${({ theme }) => theme.colors.black};
   ${({ theme }) => theme.fonts.ex_01};
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* 최대 4줄 */
+  -webkit-box-orient: vertical;
 `;

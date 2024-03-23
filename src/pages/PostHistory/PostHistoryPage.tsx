@@ -19,7 +19,7 @@ export default function PostHistoryPage() {
     storeId: storeId,
   });
 
-  const posting = data?.data.postingList;
+  const posting = data?.data.postingList.reverse();
 
   return (
     <HistoryPageContainer>
@@ -29,6 +29,7 @@ export default function PostHistoryPage() {
             <TextCardWithImage
               key={index}
               postingId={data.postingId}
+              channel={data.postingChannel}
               date={data.postingImage_createdDate}
               text={data.postingText}
               imageUrl={data.postingImage}
@@ -40,6 +41,7 @@ export default function PostHistoryPage() {
             <TextCardWithImage
               key={index}
               postingId={data.postingId}
+              channel={data.postingChannel}
               date={data.postingText_createdDate}
               text={data.postingText}
             />
@@ -51,9 +53,13 @@ export default function PostHistoryPage() {
 }
 
 const HistoryPageContainer = styled.section`
+  width: 100vw;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin-top: 5rem;
+
+  padding: 5rem 0 2rem;
+  background: #f3f4f6;
 `;

@@ -8,6 +8,7 @@ import insta from '../../../assets/Image/Instagram.png';
 import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 import Step1Title from './Step1Title/Step1Title';
 import NextButton from '../PostFooter/NextButton';
+import { POSTING_CHANNEL } from '../../../core/Post';
 
 export interface NameInputProps {
   onNext: VoidFunction;
@@ -21,10 +22,10 @@ export default function Step1(props: NameInputProps) {
   );
 
   const snsOptions = [
-    { name: '인스타그램', icon: insta },
-    { name: '카카오톡', icon: kakao },
-    { name: '당근마켓', icon: carrot },
-    { name: '카카오맵', icon: kakaoMap },
+    { name: POSTING_CHANNEL.INSTAGRAM, icon: insta },
+    { name: POSTING_CHANNEL.KAKAO_CHANNEL, icon: kakao },
+    { name: POSTING_CHANNEL.DANGUEN, icon: carrot },
+    { name: POSTING_CHANNEL.KAKAO_TALK, icon: kakaoMap },
   ];
 
   const handleSelectSNS = (sns: string) => {

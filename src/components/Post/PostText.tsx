@@ -1,16 +1,21 @@
 import styled from 'styled-components';
 import Toggle from '../common/Toggle/Toggle';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface PostTextProps {
   width?: string;
   text?: string;
+  onLoad?: () => void;
 }
-export default function PostText({ width, text }: PostTextProps) {
+export default function PostText({ width, text, onLoad }: PostTextProps) {
   const [isBig, setIsBig] = useState(false);
   function handleToggle() {
     setIsBig(!isBig);
   }
+
+  useEffect(() => {
+    if (onLoad) onLoad();
+  }, []);
 
   return (
     <PostTextContainer width={width}>

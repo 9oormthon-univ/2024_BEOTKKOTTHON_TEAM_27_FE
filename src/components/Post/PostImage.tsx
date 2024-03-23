@@ -4,29 +4,42 @@ import { useState } from 'react';
 
 interface PostImageProps {
   width?: string;
+  height?: string;
   url?: string;
+  alt?: string;
+  onLoad?: () => void;
 }
 
-export default function PostImage({ width, url }: PostImageProps) {
+export default function PostImage({ width, height, url, alt, onLoad }: PostImageProps) {
   const [isLoading, setIsLoading] = useState(true);
 
+  function handleOnLoad() {
+    setIsLoading(false);
+    if (onLoad) onLoad();
+  }
+
   return (
-    <PostImageContainer width={width}>
+    <PostImageContainer width={width} height={height}>
       {(!url || isLoading) && <SkeletonPostImage />}
 
-      <PostImageImg src={getImageFullUrl(url)} onLoad={() => setIsLoading(false)} />
+      <PostImageImg src={getImageFullUrl(url)} alt={alt} onLoad={handleOnLoad} />
     </PostImageContainer>
   );
 }
 
-const PostImageContainer = styled.div<{ width?: string }>`
+const PostImageContainer = styled.div<{ width?: string; height?: string }>`
   width: ${({ width }) => (width ? width : '80%')};
+  height: ${({ height }) => (height ? height : 'auto')};
+  aspect-ratio: 1/1;
+  overflow: hidden;
+
   position: relative;
 `;
 
 const PostImageImg = styled.img`
   width: 100%;
-  aspect-ratio: 1/1;
+  height: 100%;
+
   border-radius: 0.3125rem;
   background: lightgray 50% / cover no-repeat;
 `;
@@ -37,7 +50,8 @@ const SkeletonPostImage = styled.div`
   left: 0;
 
   width: 100%;
-  aspect-ratio: 1/1;
+  height: 100%;
+
   border-radius: 0.3125rem;
 
   ${({ theme }) => theme.mixins.skeleton};

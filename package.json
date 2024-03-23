@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.13",
     "react-router-dom": "^6.22.3",
+    "react-spinners": "^0.13.8",
     "react-spring-bottom-sheet": "^3.4.1",
     "styled-components": "^6.1.8",
     "styled-reset": "^4.5.2"

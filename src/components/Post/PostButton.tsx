@@ -8,14 +8,16 @@ import {
   getPackageName,
   isAndroid,
 } from '../../utils/utils';
+import { POSTING_CHANNEL } from '../../core/Post';
 
 interface PostButtonProps {
   image?: string;
   text?: string;
   sns?: string;
+  onChange?: (state: boolean) => void;
 }
 
-export default function PostButton({ image, text, sns }: PostButtonProps) {
+export default function PostButton({ image, text, sns, onChange }: PostButtonProps) {
   // isSaved - false,[저장하기] show & primary
   // isSaved - true, [공유하기] show
   const [isSaved, setIsSaved] = useState(false);
@@ -29,6 +31,7 @@ export default function PostButton({ image, text, sns }: PostButtonProps) {
       return;
     }
 
+    if (onChange) onChange(true);
     const url = getImageFullUrl(image);
     console.log('🔗 이미지 URL', url);
 
@@ -44,6 +47,9 @@ export default function PostButton({ image, text, sns }: PostButtonProps) {
       .catch((error) => {
         console.error('❎ saveFunc -> ', error);
         alert(error);
+      })
+      .finally(() => {
+        if (onChange) onChange(false);
       });
   }
 
@@ -63,7 +69,7 @@ export default function PostButton({ image, text, sns }: PostButtonProps) {
       if (!isAndroid()) throw new Error('공유하기 기능을 지원하지 않는 기기입니다.');
       if (file == '') throw new Error('이미지를 다시 저장해 주세요.');
 
-      if (sns == 'instagram') Android.shareInsta(file);
+      if (sns == POSTING_CHANNEL.INSTAGRAM) Android.shareInsta(file);
       else Android.openApp(getPackageName(sns));
     } catch (e) {
       alert(e);
@@ -73,13 +79,13 @@ export default function PostButton({ image, text, sns }: PostButtonProps) {
   return (
     <ButtonContainer>
       <ButtonWithTip
-        label='✅ 한번에 저장하기'
+        label='한번에 저장하기'
         tooltip='이미지와 글을 한번에 저장할 수 있어요'
         onClick={handleSaveAll}
         primary={!isSaved}
       />
 
-      {isSaved && <ButtonWithTip label='🔗 SNS에 공유하기' primary={true} onClick={handleShare} />}
+      {isSaved && <ButtonWithTip label='SNS에 공유하기' primary={true} onClick={handleShare} />}
     </ButtonContainer>
   );
 }
