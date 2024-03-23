@@ -8,8 +8,8 @@ import { usePostLogin } from '../../hooks/mutations/user/usePostLogin';
 
 export default function Login() {
   const navigate = useNavigate();
-  const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
+  const [id, setId] = useState('user1');
+  const [pw, setPw] = useState('password1');
   const isValidate = useMemo(() => id !== '' && pw !== '', [id, pw]);
 
   // 자동 로그인
@@ -65,7 +65,7 @@ export default function Login() {
 
       {/* 중간 */}
       <LoginInput placeholder='ID' value={id} onChange={setId} />
-      <LoginInput placeholder='PW' value={pw} onChange={setPw} />
+      <LoginInput placeholder='PW' value={pw} type='password' onChange={setPw} />
 
       {/* 버튼 */}
       <ButtonFill
@@ -86,7 +86,7 @@ export default function Login() {
 
 const LoginContainer = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   max-width: 360px;
 
   display: flex;

@@ -52,6 +52,13 @@ const GuidePageContainer = styled.section`
   max-width: 430px;
   padding: calc(4rem + 3.4375rem) 0; // header 4rem 영역
   posiiton: relative;
+
+  > button {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `;
 
 const GuideSelectorContainer = styled.div`

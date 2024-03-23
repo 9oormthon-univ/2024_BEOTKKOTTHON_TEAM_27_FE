@@ -3,12 +3,18 @@ import styled from 'styled-components';
 interface LoginInputProps {
   placeholder?: string;
   value: string;
+  type?: string;
   onChange: (value: string) => void;
 }
-export default function LoginInput({ value, placeholder, onChange }: LoginInputProps) {
+export default function LoginInput({
+  value,
+  placeholder,
+  type = 'text',
+  onChange,
+}: LoginInputProps) {
   return (
     <Input
-      type='text'
+      type={type}
       placeholder={placeholder}
       value={value}
       onChange={(e) => onChange(e.target.value)}
