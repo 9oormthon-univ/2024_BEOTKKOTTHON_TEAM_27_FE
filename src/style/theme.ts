@@ -127,7 +127,7 @@ const fonts = {
     font-weight: 700;
   `,
   button_02: css`
-    color: ##402fff;
+    color: #402fff;
     font-family: 'Pretendard';
     font-size: 1.125rem;
     font-weight: 500;
