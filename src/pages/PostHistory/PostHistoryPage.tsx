@@ -19,7 +19,7 @@ export default function PostHistoryPage() {
     storeId: storeId,
   });
 
-  const posting = data?.data.postingList;
+  const posting = data?.data.postingList.reverse();
 
   return (
     <HistoryPageContainer>
