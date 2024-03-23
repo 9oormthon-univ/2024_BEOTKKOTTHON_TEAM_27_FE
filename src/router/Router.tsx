@@ -4,7 +4,6 @@ import Home from '../pages/Home/HomePage';
 import PostResultPage from '../pages/PostResult/PostResultPage';
 import HeaderLayout from '../layouts/HeaderLayout';
 import NotFound from '../components/Error/NotFound';
-import StoreHeaderLayout from '../layouts/StoreHeaderLayout';
 import Login from '../pages/Login/Login';
 import StoreNewPage from '../pages/StoreNew/StoreNewPage';
 import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
