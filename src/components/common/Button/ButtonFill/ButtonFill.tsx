@@ -10,10 +10,10 @@ export default function ButtonFill({ width, height, title, enable, onClick }: Bu
 }
 
 const ButtonFillContainer = styled.button<{ width?: string; height?: string; $enable?: boolean }>`
-  width: ${({ width }) => (width ? width : 'auto')};
-  height: ${({ height }) => (height ? height : 'auto')};
-
+  width: 20rem;
+  height: 3.125rem;
   border-radius: 10px;
+  ${({ theme }) => theme.fonts.heading_02};
   color: ${({ theme, $enable = true }) => ($enable ? theme.colors.white : theme.colors.deep_gray)};
   background: ${({ theme, $enable = true }) =>
     $enable ? theme.colors.main : theme.colors.light_gray};
