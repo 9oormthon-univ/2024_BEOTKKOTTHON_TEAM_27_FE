@@ -15,17 +15,20 @@ import Loading from '../../components/common/Loading/Loading';
 import PostRetry from '../../components/Post/PostRetry';
 import { IcArrow } from '../../assets/svg';
 import { useNavigate } from 'react-router-dom';
+import Progress from '../../components/common/Loading/Progress';
 
 export default function PostResultPage() {
   const navigate = useNavigate();
   const { width, height } = useWindowSize();
   const { id = '' } = useParams();
 
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // GET - 포스트 조회
   const userId = localStorage.getItem('userId') || '';
   const storeId = localStorage.getItem('storeId') || '';
+
+  const [isLoaded, setIsLoaded] = useState(false); /* 이미지, 텍스트 로드 여부 - Confetti */
 
   const { data, refetch } = useGetPost({
     userId: userId,
@@ -112,9 +115,9 @@ export default function PostResultPage() {
         image={posting?.postingImage}
         text={posting?.postingText}
         sns={posting?.postingChannel}
+        onChange={(state) => setIsLoading(state)}
       />
 
-      {isLoaded}
       {/* 기타 - 컨페티, 바텀시트 */}
       {isLoaded && <Confetti width={width} height={height} recycle={false} />}
       {posting && (
@@ -127,6 +130,8 @@ export default function PostResultPage() {
           onSelect={handleRetry}
         />
       )}
+
+      {isLoading && <Progress />}
     </PostResultContainter>
   );
 }

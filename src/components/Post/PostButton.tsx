@@ -14,9 +14,10 @@ interface PostButtonProps {
   image?: string;
   text?: string;
   sns?: string;
+  onChange?: (state: boolean) => void;
 }
 
-export default function PostButton({ image, text, sns }: PostButtonProps) {
+export default function PostButton({ image, text, sns, onChange }: PostButtonProps) {
   // isSaved - false,[저장하기] show & primary
   // isSaved - true, [공유하기] show
   const [isSaved, setIsSaved] = useState(false);
@@ -30,6 +31,7 @@ export default function PostButton({ image, text, sns }: PostButtonProps) {
       return;
     }
 
+    if (onChange) onChange(true);
     const url = getImageFullUrl(image);
     console.log('🔗 이미지 URL', url);
 
@@ -45,6 +47,9 @@ export default function PostButton({ image, text, sns }: PostButtonProps) {
       .catch((error) => {
         console.error('❎ saveFunc -> ', error);
         alert(error);
+      })
+      .finally(() => {
+        if (onChange) onChange(false);
       });
   }
 
