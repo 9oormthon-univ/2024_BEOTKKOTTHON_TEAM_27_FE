@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import PostResultTitle from '../../components/Post/PostResultTitle';
 import PostImage from '../../components/Post/PostImage';
 import PostText from '../../components/Post/PostText';
 import PostButton from '../../components/Post/PostButton';
@@ -13,8 +12,12 @@ import { isOverThan } from '../../utils/utils';
 import { useGetPost } from '../../hooks/queries/post/useGetPost';
 import { usePutPost } from '../../hooks/mutations/post/usePutPost';
 import Loading from '../../components/common/Loading/Loading';
+import PostRetry from '../../components/Post/PostRetry';
+import { IcArrow } from '../../assets/svg';
+import { useNavigate } from 'react-router-dom';
 
 export default function PostResultPage() {
+  const navigate = useNavigate();
   const { width, height } = useWindowSize();
   const { id = '' } = useParams();
 
@@ -78,8 +81,14 @@ export default function PostResultPage() {
 
   return (
     <PostResultContainter>
+      <PostHeaderContainer>
+        <IcArrow style={{ width: '24px' }} onClick={() => navigate(-1)} />
+      </PostHeaderContainer>
+
       {/* 상단 */}
-      <PostResultTitle onRetry={handleOpen} />
+      <PostResultTitle>
+        <span>포스트</span>가 완성되었어요!
+      </PostResultTitle>
 
       {/* 중간 - 이미지, 텍스트 */}
       {posting?.postingType === 'Text' ? (
@@ -92,6 +101,9 @@ export default function PostResultPage() {
           <PostText text={posting?.postingText} width='100%' />
         </>
       )}
+
+      {/* 중간 - 다시 생성하기 */}
+      <PostRetry onRetry={handleOpen} />
 
       {/* 하단 */}
       <PostButton
@@ -128,4 +140,22 @@ const PostResultContainter = styled.div`
   align-items: center;
 
   padding: 2rem 2rem calc(3.125rem + 3.125rem + 1rem + 1rem);
+`;
+
+const PostHeaderContainer = styled.div`
+  width: 100%;
+  ${({ theme }) => theme.mixins.flexBox('row', 'flex-start', 'center')};
+`;
+
+const PostResultTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 1.5rem 0;
+  ${({ theme }) => theme.fonts.PostingTitle};
+
+  > span {
+    color: ${({ theme }) => theme.colors.main};
+  }
 `;

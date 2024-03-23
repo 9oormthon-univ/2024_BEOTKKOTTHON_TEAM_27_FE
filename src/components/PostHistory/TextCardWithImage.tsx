@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Instagram } from '../../assets/svg';
-import { getImageFullUrl } from '../../utils/utils';
 import { useNavigate } from 'react-router-dom';
+import PostImage from '../Post/PostImage';
 
 interface TextCardWithImageProps {
   date: string;
@@ -32,7 +32,8 @@ export default function TextCardWithImage({
         <Instagram style={{ width: '2.0625rem', height: '2rem' }} />
         <Date>{dateTostring}</Date>
       </TextCardHeader>
-      {imageUrl && <img src={getImageFullUrl(imageUrl)} alt={imageAlt} />}
+
+      {imageUrl && <PostImage url={imageUrl} alt={imageAlt} width='100%' />}
       <TextContent>{text}</TextContent>
     </TextCardContainer>
   );
@@ -50,12 +51,6 @@ const TextCardContainer = styled.article`
   box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   margin-bottom: 1rem;
-
-  img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
-  }
 `;
 
 const TextCardHeader = styled.div`
@@ -74,4 +69,6 @@ const Date = styled.p`
 const TextContent = styled.p`
   color: ${({ theme }) => theme.colors.black};
   ${({ theme }) => theme.fonts.ex_01};
+
+  margin-top: 1rem;
 `;
