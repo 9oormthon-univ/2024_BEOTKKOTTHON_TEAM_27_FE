@@ -22,8 +22,8 @@ export default function Step1(props: NameInputProps) {
 
   const snsOptions = [
     { name: '인스타그램', icon: insta },
-    { name: '카카오톡', icon: carrot },
-    { name: '당근마켓', icon: kakao },
+    { name: '카카오톡', icon: kakao },
+    { name: '당근마켓', icon: carrot },
     { name: '카카오맵', icon: kakaoMap },
   ];
 
