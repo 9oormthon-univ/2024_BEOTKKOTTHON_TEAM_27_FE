@@ -88,6 +88,6 @@ export default function PostNewPage() {
 }
 
 const PostNewContainer = styled.section`
-  padding: 0 1.5rem;
+  padding: 0 2rem;
   width: 100vw;
 `;
