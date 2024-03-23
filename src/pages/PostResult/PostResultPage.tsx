@@ -5,7 +5,7 @@ import PostButton from '../../components/Post/PostButton';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import Confetti from 'react-confetti';
 import PostBottomSheet from '../../components/Post/PostBottomSheet';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import 'react-spring-bottom-sheet/dist/style.css';
 import { useParams } from 'react-router';
 import { isOverThan } from '../../utils/utils';
