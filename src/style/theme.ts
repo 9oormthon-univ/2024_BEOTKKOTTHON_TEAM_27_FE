@@ -170,7 +170,7 @@ const fonts = {
 
 /* 믹스인 */
 const mixins = {
-  flexBox: (direction = 'row', align = 'center', justify = 'center') => css`
+  flexBox: (direction = 'row', justify = 'center', align = 'center') => css`
     display: flex;
     flex-direction: ${direction};
     align-items: ${align};

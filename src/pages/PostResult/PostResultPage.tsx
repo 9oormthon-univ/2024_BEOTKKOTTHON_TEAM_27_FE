@@ -13,8 +13,11 @@ import { useGetPost } from '../../hooks/queries/post/useGetPost';
 import { usePutPost } from '../../hooks/mutations/post/usePutPost';
 import Loading from '../../components/common/Loading/Loading';
 import PostRetry from '../../components/Post/PostRetry';
+import { IcArrow } from '../../assets/svg';
+import { useNavigate } from 'react-router-dom';
 
 export default function PostResultPage() {
+  const navigate = useNavigate();
   const { width, height } = useWindowSize();
   const { id = '' } = useParams();
 
@@ -78,6 +81,10 @@ export default function PostResultPage() {
 
   return (
     <PostResultContainter>
+      <PostHeaderContainer>
+        <IcArrow style={{ width: '24px' }} onClick={() => navigate(-1)} />
+      </PostHeaderContainer>
+
       {/* 상단 */}
       <PostResultTitle>
         <span>포스트</span>가 완성되었어요!
@@ -133,6 +140,11 @@ const PostResultContainter = styled.div`
   align-items: center;
 
   padding: 2rem 2rem calc(3.125rem + 3.125rem + 1rem + 1rem);
+`;
+
+const PostHeaderContainer = styled.div`
+  width: 100%;
+  ${({ theme }) => theme.mixins.flexBox('row', 'flex-start', 'center')};
 `;
 
 const PostResultTitle = styled.div`
