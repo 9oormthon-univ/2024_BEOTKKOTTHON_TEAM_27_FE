@@ -1,28 +1,27 @@
 import { styled } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { useFunnel } from '../../hooks/useFunnel';
-import Step1 from '../../components/PostNew/Step1/Step1';
 import { ONBOARDING_FORM_STEP } from '../../core/PostNew/Onboarding';
+import { useOnboardingContext } from '../../context/PostNew/PostNewContext';
+import Step1 from '../../components/PostNew/Step1/Step1';
 import Step2 from '../../components/PostNew/Step2/Step2';
 import Step3 from '../../components/PostNew/Step3/Step3';
 import Step4 from '../../components/PostNew/Step4/Step4';
 import Step5 from '../../components/PostNew/Step5/Step5';
 import Step6 from '../../components/PostNew/Step6/Step6';
 import ProcessBar from '../../components/common/ProcessBar/ProcessBar';
-import PostFooter from '../../components/PostNew/PostFooter/PostFooter';
-import { useNavigate } from 'react-router-dom';
-import { useOnboardingContext } from '../../context/PostNew/PostNewContext';
+import PostNewHeader from '../../components/PostNew/PostHeader/PostNewHeader';
 
-export default function PostNew() {
+export default function PostNewPage() {
   const navigate = useNavigate();
-  const { Funnel, setStep } = useFunnel(ONBOARDING_FORM_STEP, ONBOARDING_FORM_STEP[0]);
-
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
+  const { Funnel, setStep } = useFunnel(ONBOARDING_FORM_STEP, ONBOARDING_FORM_STEP[0]);
 
   // [이전 버튼]
   const onClickBackBtn = (stepNum: number) => {
     const stepIndex = stepNum - 1;
     if (stepIndex === 0) {
-      navigate('/');
+      navigate('/home');
     } else {
       setStep(() => ONBOARDING_FORM_STEP[stepIndex - 1]);
       updatePostInfo({
@@ -39,67 +38,49 @@ export default function PostNew() {
     <Funnel>
       <Funnel.Step name='POSTING_CHANNEL'>
         <PostNewContainer>
+          <PostNewHeader onClickBackBtn={() => onClickBackBtn(1)} />
           <ProcessBar currentStep={1} stepCount={6} />
-          <Step1 />
-          <PostFooter
-            onClickBackBtn={() => onClickBackBtn(1)}
-            setStep={() => setStep(() => 'AGE_GENDER')}
-          />
+          <Step1 onNext={() => setStep(() => 'AGE_GENDER')} />
         </PostNewContainer>
       </Funnel.Step>
 
       <Funnel.Step name='AGE_GENDER'>
         <PostNewContainer>
+          <PostNewHeader onClickBackBtn={() => onClickBackBtn(2)} />
           <ProcessBar currentStep={2} stepCount={6} />
-          <Step2 />
-          <PostFooter
-            onClickBackBtn={() => onClickBackBtn(2)}
-            setStep={() => setStep(() => 'TYPE')}
-          />
+          <Step2 onNext={() => setStep(() => 'TYPE')} />
         </PostNewContainer>
       </Funnel.Step>
 
       <Funnel.Step name='TYPE'>
         <PostNewContainer>
+          <PostNewHeader onClickBackBtn={() => onClickBackBtn(3)} />
           <ProcessBar currentStep={3} stepCount={6} />
-          <Step3 />
-          <PostFooter
-            onClickBackBtn={() => onClickBackBtn(3)}
-            setStep={() => setStep(() => 'POSTING_SUBJECT')}
-          />
+          <Step3 onNext={() => setStep(() => 'POSTING_SUBJECT')} />
         </PostNewContainer>
       </Funnel.Step>
 
       <Funnel.Step name='POSTING_SUBJECT'>
         <PostNewContainer>
+          <PostNewHeader onClickBackBtn={() => onClickBackBtn(4)} />
           <ProcessBar currentStep={4} stepCount={6} />
-          <Step4 />
-          <PostFooter
-            onClickBackBtn={() => onClickBackBtn(4)}
-            setStep={() => setStep(() => 'POSTING_CONTENT')}
-          />
+          <Step4 onNext={() => setStep(() => 'POSTING_CONTENT')} />
         </PostNewContainer>
       </Funnel.Step>
 
       <Funnel.Step name='POSTING_CONTENT'>
         <PostNewContainer>
+          <PostNewHeader onClickBackBtn={() => onClickBackBtn(5)} />
           <ProcessBar currentStep={5} stepCount={6} />
-          <Step5 />
-          <PostFooter
-            onClickBackBtn={() => onClickBackBtn(5)}
-            setStep={() => setStep(() => 'POSTING_IMAGE')}
-          />
+          <Step5 onNext={() => setStep(() => 'POSTING_IMAGE')} />
         </PostNewContainer>
       </Funnel.Step>
 
       <Funnel.Step name='POSTING_IMAGE'>
         <PostNewContainer>
+          <PostNewHeader onClickBackBtn={() => onClickBackBtn(6)} />
           <ProcessBar currentStep={6} stepCount={6} />
           <Step6 />
-          <PostFooter
-            onClickBackBtn={() => onClickBackBtn(6)}
-            setStep={() => setStep(() => 'POSTING_IMAGE')}
-          />
         </PostNewContainer>
       </Funnel.Step>
     </Funnel>
@@ -107,6 +88,6 @@ export default function PostNew() {
 }
 
 const PostNewContainer = styled.section`
-  padding: 0 1.5rem;
+  padding: 0 2rem;
   width: 100vw;
 `;

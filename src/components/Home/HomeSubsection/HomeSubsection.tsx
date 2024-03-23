@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import Sodong from '../../../assets/Image/sodong_half.png';
 import styled from 'styled-components';
-import { Ai, ChatGpt, Kogpt, Myposting } from '../../../assets/svg';
-import MyStore from '../../../assets/Image/myStoreSetting.png';
+import { ChatGpt, GuideIc, HistoryIc, Kogpt, MyStoreIc, PostNewIc } from '../../../assets/svg';
 
 export default function HomeSubsection() {
   const navigate = useNavigate();
@@ -14,32 +12,46 @@ export default function HomeSubsection() {
   const handlePostHistory = () => {
     navigate(`/post-history`);
   };
+
+  const handleGuide = () => {
+    navigate(`/guide`);
+  };
+
   return (
     <HomeSubSectionContainer>
       <PostCreation onClick={handlePostCreate}>
-        <PostTitle>포스트 생성</PostTitle>
+        <PostTitle>SNS 마케팅 포스팅 만들기</PostTitle>
+        <PostSubTitle>3 step으로 간편하게! </PostSubTitle>
         <IconContainer>
-          <Ai style={{ height: '20px' }} />
           <Kogpt style={{ height: '20px' }} />
           <ChatGpt style={{ height: '20px' }} />
         </IconContainer>
-        <img src={Sodong} alt='소동-캐릭터' />
-      </PostCreation>
 
+        <PostNewIc width='7rem' style={{ position: 'absolute', top: '30%', right: '5%' }} />
+      </PostCreation>
       <PostContainer>
         <StoreManagement>
-          <StoreTitle>
-            내 가게 <br /> 정보 관리하기
+          <StoreTitle onClick={handlePostHistory}>
+            내가 만든 <br /> 포스팅
           </StoreTitle>
-          <img src={MyStore} alt='세팅 아이콘' />
+          <HistoryIc width='7rem' style={{ position: 'absolute', bottom: '0', right: '5%' }} />
         </StoreManagement>
         <StoreContainer>
-          <DataLookup onClick={handlePostHistory}>
-            내가 만든 <br />
-            포스팅
-            <Myposting style={{ height: '2.5rem' }} />
+          <DataLookup>
+            내 가게 <br />
+            정보 관리
+            <MyStoreIc
+              width='7rem'
+              style={{ position: 'absolute', bottom: '0', right: '-10%', top: '0' }}
+            />
           </DataLookup>
-          <UserGuide>이용가이드</UserGuide>
+          <UserGuide onClick={handleGuide}>
+            이용가이드
+            <GuideIc
+              width='4rem'
+              style={{ position: 'absolute', bottom: '0', right: '0%', top: '30%' }}
+            />
+          </UserGuide>
         </StoreContainer>
       </PostContainer>
     </HomeSubSectionContainer>
@@ -47,21 +59,24 @@ export default function HomeSubsection() {
 }
 
 const HomeSubSectionContainer = styled.article`
-  width: 19.5rem;
-
+  width: 100%;
   ${({ theme }) => theme.fonts.heading_01};
+`;
+
+const PostSubTitle = styled.p`
+  color: ${({ theme }) => theme.colors.sub_purple};
+  ${({ theme }) => theme.fonts.select_off_01};
 `;
 
 const PostCreation = styled.div`
   display: flex;
-  justify-content: space-between;
-
+  flex-direction: column;
+  position: relative;
   height: 10.5rem;
   padding-left: 1rem;
   margin-bottom: 1rem;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.main};
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
 
   img {
     width: 172px;
@@ -71,25 +86,24 @@ const PostCreation = styled.div`
 
 const PostTitle = styled.p`
   padding-top: 1rem;
+  ${({ theme }) => theme.fonts.heading_04};
   color: ${({ theme }) => theme.colors.white};
 `;
 
 const StoreTitle = styled.p`
-  padding-top: 6rem;
   color: ${({ theme }) => theme.colors.black};
 `;
 
 const IconContainer = styled.div`
   display: flex;
   position: absolute;
-  flex-wrap: wrap;
 
-  width: 30%;
-  padding-top: 12%;
+  top: 45%;
   gap: 0.3rem;
 `;
 
 const PostContainer = styled.div`
+  height: 13.1875rem;
   display: flex;
   gap: 1rem;
 `;
@@ -99,10 +113,10 @@ const StoreManagement = styled.div`
   position: relative;
 
   padding: 1rem;
-  height: 10.5rem;
-  width: 50%;
+  height: 13.1875rem;
+  width: 42%;
   border-radius: 10px;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: ${({ theme }) => theme.colors.white};
 
   img {
     position: absolute;
@@ -124,16 +138,19 @@ const StoreContainer = styled.div`
 const DataLookup = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  position: relative;
+
   padding: 1rem;
   height: 50%;
   border-radius: 10px;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const UserGuide = styled.div`
   padding: 1rem;
   height: 50%;
+  position: relative;
   border-radius: 10px;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+
+  background-color: ${({ theme }) => theme.colors.white};
 `;

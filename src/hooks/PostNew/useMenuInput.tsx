@@ -12,8 +12,11 @@ const useMenuInput = () => {
     updatePostInfo({ promotionSubject: '' });
   };
 
+  const isActivated = onboardingInfo.promotionSubject.length > 0;
+
   return {
     onboardingInfo,
+    isActivated,
     handleInputChange,
     handleBtnClick,
   };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ButtonFill from '../../components/common/Button/ButtonFill/ButtonFill';
 import SearchInput from '../../components/StoreNew/StoreSearch';
@@ -7,9 +7,19 @@ import { useNavigate } from 'react-router-dom';
 import StoreResultNone from '../../components/StoreNew/StoreResultNone';
 import { usePostStore } from '../../hooks/mutations/store/usePostStore';
 import { useGetKakaoSearch } from '../../hooks/queries/kakao/useGetKakaoSearch';
+import { useOutletContext } from 'react-router-dom';
+import { HeaderLayoutContext } from '../../layouts/HeaderLayout';
 
-export default function StoreNew() {
+export default function StoreNewPage() {
   const navigate = useNavigate();
+
+  /**
+   * 헤더 타이틀 변경
+   */
+  const { setTitle } = useOutletContext<HeaderLayoutContext>();
+  useEffect(() => {
+    setTitle('내 가게 등록하기');
+  }, [setTitle]);
 
   const [selected, setSelected] = useState(-1);
   function handleSelect(index: number) {
@@ -17,18 +27,14 @@ export default function StoreNew() {
     setSelected(newIndex);
   }
 
-  /**
-   * useGetKakaoSearch - 가게 카카오 검색 API
-   */
+  // GET - 가게 카카오 검색 API
   const { data: result = null, setQuery } = useGetKakaoSearch();
   async function handleSearch(query: string) {
     setSelected(-1);
     setQuery(query);
   }
 
-  /**
-   * useStoreMutation - 가게 등록 API
-   */
+  // POST - 가게 등록 API
   const { mutate } = usePostStore({
     onSuccess: (res) => {
       console.log('✈ /api/store >>', res);
@@ -40,7 +46,7 @@ export default function StoreNew() {
 
       localStorage.setItem('userId', JSON.stringify(res.data.userId));
       localStorage.setItem('storeId', JSON.stringify(res.data.storeId));
-      navigate('/', { replace: true });
+      navigate('/home', { replace: true });
     },
     onError: (error) => {
       console.error('✈ /api/store ERROR >>', error);

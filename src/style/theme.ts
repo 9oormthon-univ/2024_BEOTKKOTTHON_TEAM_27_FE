@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css, keyframes } from 'styled-components';
 
 /** 컬러 코드 나오면 추가 될 예정 */
 const colors = {
@@ -9,6 +9,9 @@ const colors = {
   deep_gray: '#727272',
   main: '#342FFF',
   light_main: '#E2E5FF',
+  main_blue: '#402FFF',
+  sub_blue: '#8E85FF',
+  sub_purple: '#D4D1FB',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
   G_03: '#ECEEF4',
@@ -18,6 +21,10 @@ const colors = {
   G_07: '#757373',
   G_08: '#868384',
   G_09: '#686566',
+  G_10: '#BDBDBD',
+  G_11: '#848485',
+  G_12: '#EEEEEE',
+  G_13: '#F3F4F6',
 };
 
 /** 폰트 결정 시 수정 될 예정 */
@@ -50,6 +57,7 @@ const fonts = {
     font-weight: 700;
     line-height: 125%;
   `,
+
   description: css`
     font-family: 'Pretendard';
     font-size: 1rem;
@@ -75,11 +83,46 @@ const fonts = {
     font-weight: 700;
     line-height: normal;
   `,
+  subheading_02: css`
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  `,
+  subheading_03: css`
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  `,
   heading_03: css`
     font-family: Pretendard;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
+    line-height: 160%; /* 32px */
+  `,
+  heading_04: css`
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 160%; /* 32px */
+  `,
+  title_01: css`
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 160%; /* 32px */
+  `,
+  p_01: css`
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
     line-height: 160%; /* 32px */
   `,
   footer_01: css`
@@ -103,13 +146,13 @@ const fonts = {
     font-weight: 500;
   `,
   button_01: css`
-    color: #342fff;
+    color: #fff;
     font-family: 'Pretendard';
     font-size: 1.125rem;
     font-weight: 700;
   `,
   button_02: css`
-    color: #727272;
+    color: #402fff;
     font-family: 'Pretendard';
     font-size: 1.125rem;
     font-weight: 500;
@@ -118,7 +161,7 @@ const fonts = {
     font-family: 'Pretendard';
     font-size: 0.8rem;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 500;
     line-height: 144.583%; /* 1.08438rem */
   `,
   ex_01: css`
@@ -128,6 +171,14 @@ const fonts = {
     font-weight: 500;
     line-height: 144.583%;
   `,
+  date: css`
+    color: #757373;
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 144.583%;
+  `,
   content_01: css`
     font-family: Pretendard;
     font-size: 16px;
@@ -135,8 +186,69 @@ const fonts = {
     font-weight: 500;
     line-height: 125%;
   `,
+  select_off: css`
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%;
+    color: #21212166;
+  `,
+  select_off_01: css`
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%;
+    `,
+  select_on: css`
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+  `,
 };
 
-const theme = { colors, fonts };
+/* 믹스인 */
+const mixins = {
+  flexBox: (direction = 'row', justify = 'center', align = 'center') => css`
+    display: flex;
+    flex-direction: ${direction};
+    align-items: ${align};
+    justify-content: ${justify};
+  `,
+  skeleton: () => {
+    const moveRight = keyframes`
+      0% {
+        transform: translateX(-200%);
+      }
+      100% {
+        transform: translateX(1100%);
+      }
+    `;
+
+    return css`
+      position: relative;
+
+      background: #e5e7eb;
+      overflow: hidden;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10%;
+        height: 100%;
+        background: #d1d5db;
+        box-shadow: 0px 0px 50px 30px #d1d5db;
+        animation: ${moveRight} 1s infinite linear;
+      }
+    `;
+  },
+};
+
+const theme = { colors, fonts, mixins };
 
 export default theme;

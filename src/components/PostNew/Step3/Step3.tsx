@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import SelectType from './SelectType/SelectType';
 import Title from '../../common/Title/Title';
+import { NameInputProps } from '../Step1/Step1';
 
-export default function Step3() {
+export default function Step3(props: NameInputProps) {
   return (
     <>
       <PostTitleContainer>
@@ -14,14 +15,13 @@ export default function Step3() {
           각 홍보에 목적에 따라 <br /> 다른 형식의 포스팅이 작성됩니다!
         </SubTitle>
       </PostTitleContainer>
-
-      <SelectType />
+      <SelectType {...props} />
     </>
   );
 }
 
 const PostTitleContainer = styled.div`
-  margin-top: 7.5rem;
+  margin-top: 6.5rem;
   width: 100vw;
 `;
 

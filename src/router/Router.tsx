@@ -1,15 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout';
-import PostNew from '../pages/PostNew/PostNew';
 import Home from '../pages/Home/HomePage';
-import PostResult from '../pages/PostResult/PostResult';
+import PostResultPage from '../pages/PostResult/PostResultPage';
 import HeaderLayout from '../layouts/HeaderLayout';
 import NotFound from '../components/Error/NotFound';
-import StoreHeaderLayout from '../layouts/StoreHeaderLayout';
 import Login from '../pages/Login/Login';
-import StoreNew from '../pages/StoreNew/StoreNew';
+import StoreNewPage from '../pages/StoreNew/StoreNewPage';
 import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
 import { OnboardingProvider } from '../context/PostNew/PostNewContext';
+import PostDetailPage from '../pages/PostDetail/PostDetailPage';
+import GuidePage from '../pages/Guide/GuidePage';
+import PostNewPage from '../pages/PostNew/PostNewPage';
 
 const router = createBrowserRouter([
   {
@@ -19,35 +20,38 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
-      },
-      {
-        path: '/login',
         element: <Login />,
       },
       {
-        path: '/post-result',
-        element: <PostResult />,
+        path: '/home',
+        element: <Home />,
+      },
+      {
+        path: '/post-result/:id',
+        element: <PostResultPage />,
+      },
+      {
+        path: '/post',
+        element: (
+          <OnboardingProvider>
+            <PostNewPage />
+          </OnboardingProvider>
+        ),
       },
       {
         element: <HeaderLayout />,
         children: [
           {
-            path: '/post',
-            element: (
-              <OnboardingProvider>
-                <PostNew />
-              </OnboardingProvider>
-            ),
+            path: '/guide',
+            element: <GuidePage />,
           },
-        ],
-      },
-      {
-        element: <StoreHeaderLayout />,
-        children: [
+          {
+            path: '/post-detail/:id',
+            element: <PostDetailPage />,
+          },
           {
             path: '/store-new',
-            element: <StoreNew />,
+            element: <StoreNewPage />,
           },
           {
             path: '/post-history',

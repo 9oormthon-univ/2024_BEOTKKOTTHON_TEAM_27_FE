@@ -5,23 +5,23 @@ import food1 from '../../../assets/Image/food1.jpg';
 import food2 from '../../../assets/Image/food2.jpg';
 import food3 from '../../../assets/Image/food3.jpg';
 import { IcEmptyThumbnailFinal, TipBtn } from '../../../assets/svg';
-import { put } from '../../../apis/client';
 import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 import usePostOnboardingInfo from '../../../queries/PostNew/usePostInfo';
+import ButtonFill from '../../common/Button/ButtonFill/ButtonFill';
+import Loading from '../../common/Loading/Loading';
+import { put } from '../../../apis/fastClient';
+import { useNavigate } from 'react-router-dom';
 
 interface ServerResponse {
   file_name: string;
 }
 
 export default function Step6() {
-  // const userId = localStorage.getItem('userId');
-  // const storeId = localStorage.getItem('storId');
-  // const parsedUserId = userId ? parseInt(userId, 10) : undefined;
-  // const parsedStoreId = storeId ? parseInt(storeId, 10) : undefined;
-
   const { updatePostInfo } = useOnboardingContext();
+  const navigate = useNavigate();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
+  const [isValidate, setIsValidate] = useState<boolean>(false);
 
   const uploadFile = async (file: File) => {
     const formData = new FormData();
@@ -47,8 +47,14 @@ export default function Step6() {
 
       if (response.status === 200) {
         setSelectedFile(fileNameString);
+
         console.log('파일 업로드 성공' + selectedFile);
-        updatePostInfo({ fileName: fileNameString, postingType: 'Both', userId: 1, storeId: 1 });
+        updatePostInfo({
+          fileName: fileNameString,
+          postingType: 'Both',
+        });
+
+        setIsValidate(true);
       } else {
         console.error('파일 업로드 실패');
       }
@@ -68,19 +74,27 @@ export default function Step6() {
     }
   };
 
-  const { mutation } = usePostOnboardingInfo();
+  const { mutate, isPending } = usePostOnboardingInfo({
+    onSuccess: (res) => {
+      console.log('✈ /api/posting >>', res);
+
+      if (!res.isSuccess) {
+      }
+
+      navigate(`/post-result/${res.data.postingId}`);
+    },
+
+    onError: (error) => {
+      console.error('✈ /api/posting ERROR >>', error);
+    },
+  });
+  if (isPending) return <Loading />;
+
   const { onboardingInfo } = useOnboardingContext();
 
   const postOnboarding = async () => {
     try {
-      const response = mutation.mutate(onboardingInfo, {
-        onSuccess: (data) => {
-          console.log('step06 postOnboarding response', response);
-          const userId = data.userId;
-
-          return userId;
-        },
-      });
+      mutate(onboardingInfo);
     } catch (error) {
       console.log(error);
     }
@@ -132,10 +146,23 @@ export default function Step6() {
         </ImgWrapper>
       </TipImageContainer>
 
-      <UploadButton onClick={postOnboarding}>업로드</UploadButton>
+      <PostFooterContainer>
+        <ButtonFill title='다음' width='20rem' onClick={postOnboarding} enable={isValidate} />
+      </PostFooterContainer>
     </>
   );
 }
+const PostFooterContainer = styled.footer`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 0.6rem;
+  bottom: 3%;
+`;
 
 const ImgWrapper = styled.div`
   img {
@@ -181,7 +208,7 @@ const ThumbnailWrapper = styled.div`
 `;
 
 const PostTitleContainer = styled.div`
-  margin-top: 7.5rem;
+  margin-top: 6.5rem;
   width: 100vw;
 `;
 
@@ -209,21 +236,4 @@ const PreviewImg = styled.img`
   border-radius: 10px;
   object-fit: contain;
   z-index: 9;
-`;
-
-const UploadButton = styled.button`
-  margin-top: 1rem;
-  position: absolute;
-  z-index: 9;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.primaryDark};
-  }
 `;

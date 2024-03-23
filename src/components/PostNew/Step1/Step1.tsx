@@ -5,20 +5,27 @@ import kakao from '../../../assets/Image/kakao.png';
 import carrot from '../../../assets/Image/carrot.png';
 import kakaoMap from '../../../assets/Image/kakaoMap.png';
 import insta from '../../../assets/Image/Instagram.png';
-import Step1Title from './Step1Title/Step1Title';
 import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
+import Step1Title from './Step1Title/Step1Title';
+import NextButton from '../PostFooter/NextButton';
+import { POSTING_CHANNEL } from '../../../core/Post';
 
-export default function Step1() {
+export interface NameInputProps {
+  onNext: VoidFunction;
+}
+
+export default function Step1(props: NameInputProps) {
+  const { onNext } = props;
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
   const [selectedSNS, setSelectedSNS] = useState<string | null>(
     onboardingInfo.postingChannel || null,
   );
 
   const snsOptions = [
-    { name: '인스타그램', icon: insta },
-    { name: '카카오톡', icon: carrot },
-    { name: '당근마켓', icon: kakao },
-    { name: '카카오맵', icon: kakaoMap },
+    { name: POSTING_CHANNEL.INSTAGRAM, icon: insta },
+    { name: POSTING_CHANNEL.KAKAO_CHANNEL, icon: kakao },
+    { name: POSTING_CHANNEL.DANGUEN, icon: carrot },
+    { name: POSTING_CHANNEL.KAKAO_TALK, icon: kakaoMap },
   ];
 
   const handleSelectSNS = (sns: string) => {
@@ -48,13 +55,16 @@ export default function Step1() {
             </SNSOption>
           ))}
         </SNSOptionContainer>
+        <NextButton isActivated={!!selectedSNS} setStep={onNext}>
+          다음
+        </NextButton>
       </PostTitleContainer>
     </>
   );
 }
 
 const PostTitleContainer = styled.div`
-  margin-top: 7.5rem;
+  margin-top: 6.5rem;
 `;
 
 const ImgContainer = styled.div`

@@ -1,28 +1,56 @@
 import styled from 'styled-components';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
-import Tip from './Tip/Tip';
 import useMenuExplain from '../../../hooks/PostNew/useMenuExplain';
+import { NameInputProps } from '../Step1/Step1';
+import NextButton from '../PostFooter/NextButton';
+import { useEffect, useState } from 'react';
+import Tip from './Tip/Tip';
 
-export default function Step5() {
-  const { onboardingInfo, handleInputChange, handleBtnClick } = useMenuExplain();
-  const characterCount = onboardingInfo.promotionSubject.length;
+export default function Step5(props: NameInputProps) {
+  const { onNext } = props;
+  const { onboardingInfo, handleInputChange, handleBtnClick, isActivated } = useMenuExplain();
+  const characterCount = onboardingInfo.promotionContent.length;
   const maxCharacters = 100;
+  const hasContent = onboardingInfo.promotionType;
+  const [title, setTitle] = useState<string>('메뉴');
+  const [placeholder, setPlaceholder] = useState<string>(' ');
+
+  useEffect(() => {
+    if (hasContent === '메뉴') {
+      setTitle('메뉴의 특징');
+      setPlaceholder('가격, 맛, 재료 등');
+    } else if (hasContent === '이벤트') {
+      setTitle('강조하고 싶은 내용');
+      setPlaceholder('');
+    }
+  }, [hasContent]);
+
+  const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handleInputChange(event);
+  };
 
   return (
     <>
       <PostTitleContainer>
         <Title>
-          <Highlight>강조하고 싶은 내용</Highlight>을 <br />
-          소개해 주세요
+          {placeholder ? (
+            <>
+              {placeholder} <br /> <Highlight>{title}</Highlight>을 소개해 주세요
+            </>
+          ) : (
+            <>
+              <Highlight>{title}</Highlight> <br />을 소개해 주세요
+            </>
+          )}
         </Title>
       </PostTitleContainer>
-
+      <Tip />
       <ContentInputContainer>
         <ContentInput
           value={onboardingInfo.promotionContent}
-          onChange={handleInputChange}
-          placeholder='자세히 적을 수록 AI가 더 만족스러운 결과를 생성해요.'
+          onChange={handleTextareaChange}
+          placeholder='치즈가 듬뿍 들어간 쌀 떡볶이. 쌀떡이라 더 쫄깃하게 먹을 수 있어요. '
         />
         {onboardingInfo.promotionSubject && (
           <Xmark
@@ -34,13 +62,16 @@ export default function Step5() {
       <CharacterCount>
         {characterCount}/{maxCharacters}
       </CharacterCount>
-      <Tip />
+
+      <NextButton isActivated={isActivated} setStep={onNext}>
+        다음
+      </NextButton>
     </>
   );
 }
 
 const PostTitleContainer = styled.div`
-  margin-top: 7.5rem;
+  margin-top: 6.5rem;
   width: 100vw;
 `;
 
@@ -51,7 +82,7 @@ const ContentInputContainer = styled.div`
 
 const ContentInput = styled.textarea`
   width: 100vw;
-  height: auto;
+  height: 10rem;
   min-height: 130px;
 
   border: none;
@@ -59,7 +90,12 @@ const ContentInput = styled.textarea`
   border-radius: 5px;
   background: #f9f9f9;
   padding: 0.8rem 4rem 0.8rem 0.8rem;
-  ${({ theme }) => theme.fonts.content_01};
+  color: ${({ theme }) => theme.colors.black};
+  ${({ theme }) => theme.fonts.subheading_02};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.G_10};
+  }
 `;
 
 const CharacterCount = styled.div`
