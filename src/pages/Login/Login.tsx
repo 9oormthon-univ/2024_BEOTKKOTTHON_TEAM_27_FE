@@ -32,10 +32,11 @@ export default function Login() {
         navigate('/store-new', { replace: true });
       } else {
         localStorage.setItem('storeId', JSON.stringify(res.data.storeId));
-        navigate(`/`, { replace: true });
+        navigate(`/home`, { replace: true });
       }
     },
     onError: (error) => {
+      alert('ID 및 PW를 확인해 주세요.');
       console.error('✈ /api/login ERROR >>', error);
     },
   });

@@ -21,7 +21,7 @@ export default function PostNewPage() {
   const onClickBackBtn = (stepNum: number) => {
     const stepIndex = stepNum - 1;
     if (stepIndex === 0) {
-      navigate('/');
+      navigate('/home');
     } else {
       setStep(() => ONBOARDING_FORM_STEP[stepIndex - 1]);
       updatePostInfo({
