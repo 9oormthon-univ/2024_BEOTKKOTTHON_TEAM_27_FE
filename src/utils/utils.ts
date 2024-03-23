@@ -1,3 +1,5 @@
+import { POSTING_CHANNEL } from '../core/Post';
+
 /**
  * Android App 확인 함수 (sodong-aos)
  */
@@ -45,7 +47,7 @@ export function downloadImage(url: string): Promise<string> {
         aTag.download = 'sodong_image.png';
         aTag.click();
 
-        resolve('');
+        resolve('sodong_image.png');
       });
   });
 }
@@ -54,9 +56,9 @@ export function downloadImage(url: string): Promise<string> {
  * 패키지 이름 가져오는 함수
  */
 export function getPackageName(sns: string): string {
-  if (sns == 'dangeun') return 'com.towneers.www';
-  else if (sns == 'kakaochannel') return 'com.kakao.yellowid';
-  else if (sns == 'kakaotalk') return 'com.kakao.talk';
+  if (sns == POSTING_CHANNEL.DANGUEN) return 'com.towneers.www';
+  else if (sns == POSTING_CHANNEL.KAKAO_CHANNEL) return 'com.kakao.yellowid';
+  else if (sns == POSTING_CHANNEL.KAKAO_TALK) return 'com.kakao.talk';
   else return '';
 }
 
