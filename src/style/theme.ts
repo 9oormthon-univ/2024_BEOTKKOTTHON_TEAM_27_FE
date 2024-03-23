@@ -11,6 +11,7 @@ const colors = {
   light_main: '#E2E5FF',
   main_blue: '#402FFF',
   sub_blue: '#8E85FF',
+  sub_purple: '#D4D1FB',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
   G_03: '#ECEEF4',
@@ -23,6 +24,7 @@ const colors = {
   G_10: '#BDBDBD',
   G_11: '#848485',
   G_12: '#EEEEEE',
+  G_13: '#F3F4F6',
 };
 
 /** 폰트 결정 시 수정 될 예정 */
@@ -102,6 +104,20 @@ const fonts = {
     font-weight: 500;
     line-height: 160%; /* 32px */
   `,
+  heading_04: css`
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 160%; /* 32px */
+  `,
+  title_01: css`
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 160%; /* 32px */
+  `,
   p_01: css`
     font-family: Pretendard;
     font-size: 14px;
@@ -178,6 +194,13 @@ const fonts = {
     line-height: 125%;
     color: #21212166;
   `,
+  select_off_01: css`
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%;
+    `,
   select_on: css`
     font-family: Pretendard;
     font-size: 16px;
