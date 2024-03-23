@@ -30,8 +30,10 @@ export default function TextCardWithImage({
     <TextCardContainer onClick={() => handleCardClick(postingId)}>
       <PostTop channel={channel} createdDate={date} />
 
-      {imageUrl && <PostImage url={imageUrl} alt={imageAlt} width='100%' />}
-      <TextContent>{text}</TextContent>
+      <TextWithImageContainer>
+        {imageUrl && <PostImage url={imageUrl} alt={imageAlt} />}
+        <TextContent>{text}</TextContent>
+      </TextWithImageContainer>
     </TextCardContainer>
   );
 }
@@ -52,22 +54,24 @@ const TextCardContainer = styled.article`
   margin-bottom: 1rem;
 `;
 
-const TextCardHeader = styled.div`
+const TextWithImageContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 1rem;
+  align-items: flex-start;
+  gap: 0.87rem;
+
+  > div {
+    flex: 1;
+  }
 `;
 
-const Date = styled.p`
-  color: ${({ theme }) => theme.colors.G_07};
-  ${({ theme }) => theme.fonts.ex_01};
-`;
-
-const TextContent = styled.p`
+const TextContent = styled.div`
+  width: 50%;
   color: ${({ theme }) => theme.colors.black};
   ${({ theme }) => theme.fonts.ex_01};
 
-  margin-top: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* 최대 4줄 */
+  -webkit-box-orient: vertical;
 `;

@@ -60,6 +60,6 @@ const HistoryPageContainer = styled.section`
   align-items: center;
   gap: 1rem;
 
-  padding-top: 5rem;
+  padding: 5rem 0 2rem;
   background: #f3f4f6;
 `;

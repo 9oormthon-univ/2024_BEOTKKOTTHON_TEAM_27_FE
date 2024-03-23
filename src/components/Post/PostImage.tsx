@@ -4,15 +4,16 @@ import { useState } from 'react';
 
 interface PostImageProps {
   width?: string;
+  height?: string;
   url?: string;
   alt?: string;
 }
 
-export default function PostImage({ width, url, alt }: PostImageProps) {
+export default function PostImage({ width, height, url, alt }: PostImageProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <PostImageContainer width={width}>
+    <PostImageContainer width={width} height={height}>
       {(!url || isLoading) && <SkeletonPostImage />}
 
       <PostImageImg src={getImageFullUrl(url)} alt={alt} onLoad={() => setIsLoading(false)} />
@@ -20,8 +21,9 @@ export default function PostImage({ width, url, alt }: PostImageProps) {
   );
 }
 
-const PostImageContainer = styled.div<{ width?: string }>`
+const PostImageContainer = styled.div<{ width?: string; height?: string }>`
   width: ${({ width }) => (width ? width : '80%')};
+  height: ${({ height }) => (height ? height : 'auto')};
   aspect-ratio: 1/1;
   overflow: hidden;
 
