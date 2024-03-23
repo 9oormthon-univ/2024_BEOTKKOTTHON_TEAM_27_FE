@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Instagram } from '../../assets/svg';
 import { useNavigate } from 'react-router-dom';
 import PostImage from '../Post/PostImage';
+import PostTop from '../Post/PostTop';
 
 interface TextCardWithImageProps {
   date: string;
@@ -9,6 +9,7 @@ interface TextCardWithImageProps {
   postingId: number;
   imageUrl?: string;
   imageAlt?: string;
+  channel: string;
 }
 
 export default function TextCardWithImage({
@@ -17,10 +18,9 @@ export default function TextCardWithImage({
   postingId,
   imageUrl,
   imageAlt,
+  channel,
 }: TextCardWithImageProps) {
   const navigate = useNavigate();
-
-  const dateTostring = date.substring(0, 10);
 
   const handleCardClick = (postingId: number) => {
     navigate(`/post-detail/${postingId}`);
@@ -28,10 +28,7 @@ export default function TextCardWithImage({
 
   return (
     <TextCardContainer onClick={() => handleCardClick(postingId)}>
-      <TextCardHeader>
-        <Instagram style={{ width: '2.0625rem', height: '2rem' }} />
-        <Date>{dateTostring}</Date>
-      </TextCardHeader>
+      <PostTop channel={channel} createdDate={date} />
 
       {imageUrl && <PostImage url={imageUrl} alt={imageAlt} width='100%' />}
       <TextContent>{text}</TextContent>
@@ -44,11 +41,13 @@ const TextCardContainer = styled.article`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   width: 19.6875rem;
   height: auto;
-  border-radius: 0.625rem;
+
+  border-radius: 0.3125rem;
   background: #fff;
-  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
+
   padding: 1.5rem;
   margin-bottom: 1rem;
 `;

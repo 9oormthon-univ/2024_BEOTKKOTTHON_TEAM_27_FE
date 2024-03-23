@@ -67,5 +67,5 @@ const PostDetailContainter = styled.div`
   justify-content: center;
   align-items: center;
 
-  padding: 4rem 2rem calc(3.125rem + 3.125rem + 1rem + 1rem);
+  padding: calc(4rem + 2rem) 2rem calc(3.125rem + 3.125rem + 1rem + 1rem);
 `;
