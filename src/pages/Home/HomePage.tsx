@@ -41,7 +41,10 @@ const HomeTitleContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-top: 2.5rem;
+  position: absolute;
+  top: 5% '';
+  padding: 2rem;
+  top: 0;
   margin-bottom: 2.5rem;
 `;
 
@@ -51,6 +54,7 @@ const HomePageContainer = styled.section`
   background-color: #f3f4f6;
   height: 100vh;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.G_13};
