@@ -52,7 +52,6 @@ export default function Step4(props: NameInputProps) {
             />
           )}
         </InputFieldContainer>
-        {/* <Example>ex&#41; 소동 떡볶이 &#40;매운맛&#41;</Example> */}
       </MenuInputContainer>
       <NextButton isActivated={isActivated} setStep={onNext}>
         다음
@@ -64,6 +63,7 @@ export default function Step4(props: NameInputProps) {
 const InputTitle = styled.p`
   margin-left: 1%;
   ${({ theme }) => theme.fonts.subheading_02};
+  color: ${({ theme }) => theme.colors.G_11};
 `;
 
 const PostTitleContainer = styled.div`
@@ -75,12 +75,6 @@ const MenuInputContainer = styled.div`
   margin-top: 2rem;
   position: relative;
 `;
-
-// export const Example = styled.div`
-//   margin: 0.5rem 0 0 0.5rem;
-//   color: ${({ theme }) => theme.colors.G_06};
-//   ${({ theme }) => theme.fonts.ex_01};
-// `;
 
 const InputFieldContainer = styled.div`
   align-items: center;
