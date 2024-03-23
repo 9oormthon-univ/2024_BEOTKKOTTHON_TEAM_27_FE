@@ -15,7 +15,7 @@ export default function Title({ children, highlightText }: PropsWithChildren<Tit
 const PostingTitleContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
   ${({ theme }) => theme.fonts.PostingTitle};
 
   .highlight {

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Instagram } from '../../../assets/svg';
+import { Instagram } from '../../assets/svg';
 import { useNavigate } from 'react-router-dom';
-import PostImage from '../../Post/PostImage';
+import PostImage from '../Post/PostImage';
 
 interface TextCardWithImageProps {
   date: string;

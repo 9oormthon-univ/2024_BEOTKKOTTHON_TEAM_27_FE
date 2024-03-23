@@ -9,6 +9,7 @@ const colors = {
   deep_gray: '#727272',
   main: '#342FFF',
   light_main: '#E2E5FF',
+  main_blue: '#402FFF',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
   G_03: '#ECEEF4',
@@ -18,6 +19,8 @@ const colors = {
   G_07: '#757373',
   G_08: '#868384',
   G_09: '#686566',
+  G_10: '#BDBDBD',
+  G_11: '#848485',
 };
 
 /** 폰트 결정 시 수정 될 예정 */
@@ -74,6 +77,13 @@ const fonts = {
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
+    line-height: normal;
+  `,
+  subheading_02: css`
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
     line-height: normal;
   `,
   heading_03: css`
