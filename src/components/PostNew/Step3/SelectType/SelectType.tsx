@@ -67,7 +67,7 @@ const TypeOption = styled.div<GenderOptionProps>`
   align-items: center;
 
   width: 7.875rem;
-  height: 10.125rem;
+  height: 11.125rem;
   gap: 2rem;
   cursor: pointer;
   flex-direction: column;
