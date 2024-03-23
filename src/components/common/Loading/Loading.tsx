@@ -17,7 +17,7 @@ const LoadingContainer = styled.div`
   color: #fff;
 
   width: 100vw;
-  height: 100vh;
+  height: calc(100dvh - 45%);
 
   position: absolute;
   margin-top: 45%;

@@ -44,7 +44,7 @@ export const Container = styled.button<{ $isActivated: boolean }>`
   outline: none;
   width: 20rem;
   height: 3.125rem;
-  padding: 1rem 1.1rem 1rem 2rem;
+  padding: 1rem;
   border-radius: 10px;
   bottom: 0;
   ${({ $isActivated, theme: { colors } }) =>
