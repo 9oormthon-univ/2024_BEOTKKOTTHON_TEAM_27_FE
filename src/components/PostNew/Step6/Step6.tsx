@@ -16,11 +16,6 @@ interface ServerResponse {
   file_name: string;
 }
 
-// interface Post6FooterProps {
-//   onClickBackBtn: (stemNum: number | undefined) => void;
-//   stepNum?: number | undefined;
-// }
-
 export default function Step6() {
   const { updatePostInfo } = useOnboardingContext();
   const navigate = useNavigate();
