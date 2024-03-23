@@ -35,19 +35,21 @@ export default function PostButton({ image, text, sns }: PostButtonProps) {
     const saveFunc = isAndroid() ? saveImage : downloadImage;
     Promise.all([saveFunc(url), copyText(text)])
       .then((res) => {
+        console.log('✅ saveFunc -> ', res);
         setFile(res[0] as SetStateAction<string>);
 
         alert('성공하였습니다');
         setIsSaved(true);
       })
       .catch((error) => {
+        console.error('❎ saveFunc -> ', error);
         alert(error);
       });
   }
 
-  function saveImage() {
+  function saveImage(url: string) {
     return new Promise<String>((resolve, reject) => {
-      const uri = Android.downloadImage(image!!);
+      const uri = Android.downloadImage(url);
       if (uri === '') reject();
       else resolve(uri);
     });
