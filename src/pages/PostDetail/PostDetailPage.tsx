@@ -7,10 +7,12 @@ import { useGetPost } from '../../hooks/queries/post/useGetPost';
 import PostTop from '../../components/Post/PostTop';
 import { useOutletContext } from 'react-router-dom';
 import { HeaderLayoutContext } from '../../layouts/HeaderLayout';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Progress from '../../components/common/Loading/Progress';
 
 export default function PostDetailPage() {
   const { id = '' } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
 
   /**
    * 헤더 타이틀 변경
@@ -53,7 +55,10 @@ export default function PostDetailPage() {
         image={posting?.postingImage}
         text={posting?.postingText}
         sns={posting?.postingChannel}
+        onChange={(state) => setIsLoading(state)}
       />
+
+      {isLoading && <Progress />}
     </PostDetailContainter>
   );
 }
