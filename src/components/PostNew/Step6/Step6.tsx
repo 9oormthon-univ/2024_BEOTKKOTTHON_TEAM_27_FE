@@ -23,6 +23,20 @@ export default function Step6() {
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [isValidate, setIsValidate] = useState<boolean>(false);
 
+  // 1.
+  // 이미지 프리뷰 업로드
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = event.target;
+    if (files && files.length > 0) {
+      const selectedFiles = files as FileList;
+      const file = selectedFiles[0];
+      uploadFile(file);
+      setPreviewImage(URL.createObjectURL(file));
+    }
+  };
+
+  // 2.
+  // [파일 업로드] - 이미지 IBM 서버에 업로드
   const uploadFile = async (file: File) => {
     const formData = new FormData();
     const fileExtension = `.${file.name.split('.').pop()}`;
@@ -31,7 +45,6 @@ export default function Step6() {
     try {
       const queryParams = new URLSearchParams();
       queryParams.append('file_extension', fileExtension);
-
       const response = await put<ServerResponse>(
         `/api/ibm/object?${queryParams.toString()}`,
         formData,
@@ -41,20 +54,16 @@ export default function Step6() {
           },
         },
       );
-
       const fileNameString = response.data.file_name;
-      console.log('image response: ' + fileNameString);
 
       if (response.status === 200) {
         setSelectedFile(fileNameString);
-
         console.log('파일 업로드 성공' + selectedFile);
+        setIsValidate(true);
         updatePostInfo({
           fileName: fileNameString,
           postingType: 'Both',
         });
-
-        setIsValidate(true);
       } else {
         console.error('파일 업로드 실패');
       }
@@ -63,35 +72,24 @@ export default function Step6() {
     }
   };
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = event.target;
-    if (files && files.length > 0) {
-      const selectedFiles = files as FileList;
-      const file = selectedFiles[0];
-
-      uploadFile(file);
-      setPreviewImage(URL.createObjectURL(file));
-    }
-  };
-
+  // 3.
+  // [포스트 생성] - 퍼널 정보 제출 & isPending 처리
   const { mutate, isPending } = usePostOnboardingInfo({
     onSuccess: (res) => {
       console.log('✈ /api/posting >>', res);
-
       if (!res.isSuccess) {
       }
-
       navigate(`/post-result/${res.data.postingId}`);
     },
-
     onError: (error) => {
       console.error('✈ /api/posting ERROR >>', error);
     },
   });
   if (isPending) return <Loading />;
 
+  // 4.
+  // [포스트 생성 정보] - 정보 context값에 업로드
   const { onboardingInfo } = useOnboardingContext();
-
   const postOnboarding = async () => {
     try {
       mutate(onboardingInfo);
