@@ -17,7 +17,7 @@ export default function Step1Title() {
   );
 }
 
-const Highlight = styled.span`
+export const Highlight = styled.span`
   color: ${({ theme }) => theme.colors.main};
 `;
 
