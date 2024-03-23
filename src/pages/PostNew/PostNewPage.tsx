@@ -80,7 +80,7 @@ export default function PostNewPage() {
         <PostNewContainer>
           <PostNewHeader onClickBackBtn={() => onClickBackBtn(6)} />
           <ProcessBar currentStep={6} stepCount={6} />
-          <Step6 onClickBackBtn={() => onClickBackBtn(6)} />
+          <Step6 />
         </PostNewContainer>
       </Funnel.Step>
     </Funnel>
