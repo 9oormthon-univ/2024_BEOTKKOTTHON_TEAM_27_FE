@@ -15,17 +15,16 @@ export function isAndroid() {
  */
 export function copyText(text: string): Promise<void> {
   return new Promise((resolve, reject) => {
-    // try {
-    //   if (!navigator?.clipboard?.writeText)
-    //     throw new Error('복사 기능이 제공되지 않는 브라우저입니다.');
+    try {
+      if (!navigator?.clipboard?.writeText)
+        throw new Error('복사 기능이 제공되지 않는 브라우저입니다.');
 
-    //   window.navigator.clipboard.writeText(text).then(() => {
-    //     resolve();
-    //   });
-    // } catch (e) {
-    //   reject();
-    // }
-    resolve();
+      window.navigator.clipboard.writeText(text).then(() => {
+        resolve();
+      });
+    } catch (e) {
+      reject();
+    }
   });
 }
 
