@@ -10,7 +10,12 @@ interface OnBoardingHeaderProps {
 export default function PostNewHeader({ onClickBackBtn, stepNum }: OnBoardingHeaderProps) {
   return (
     <OnBoardingHeaderWrapper>
-      <IcArrow width='1.5rem' height='1.5rem' onClick={() => onClickBackBtn(stepNum)} />
+      <IcArrow
+        width='1.5rem'
+        height='1.5rem'
+        style={{ margin: '0 0 0 1rem' }}
+        onClick={() => onClickBackBtn(stepNum)}
+      />
       <HeaderText>포스팅 만들기</HeaderText>
     </OnBoardingHeaderWrapper>
   );
@@ -18,12 +23,15 @@ export default function PostNewHeader({ onClickBackBtn, stepNum }: OnBoardingHea
 
 const OnBoardingHeaderWrapper = styled.div`
   display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  right: 0;
+  height: 4rem;
   flex-direction: row;
   align-items: center;
-  position: absolute;
 
-  width: 88%;
-  top: 2%;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const HeaderText = styled.p`

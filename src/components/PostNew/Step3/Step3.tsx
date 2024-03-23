@@ -21,7 +21,7 @@ export default function Step3(props: NameInputProps) {
 }
 
 const PostTitleContainer = styled.div`
-  margin-top: 7.5rem;
+  margin-top: 6.5rem;
   width: 100vw;
 `;
 

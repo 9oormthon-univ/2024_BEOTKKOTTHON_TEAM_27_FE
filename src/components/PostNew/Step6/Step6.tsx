@@ -208,7 +208,7 @@ const ThumbnailWrapper = styled.div`
 `;
 
 const PostTitleContainer = styled.div`
-  margin-top: 7.5rem;
+  margin-top: 6.5rem;
   width: 100vw;
 `;
 

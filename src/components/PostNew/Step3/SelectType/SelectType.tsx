@@ -4,6 +4,8 @@ import { GenderOptionProps } from '../../../../types/PostNew';
 import { useOnboardingContext } from '../../../../context/PostNew/PostNewContext';
 import NextButton from '../../PostFooter/NextButton';
 import { NameInputProps } from '../../Step1/Step1';
+import menuIc from '../../../../assets/Icon/menuIc.png';
+import eventIc from '../../../../assets/Icon/eventIc.png';
 
 export default function SelectType(props: NameInputProps) {
   const { onNext } = props;
@@ -25,8 +27,8 @@ export default function SelectType(props: NameInputProps) {
   }
 
   const typeOptions = [
-    { label: '메뉴 홍보', value: '메뉴', emoji: '📢' },
-    { label: '이벤트 홍보', value: '이벤트', emoji: '🎊' },
+    { label: '메뉴 홍보', value: '메뉴', image: menuIc },
+    { label: '이벤트 홍보', value: '이벤트', image: eventIc },
   ];
 
   return (
@@ -38,13 +40,7 @@ export default function SelectType(props: NameInputProps) {
             selected={selectedType === option.value}
             onClick={() => handleMenuSelect(option.value)}
           >
-            <span
-              role='img'
-              aria-label={option.label}
-              style={{ fontSize: '60px', margin: '0 0  0' }}
-            >
-              {option.emoji}
-            </span>
+            <img src={option.image} />
             {option.label}
           </TypeOption>
         ))}
@@ -71,7 +67,7 @@ const TypeOption = styled.div<GenderOptionProps>`
   align-items: center;
 
   width: 7.875rem;
-  height: 10.125rem;
+  height: 11.125rem;
   gap: 2rem;
   cursor: pointer;
   flex-direction: column;
@@ -80,8 +76,12 @@ const TypeOption = styled.div<GenderOptionProps>`
   background: #fff;
   box-shadow: 1px 1px 13px 1px rgba(0, 0, 0, 0.07);
 
-  ${({ theme }) => theme.fonts.subheading_02};
-
+  ${({ theme }) => theme.fonts.heading_02};
   ${({ theme, selected }) =>
     selected ? `border: 1px solid ${theme.colors.main}; color: ${theme.colors.main}; ` : ''}
+
+  img {
+    width: 3.75rem;
+    margin-top: 16%;
+  }
 `;

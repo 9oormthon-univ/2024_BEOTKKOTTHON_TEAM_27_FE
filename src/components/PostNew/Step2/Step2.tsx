@@ -48,7 +48,7 @@ const AgeSelection = styled.div`
   align-items: center;
 
   flex-wrap: wrap;
-  margin-top: 4rem;
+  margin-top: 3rem;
   gap: 1rem;
 `;
 
@@ -63,8 +63,8 @@ const AgeBox = styled.div<AgeBoxProps>`
   border-radius: 10px;
   cursor: pointer;
 
-  ${({ theme }) => theme.fonts.heading_01};
+  ${({ theme }) => theme.fonts.subheading_03};
   color: ${({ selected }) => (selected ? '#402FFF' : '#BDBDBD')};
   border: ${({ selected }) => (selected ? 'none' : '1px solid #ccc')};
-  background-color: ${({ selected }) => (selected ? '#DFE7FF' : 'transparent')};
+  background-color: ${({ selected }) => (selected ? '#E2E5FF' : 'transparent')};
 `;
