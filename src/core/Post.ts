@@ -14,3 +14,6 @@ export const PROMOTION_TYPE = Object.freeze({
   메뉴: `메뉴`,
   이벤트: `이벤트`,
 });
+
+export const AGE_GROUPS = ['10대', '20대', '30대', '40대', '50대', '기타'];
+
