@@ -58,19 +58,3 @@ const HomeHeader = styled.header`
 const HomeTitle = styled.h1`
   ${({ theme }) => theme.fonts.title_01};
 `;
-
-const HomeFooter = styled.footer`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  height: 62px;
-  flex-shrink: 0;
-  color: ${({ theme }) => theme.colors.white};
-  text-align: center;
-  background: linear-gradient(90deg, rgba(164, 173, 255, 0.8) 0%, rgba(222, 181, 255, 0.8) 100%);
-  ${({ theme }) => theme.fonts.content_01};
-`;

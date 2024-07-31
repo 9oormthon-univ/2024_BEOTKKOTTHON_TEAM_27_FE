@@ -1,29 +1,10 @@
 import type { SVGProps } from 'react';
 const SvgIconFeed = (props: SVGProps<SVGSVGElement>) => (
   <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 19 19' {...props}>
-    <rect width={7.5} height={7.5} x={0.75} y={0.75} stroke='#9D9D9D' strokeWidth={1.5} rx={1.25} />
     <path
-      stroke='#9D9D9D'
-      strokeWidth={1.5}
-      d='M12 .75h5c.69 0 1.25.56 1.25 1.25v5c0 .69-.56 1.25-1.25 1.25h-5c-.69 0-1.25-.56-1.25-1.25V2c0-.69.56-1.25 1.25-1.25Z'
-    />
-    <rect
-      width={7.5}
-      height={7.5}
-      x={10.75}
-      y={10.75}
-      stroke='#9D9D9D'
-      strokeWidth={1.5}
-      rx={1.25}
-    />
-    <rect
-      width={7.5}
-      height={7.5}
-      x={0.75}
-      y={10.75}
-      stroke='#9D9D9D'
-      strokeWidth={1.5}
-      rx={1.25}
+      fillRule='evenodd'
+      d='M2 0a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm1 1a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zM12 0a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm1 1a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zM12 10a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2zm1 1a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2zM2 10a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2zm1 1a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2z'
+      clipRule='evenodd'
     />
   </svg>
 );

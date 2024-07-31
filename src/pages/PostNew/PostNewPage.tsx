@@ -1,4 +1,3 @@
-import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useFunnel } from '../../hooks/useFunnel';
 import { ONBOARDING_FORM_STEP } from '../../core/PostNew/Onboarding';

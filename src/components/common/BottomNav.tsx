@@ -8,15 +8,15 @@ const BottomNav = () => {
   return (
     <BottomNavContainer>
       <NavItem to='/home' className={location.pathname === '/home' ? 'active' : ''}>
-        <IconHome style={{ width: '1.8rem' }} />
+        <IconHome className='nav-icon' />
         <p>홈</p>
       </NavItem>
       <NavItem to='/post' className={location.pathname === '/post' ? 'active' : ''}>
-        <IconPosting style={{ width: '1.8rem' }} />
+        <IconPosting className='nav-icon' />
         <p>포스팅</p>
       </NavItem>
       <NavItem to='/post-history' className={location.pathname === '/post-history' ? 'active' : ''}>
-        <IconFeed style={{ width: '1.8rem' }} />
+        <IconFeed className='nav-icon' />
         <p>피드</p>
       </NavItem>
     </BottomNavContainer>
@@ -43,13 +43,19 @@ const NavItem = styled(Link)`
   flex-direction: column;
   align-items: center;
   text-decoration: none;
+  gap: 0.3rem;
   color: ${({ theme }) => theme.colors.G_08};
+
+  .nav-icon {
+    width: 1.8rem;
+    fill: currentColor;
+  }
 
   &.active {
     color: ${({ theme }) => theme.colors.main_blue};
   }
 
   p {
-    ${({ theme }) => theme.fonts.tooltip};
+    ${({ theme }) => theme.fonts.footer};
   }
 `;
