@@ -6,12 +6,12 @@ import HeaderLayout from '../layouts/HeaderLayout';
 import NotFound from '../components/Error/NotFound';
 import Login from '../pages/Login/Login';
 import StoreNewPage from '../pages/StoreNew/StoreNewPage';
-import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
 import { OnboardingProvider } from '../context/PostNew/PostNewContext';
 import PostDetailPage from '../pages/PostDetail/PostDetailPage';
 import GuidePage from '../pages/Guide/GuidePage';
 import PostNewPage from '../pages/PostNew/PostNewPage';
 import BottomLayout from '../layouts/BottomLayout';
+import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
 
 const router = createBrowserRouter([
   {
