@@ -17,8 +17,9 @@ export default function PostTitle() {
 }
 
 const PostTitleContainer = styled.div`
-  margin-top: 6.5rem;
+  margin-top: 2.5rem;
 `;
 const SubTitle = styled.p`
+  margin-left: 0.5rem;
   ${({ theme }) => theme.fonts.subTitle};
 `;

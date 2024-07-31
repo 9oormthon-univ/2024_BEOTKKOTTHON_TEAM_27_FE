@@ -22,5 +22,6 @@ export const Highlight = styled.span`
 `;
 
 const SubTitle = styled.p`
+  margin-left: 0.5rem;
   ${({ theme }) => theme.fonts.subTitle};
 `;

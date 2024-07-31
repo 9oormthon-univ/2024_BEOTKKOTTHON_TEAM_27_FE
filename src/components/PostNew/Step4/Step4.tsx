@@ -67,12 +67,13 @@ const InputTitle = styled.p`
 `;
 
 const PostTitleContainer = styled.div`
-  margin-top: 6.5rem;
+  margin-top: 2.5rem;
   width: 100vw;
 `;
 
 const MenuInputContainer = styled.div`
   margin-top: 2rem;
+  padding: 0 0.5rem;
   position: relative;
 `;
 

@@ -41,7 +41,7 @@ const HomeTitleContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  position: absolute;
+
   top: 5% '';
   padding: 2rem;
   top: 0;
@@ -49,15 +49,11 @@ const HomeTitleContainer = styled.div`
 `;
 
 const HomePageContainer = styled.section`
-  width: 100vw;
-  padding: 0 2rem;
-  background-color: #f3f4f6;
-  height: 100vh;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.G_13};
+  gap: 0.25rem;
+  height: calc(100dvh - 2.75rem);
 `;
 
 const HomeHeader = styled.header`

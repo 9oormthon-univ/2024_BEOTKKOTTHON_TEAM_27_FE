@@ -1,5 +1,9 @@
 import { css, keyframes } from 'styled-components';
 
+const sizes = {
+  maxWidth: '375px',
+};
+
 /** 컬러 코드 나오면 추가 될 예정 */
 const colors = {
   white: '#FFFFFF',
@@ -200,7 +204,7 @@ const fonts = {
     font-style: normal;
     font-weight: 400;
     line-height: 125%;
-    `,
+  `,
   select_on: css`
     font-family: Pretendard;
     font-size: 16px;
@@ -249,6 +253,6 @@ const mixins = {
   },
 };
 
-const theme = { colors, fonts, mixins };
+const theme = { colors, fonts, mixins, sizes };
 
 export default theme;

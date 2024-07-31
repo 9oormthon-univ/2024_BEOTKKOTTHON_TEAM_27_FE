@@ -21,7 +21,7 @@ export default function Step3(props: NameInputProps) {
 }
 
 const PostTitleContainer = styled.div`
-  margin-top: 6.5rem;
+  margin-top: 2.5rem;
   width: 100vw;
 `;
 
@@ -30,5 +30,6 @@ const Highlight = styled.span`
 `;
 
 const SubTitle = styled.p`
+  margin-left: 0.5rem;
   ${({ theme }) => theme.fonts.subTitle};
 `;

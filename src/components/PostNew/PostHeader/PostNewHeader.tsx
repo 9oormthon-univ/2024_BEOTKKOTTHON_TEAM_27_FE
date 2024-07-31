@@ -23,9 +23,9 @@ export default function PostNewHeader({ onClickBackBtn, stepNum }: OnBoardingHea
 
 const OnBoardingHeaderWrapper = styled.div`
   display: flex;
-  position: fixed;
+
   top: 0;
-  width: 100%;
+
   right: 0;
   height: 4rem;
   flex-direction: row;
