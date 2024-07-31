@@ -11,6 +11,7 @@ import { OnboardingProvider } from '../context/PostNew/PostNewContext';
 import PostDetailPage from '../pages/PostDetail/PostDetailPage';
 import GuidePage from '../pages/Guide/GuidePage';
 import PostNewPage from '../pages/PostNew/PostNewPage';
+import BottomLayout from '../layouts/BottomLayout';
 
 const router = createBrowserRouter([
   {
@@ -22,10 +23,7 @@ const router = createBrowserRouter([
         path: '/',
         element: <Login />,
       },
-      {
-        path: '/home',
-        element: <Home />,
-      },
+
       {
         path: '/post-result/:id',
         element: <PostResultPage />,
@@ -37,6 +35,19 @@ const router = createBrowserRouter([
             <PostNewPage />
           </OnboardingProvider>
         ),
+      },
+      {
+        element: <BottomLayout />,
+        children: [
+          {
+            path: '/home',
+            element: <Home />,
+          },
+          {
+            path: '/post-history',
+            element: <PostHistoryPage />,
+          },
+        ],
       },
       {
         element: <HeaderLayout />,
@@ -52,10 +63,6 @@ const router = createBrowserRouter([
           {
             path: '/store-new',
             element: <StoreNewPage />,
-          },
-          {
-            path: '/post-history',
-            element: <PostHistoryPage />,
           },
         ],
       },

@@ -30,3 +30,7 @@ export { default as Xmark } from './Xmark';
 export { default as TipBtn } from './Tip';
 export { default as IcImgEditBtn } from './IcImgEditBtn';
 export { default as IcEmptyThumbnailFinal } from './IcEmptyThumbnailFinal';
+export { default as IconFeed } from './IconFeed';
+export { default as IconHome } from './IconHome';
+export { default as IconPosting } from './IconPosting';
+export { default as Footer } from './Footer';

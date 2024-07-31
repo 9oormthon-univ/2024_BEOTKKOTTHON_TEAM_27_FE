@@ -22,11 +22,6 @@ export default function Home() {
         <ProfileImg width='4rem' height='4rem' style={{ margin: '0 0 0 1rem' }} />
       </HomeTitleContainer>
       <HomeSubsection />
-      <HomeFooter>
-        커피 한잔 값으로 무제한 포스팅을 생성하세요
-        <br />
-        AI마케터 ‘소동' 구독하기
-      </HomeFooter>
     </HomePageContainer>
   );
 }
