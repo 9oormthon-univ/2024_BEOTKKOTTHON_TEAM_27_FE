@@ -13,6 +13,7 @@ export default function Tip() {
 }
 
 const TipContainer = styled.div`
+  margin-left: 0.5rem;
   display: flex;
 `;
 

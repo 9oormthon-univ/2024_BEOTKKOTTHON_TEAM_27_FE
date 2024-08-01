@@ -6,26 +6,27 @@ import FallbackUI from './pages/FallbackUI/FallbackUI';
 import { Suspense } from 'react';
 import Loading from './pages/Loading/Loading';
 import GlobalStyle from './style/GlobalStyle';
-import { useMobile } from './hooks/useMobile';
+import PageContainer from './components/common/Container/PageContainer';
 
 function App() {
   const queryClient = new QueryClient();
-  useMobile();
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <QueryErrorResetBoundary>
-          {({ reset }) => (
-            <ErrorBoundary onReset={() => reset()} FallbackComponent={FallbackUI}>
-              <Suspense fallback={<Loading />}>
-                <RouterProvider router={router} />
-                <GlobalStyle />
-              </Suspense>
-            </ErrorBoundary>
-          )}
-        </QueryErrorResetBoundary>
-      </QueryClientProvider>
+      <PageContainer>
+        <QueryClientProvider client={queryClient}>
+          <QueryErrorResetBoundary>
+            {({ reset }) => (
+              <ErrorBoundary onReset={() => reset()} FallbackComponent={FallbackUI}>
+                <Suspense fallback={<Loading />}>
+                  <RouterProvider router={router} />
+                  <GlobalStyle />
+                </Suspense>
+              </ErrorBoundary>
+            )}
+          </QueryErrorResetBoundary>
+        </QueryClientProvider>
+      </PageContainer>
     </>
   );
 }

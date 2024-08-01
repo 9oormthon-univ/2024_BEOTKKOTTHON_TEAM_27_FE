@@ -23,12 +23,14 @@ export default function PostNewHeader({ onClickBackBtn, stepNum }: OnBoardingHea
 
 const OnBoardingHeaderWrapper = styled.div`
   display: flex;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  right: 0;
-  height: 4rem;
   flex-direction: row;
+  position: relative;
+  width: 375px;
+  height: 4rem;
+  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
   align-items: center;
 
   background-color: ${({ theme }) => theme.colors.white};

@@ -71,12 +71,13 @@ export default function Step5(props: NameInputProps) {
 }
 
 const PostTitleContainer = styled.div`
-  margin-top: 6.5rem;
+  margin-top: 2.5rem;
   width: 100vw;
 `;
 
 const ContentInputContainer = styled.div`
   display: flex;
+  padding: 0 0.5rem;
   margin-top: 2rem;
 `;
 
