@@ -1,13 +1,7 @@
 import styled from 'styled-components';
 import ButtonWithTip from '../common/Button/ButtonWithTip/ButtonWithTip';
-import { SetStateAction, useState } from 'react';
-import {
-  copyText,
-  downloadImage,
-  getImageFullUrl,
-  isAndroid,
-  isReactNative,
-} from '../../utils/utils';
+import { useEffect, useState } from 'react';
+import { copyText, downloadImage, getImageFullUrl, isReactNative } from '../../utils/utils';
 import { POSTING_CHANNEL } from '../../core/Post';
 import { postMessage } from '../../utils/native';
 
@@ -45,7 +39,6 @@ export default function PostButton({ image, text, sns, onChange }: PostButtonPro
     Promise.all([downloadImage(url), copyText(text)])
       .then((res) => {
         console.log('✅ saveFunc -> ', res);
-        // setFile(res[0] as SetStateAction<string>);
 
         alert('성공하였습니다');
         setIsSaved(true);
@@ -63,24 +56,41 @@ export default function PostButton({ image, text, sns, onChange }: PostButtonPro
     postMessage('saveAll', { url: url, text: text });
   }
 
-  function saveImage(url: string) {
-    return new Promise<String>((resolve, reject) => {
-      const uri = Android.downloadImage(url);
-      if (uri === '') reject();
-      else resolve(uri);
-    });
-  }
+  useEffect(() => {
+    window.addEventListener('message', handleMessageFromApp);
+
+    return () => {
+      window.removeEventListener('message', handleMessageFromApp);
+    };
+  }, []);
+
+  const handleMessageFromApp = (event: MessageEvent) => {
+    const { type, data } = JSON.parse(event.data);
+    console.log(`{${type}} ${data}`);
+
+    if (type === 'saveAllResult') {
+      if (data.success) {
+        setFile(data.imagePath);
+        setIsSaved(true);
+
+        console.log('이미지 저장 성공. 이미지 경로:', data.imagePath);
+      } else {
+        alert('이미지 저장에 실패하였습니다.');
+        console.log('이미지 저장 실패');
+      }
+    }
+  };
 
   // (2) SNS 공유하기
-  // Android인 경우, openApp() / else인 경우, 지원 X
+  // isReactNative가 아닌 경우, 지원 X
   function handleShare() {
     try {
       if (!sns) throw new Error('공유할 SNS가 선택되지 않았습니다.');
-      if (!isAndroid()) throw new Error('공유하기 기능을 지원하지 않는 기기입니다.');
+      if (!isReactNative()) throw new Error('공유하기 기능을 지원하지 않는 기기입니다.');
       if (file == '') throw new Error('이미지를 다시 저장해 주세요.');
 
-      // if (sns == POSTING_CHANNEL.INSTAGRAM) Android.shareInsta(file);
-      // else Android.openApp(getPackageName(sns));
+      if (sns == POSTING_CHANNEL.INSTAGRAM) postMessage('shareInsta', { filePath: file });
+      else alert('지원하지 않는 SNS입니다. ');
     } catch (e) {
       alert(e);
     }
