@@ -32,7 +32,7 @@ const MainSection = styled.section`
   min-height: 100vh;
   min-width: 350px;
 
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.gray_00};
 `;

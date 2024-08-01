@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { cardConfig } from '../../../core/Post';
+import { CARD_CONFIG } from '../../../core/Post';
 
 interface PostCardProps {
-  type: keyof typeof cardConfig;
+  type: keyof typeof CARD_CONFIG;
 }
 
 export default function PostNewCard({ type }: PostCardProps) {
@@ -18,7 +18,7 @@ export default function PostNewCard({ type }: PostCardProps) {
     iconWidth,
     iconBottom,
     iconLeft,
-  } = cardConfig[type];
+  } = CARD_CONFIG[type];
 
   const handlePostCreate = () => {
     navigate(navigateTo);
@@ -27,9 +27,9 @@ export default function PostNewCard({ type }: PostCardProps) {
   return (
     <CardContainer backgroundColor={backgroundColor} onClick={handlePostCreate}>
       <TitleContainer>
-        <PostTitle>{title}</PostTitle>
-        <PostSubTitle>{subTitle}</PostSubTitle>
-        <Button>{buttonText}</Button>
+        <PostTitle type={type}>{title}</PostTitle>
+        <PostSubTitle type={type}>{subTitle}</PostSubTitle>
+        <Button type={type}>{buttonText}</Button>
       </TitleContainer>
 
       <IconContainer bottom={iconBottom} left={iconLeft}>
@@ -57,9 +57,9 @@ const CardContainer = styled.section<{ backgroundColor: string }>`
   }
 `;
 
-const PostTitle = styled.p`
+const PostTitle = styled.p<{ type: keyof typeof CARD_CONFIG }>`
   ${({ theme }) => theme.fonts.posting_card_title};
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme, type }) => (type === 'postNew' ? theme.colors.white : theme.colors.black)};
 `;
 
 const TitleContainer = styled.article`
@@ -69,8 +69,8 @@ const TitleContainer = styled.article`
   gap: 0.4375rem;
 `;
 
-const PostSubTitle = styled.p`
-  color: ${({ theme }) => theme.colors.white};
+const PostSubTitle = styled.p<{ type: keyof typeof CARD_CONFIG }>`
+  color: ${({ theme, type }) => (type === 'postNew' ? theme.colors.white : theme.colors.black)};
   ${({ theme }) => theme.fonts.posting_card_sub};
 `;
 
@@ -81,12 +81,13 @@ const IconContainer = styled.div<{ bottom: string; left: string }>`
   left: ${({ left }) => left};
 `;
 
-const Button = styled.button`
+const Button = styled.button<{ type: keyof typeof CARD_CONFIG }>`
   display: flex;
   justify-content: center;
   align-items: center;
-
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme, type }) =>
+    type === 'guideline' ? theme.colors.pink02 : theme.colors.white};
+  color: ${({ theme, type }) => (type === 'guideline' ? theme.colors.white : theme.colors.black)};
   ${({ theme }) => theme.fonts.card_button};
 `;

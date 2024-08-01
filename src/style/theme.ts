@@ -11,8 +11,9 @@ const colors = {
   light_gray: '#F9F9F9',
   deep_gray: '#727272',
   main: '#206BFF',
-  pink: '#FFD6E7',
-  yellow: '#FFD12C',
+  pink01: '#FFD6E7',
+  pink02: '#FF77B0',
+  yellow: '#FFD74A',
   light_main: '#E2E5FF',
   main_blue: '#206BFF',
   sub_blue: '#8E85FF',
@@ -41,6 +42,13 @@ const fonts = {
     font-weight: 700;
     line-height: 160%;
   `,
+  sub_title: css`
+    font-family: Pretendard;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+  `,
   PostingTitle: css`
     font-family: Pretendard;
     font-size: 24px;
@@ -57,11 +65,12 @@ const fonts = {
   `,
   posting_card_sub: css`
     font-family: Pretendard;
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 125%;
+    line-height: 0.85rem;
   `,
+
   card_button: css`
     font-family: Pretendard;
     font-size: 0.8rem;

@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { Highlight } from '../../components/PostNew/Step1/Step1Title/Step1Title';
-import { ProfileImg } from '../../assets/svg';
 import CommonCard from '../../components/common/Card/CommonCard';
 
 export default function Home() {
@@ -10,16 +9,16 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => console.log(data));
   }, []);
+  
   return (
     <HomePageContainer>
       <HomeTitleContainer>
-        <TitleContainer>
-          <HomeTitle>
-            <HomeHeader>안녕하세요 </HomeHeader>
-            <Highlight>소동떡볶이</Highlight>님! 👋🏻
-          </HomeTitle>
-        </TitleContainer>
-        <ProfileImg width='4rem' height='4rem' style={{ margin: '0 0 0 1rem' }} />
+        <HomeTitle>
+          <HomeHeader>
+            안녕하세요 <Highlight>소동떡볶이</Highlight>님!
+          </HomeHeader>
+          총 3개의 포스팅을 생성했어요 👋🏻
+        </HomeTitle>
       </HomeTitleContainer>
       <CommonCard type='postNew' />
       <CommonCard type='myStore' />
@@ -28,21 +27,14 @@ export default function Home() {
   );
 }
 
-const TitleContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 const HomeTitleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 
-  top: 5% '';
-  padding: 2rem;
-  top: 0;
-  margin-bottom: 2.5rem;
+  padding: 2rem 0 0 0;
+  margin-bottom: 3rem;
 `;
 
 const HomePageContainer = styled.section`
@@ -53,10 +45,10 @@ const HomePageContainer = styled.section`
   height: calc(100dvh - 2.75rem);
 `;
 
-const HomeHeader = styled.header`
-  ${({ theme }) => theme.fonts.heading_04};
+const HomeHeader = styled.p`
+  ${({ theme }) => theme.fonts.sub_title};
 `;
 
 const HomeTitle = styled.h1`
-  ${({ theme }) => theme.fonts.title_01};
+  ${({ theme }) => theme.fonts.posting_card_title};
 `;
