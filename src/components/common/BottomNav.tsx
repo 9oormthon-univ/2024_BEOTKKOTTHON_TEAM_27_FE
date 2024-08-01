@@ -11,7 +11,7 @@ const BottomNav = () => {
         <IconHome className='nav-icon' />
         <p>홈</p>
       </NavItem>
-      <NavItem to='/post' className={location.pathname === '/post' ? 'active' : ''}>
+      <NavItem to='/post-history' className={location.pathname === '/post' ? 'active' : ''}>
         <IconPosting className='nav-icon' />
         <p>포스팅</p>
       </NavItem>

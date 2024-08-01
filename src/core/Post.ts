@@ -32,7 +32,7 @@ export const cardConfig = {
     title: '이용가이드',
     subTitle: '소동이 처음이라면 여기를 클릭하세요!',
     buttonText: '이용 가이드 확인하기',
-    navigateTo: '/guideline',
+    navigateTo: '/guide',
     backgroundColor: 'pink',
     Icon: ImgGuide,
     iconWidth: '8rem',
