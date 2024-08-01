@@ -1,44 +1,45 @@
 import { styled } from 'styled-components';
-import { ImgSodong } from '../../../assets/svg';
 import { useNavigate } from 'react-router-dom';
+import { cardConfig } from '../../../core/Post';
 
 interface PostCardProps {
-  type: 'postNew' | 'guideline' ;
-  title: string;
-  subTitle: string;
-  buttonText: string;
-  navigateTo: string;
+  type: keyof typeof cardConfig;
 }
 
-export default function PostNewCard({
-  type,
-  title,
-  subTitle,
-  buttonText,
-  navigateTo,
-}: PostCardProps) {
+export default function PostNewCard({ type }: PostCardProps) {
   const navigate = useNavigate();
+  const {
+    title,
+    subTitle,
+    buttonText,
+    navigateTo,
+    backgroundColor,
+    Icon,
+    iconWidth,
+    iconBottom,
+    iconLeft,
+  } = cardConfig[type];
 
   const handlePostCreate = () => {
     navigate(navigateTo);
   };
 
   return (
-    <PostNewContainer type={type} onClick={handlePostCreate}>
+    <CardContainer backgroundColor={backgroundColor} onClick={handlePostCreate}>
       <TitleContainer>
         <PostTitle>{title}</PostTitle>
         <PostSubTitle>{subTitle}</PostSubTitle>
         <Button>{buttonText}</Button>
       </TitleContainer>
 
-      <IconContainer>
-        <ImgSodong width='13rem' />
+      <IconContainer bottom={iconBottom} left={iconLeft}>
+        <Icon width={iconWidth} />
       </IconContainer>
-    </PostNewContainer>
+    </CardContainer>
   );
 }
 
-const PostNewContainer = styled.div<{ type: 'postNew' | 'guideline' }>`
+const CardContainer = styled.section<{ backgroundColor: string }>`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -48,8 +49,7 @@ const PostNewContainer = styled.div<{ type: 'postNew' | 'guideline' }>`
   padding: 1.25rem;
   margin-bottom: 1rem;
   border-radius: 10px;
-  background-color: ${({ type, theme }) =>
-    type === 'postNew' ? theme.colors.main : theme.colors.pink};
+  background-color: ${({ backgroundColor, theme }) => theme.colors[backgroundColor]};
 
   img {
     width: 172px;
@@ -74,19 +74,17 @@ const PostSubTitle = styled.p`
   ${({ theme }) => theme.fonts.posting_card_sub};
 `;
 
-const IconContainer = styled.div`
+const IconContainer = styled.div<{ bottom: string; left: string }>`
   display: flex;
   position: relative;
-  bottom: 5rem;
-  left: 10rem;
+  bottom: ${({ bottom }) => bottom};
+  left: ${({ left }) => left};
 `;
 
 const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6.8rem;
-  height: 1.1rem;
 
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.white};

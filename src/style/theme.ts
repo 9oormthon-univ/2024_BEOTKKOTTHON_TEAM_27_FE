@@ -4,7 +4,6 @@ const sizes = {
   maxWidth: '375px',
 };
 
-/** 컬러 코드 나오면 추가 될 예정 */
 const colors = {
   white: '#FFFFFF',
   black: '#1E1E1E',
@@ -13,6 +12,7 @@ const colors = {
   deep_gray: '#727272',
   main: '#206BFF',
   pink: '#FFD6E7',
+  yellow: '#FFD12C',
   light_main: '#E2E5FF',
   main_blue: '#206BFF',
   sub_blue: '#8E85FF',
@@ -57,16 +57,16 @@ const fonts = {
   `,
   posting_card_sub: css`
     font-family: Pretendard;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: 125%;
   `,
   card_button: css`
     font-family: Pretendard;
-    font-size: 0.6875rem;
+    font-size: 0.8rem;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 0.625rem;
   `,
   subTitle: css`
