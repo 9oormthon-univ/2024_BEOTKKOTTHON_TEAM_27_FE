@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import HomeSubsection from '../../components/Home/HomeSubsection/HomeSubsection';
 import { Highlight } from '../../components/PostNew/Step1/Step1Title/Step1Title';
 import { ProfileImg } from '../../assets/svg';
+import PostNewCard from '../../components/Home/Card/PostNewCard';
 
 export default function Home() {
   useEffect(() => {
@@ -21,7 +22,20 @@ export default function Home() {
         </TitleContainer>
         <ProfileImg width='4rem' height='4rem' style={{ margin: '0 0 0 1rem' }} />
       </HomeTitleContainer>
-      <HomeSubsection />
+      <PostNewCard
+        type='postNew'
+        title='SNS 마케팅 포스팅 만들기'
+        subTitle='가게 매출을 높여봐요!'
+        buttonText='포스팅 만들기'
+        navigateTo='/post'
+      />
+      <PostNewCard
+        type='guideline'
+        title='이용가이드'
+        subTitle='소동이 처음이라면 여기를 클릭하세요!'
+        buttonText='이용 가이드 확인하기'
+        navigateTo='/guideline'
+      />
     </HomePageContainer>
   );
 }

@@ -14,3 +14,4 @@ export const PROMOTION_TYPE = Object.freeze({
   메뉴: `메뉴`,
   이벤트: `이벤트`,
 });
+

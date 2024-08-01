@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { ChatGpt, GuideIc, HistoryIc, Kogpt, MyStoreIc, PostNewIc } from '../../../assets/svg';
+import { GuideIc, HistoryIc, MyStoreIc } from '../../../assets/svg';
+import PostNewCard from '../Card/PostNewCard';
 
 export default function HomeSubsection() {
   const navigate = useNavigate();
@@ -19,16 +20,7 @@ export default function HomeSubsection() {
 
   return (
     <HomeSubSectionContainer>
-      <PostCreation onClick={handlePostCreate}>
-        <PostTitle>SNS 마케팅 포스팅 만들기</PostTitle>
-        <PostSubTitle>3 step으로 간편하게! </PostSubTitle>
-        <IconContainer>
-          <Kogpt style={{ height: '20px' }} />
-          <ChatGpt style={{ height: '20px' }} />
-        </IconContainer>
-
-        <PostNewIc width='7rem' style={{ position: 'absolute', top: '30%', right: '5%' }} />
-      </PostCreation>
+     
       <PostContainer>
         <StoreManagement>
           <StoreTitle onClick={handlePostHistory}>
