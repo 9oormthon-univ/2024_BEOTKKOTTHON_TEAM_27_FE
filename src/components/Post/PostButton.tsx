@@ -1,14 +1,9 @@
 import styled from 'styled-components';
 import ButtonWithTip from '../common/Button/ButtonWithTip/ButtonWithTip';
 import { SetStateAction, useState } from 'react';
-import {
-  copyText,
-  downloadImage,
-  getImageFullUrl,
-  getPackageName,
-  isAndroid,
-} from '../../utils/utils';
+import { copyText, downloadImage, getImageFullUrl, isAndroid, isIos } from '../../utils/utils';
 import { POSTING_CHANNEL } from '../../core/Post';
+import { postMessage } from '../../utils/native';
 
 interface PostButtonProps {
   image?: string;
@@ -61,6 +56,12 @@ export default function PostButton({ image, text, sns, onChange }: PostButtonPro
     });
   }
 
+  function send() {
+    alert(`>> isAndroid${isAndroid()} / isIos${isIos()}`);
+
+    postMessage('downloadImage', '상단 타이틀에 올 값입니다.');
+  }
+
   // (2) SNS 공유하기
   // Android인 경우, openApp() / else인 경우, 지원 X
   function handleShare() {
@@ -69,8 +70,8 @@ export default function PostButton({ image, text, sns, onChange }: PostButtonPro
       if (!isAndroid()) throw new Error('공유하기 기능을 지원하지 않는 기기입니다.');
       if (file == '') throw new Error('이미지를 다시 저장해 주세요.');
 
-      if (sns == POSTING_CHANNEL.INSTAGRAM) Android.shareInsta(file);
-      else Android.openApp(getPackageName(sns));
+      // if (sns == POSTING_CHANNEL.INSTAGRAM) Android.shareInsta(file);
+      // else Android.openApp(getPackageName(sns));
     } catch (e) {
       alert(e);
     }
@@ -81,7 +82,7 @@ export default function PostButton({ image, text, sns, onChange }: PostButtonPro
       <ButtonWithTip
         label='한번에 저장하기'
         tooltip='이미지와 글을 한번에 저장할 수 있어요'
-        onClick={handleSaveAll}
+        onClick={send}
         primary={!isSaved}
       />
 
