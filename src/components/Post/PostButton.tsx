@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import ButtonWithTip from '../common/Button/ButtonWithTip/ButtonWithTip';
 import { SetStateAction, useState } from 'react';
-import { copyText, downloadImage, getImageFullUrl, isAndroid, isIos } from '../../utils/utils';
+import {
+  copyText,
+  downloadImage,
+  getImageFullUrl,
+  isAndroid,
+  isReactNative,
+} from '../../utils/utils';
 import { POSTING_CHANNEL } from '../../core/Post';
 import { postMessage } from '../../utils/native';
 
@@ -26,15 +32,20 @@ export default function PostButton({ image, text, sns, onChange }: PostButtonPro
       return;
     }
 
-    if (onChange) onChange(true);
     const url = getImageFullUrl(image);
     console.log('🔗 이미지 URL', url);
 
-    const saveFunc = isAndroid() ? saveImage : downloadImage;
-    Promise.all([saveFunc(url), copyText(text)])
+    if (isReactNative()) handleSaveAllWithRN(url, text);
+    else handleSaveAllWithWeb(url, text);
+  }
+
+  function handleSaveAllWithWeb(url: string, text: string) {
+    if (onChange) onChange(true);
+
+    Promise.all([downloadImage(url), copyText(text)])
       .then((res) => {
         console.log('✅ saveFunc -> ', res);
-        setFile(res[0] as SetStateAction<string>);
+        // setFile(res[0] as SetStateAction<string>);
 
         alert('성공하였습니다');
         setIsSaved(true);
@@ -48,18 +59,16 @@ export default function PostButton({ image, text, sns, onChange }: PostButtonPro
       });
   }
 
+  function handleSaveAllWithRN(url: string, text: string) {
+    postMessage('saveAll', { url: url, text: text });
+  }
+
   function saveImage(url: string) {
     return new Promise<String>((resolve, reject) => {
       const uri = Android.downloadImage(url);
       if (uri === '') reject();
       else resolve(uri);
     });
-  }
-
-  function send() {
-    alert(`>> isAndroid${isAndroid()} / isIos${isIos()}`);
-
-    postMessage('downloadImage', '상단 타이틀에 올 값입니다.');
   }
 
   // (2) SNS 공유하기
@@ -82,7 +91,7 @@ export default function PostButton({ image, text, sns, onChange }: PostButtonPro
       <ButtonWithTip
         label='한번에 저장하기'
         tooltip='이미지와 글을 한번에 저장할 수 있어요'
-        onClick={send}
+        onClick={handleSaveAll}
         primary={!isSaved}
       />
 
