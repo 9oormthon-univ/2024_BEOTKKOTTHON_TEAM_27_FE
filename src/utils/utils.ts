@@ -11,6 +11,23 @@ export function isAndroid() {
 }
 
 /**
+ * Ios App 확인 함수 (sodong-ios)
+ */
+export function isIos() {
+  if (window) {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    return /sodong_ios/i.test(userAgent);
+  }
+}
+
+/**
+ * 웹뷰로 띄워졌는지 확인하는 함수
+ */
+export function isReactNative() {
+  return window.ReactNativeWebView;
+}
+
+/**
  * 텍스트 복사 함수
  */
 export function copyText(text: string): Promise<void> {
@@ -23,7 +40,7 @@ export function copyText(text: string): Promise<void> {
         resolve();
       });
     } catch (e) {
-      reject();
+      reject(e);
     }
   });
 }
