@@ -11,6 +11,16 @@ export function isAndroid() {
 }
 
 /**
+ * Ios App 확인 함수 (sodong-ios)
+ */
+export function isIos() {
+  if (window) {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    return /sodong_ios/i.test(userAgent);
+  }
+}
+
+/**
  * 텍스트 복사 함수
  */
 export function copyText(text: string): Promise<void> {
