@@ -43,7 +43,7 @@ export const cardConfig = {
     title: '나의 가게 관리',
     subTitle: '매장 관리와 운영에 도움을 드려요!',
     buttonText: '매장 관리하기',
-    navigateTo: '/mystore',
+    navigateTo: '/store-new',
     backgroundColor: 'yellow',
     Icon: ImgMyStore,
     iconWidth: '7rem',

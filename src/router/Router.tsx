@@ -12,6 +12,7 @@ import GuidePage from '../pages/Guide/GuidePage';
 import PostNewPage from '../pages/PostNew/PostNewPage';
 import BottomLayout from '../layouts/BottomLayout';
 import PostHistoryPage from '../pages/PostHistory/PostHistoryPage';
+import FeedPage from '../pages/Feed/FeedPage';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
           {
             path: '/post-history',
             element: <PostHistoryPage />,
+          },
+          {
+            path: '/feed',
+            element: <FeedPage />,
           },
         ],
       },

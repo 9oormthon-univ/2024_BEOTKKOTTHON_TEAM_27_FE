@@ -11,11 +11,11 @@ const BottomNav = () => {
         <IconHome className='nav-icon' />
         <p>홈</p>
       </NavItem>
-      <NavItem to='/post-history' className={location.pathname === '/post' ? 'active' : ''}>
+      <NavItem to='/post-history' className={location.pathname === '/post-history' ? 'active' : ''}>
         <IconPosting className='nav-icon' />
         <p>포스팅</p>
       </NavItem>
-      <NavItem to='/post-history' className={location.pathname === '/post-history' ? 'active' : ''}>
+      <NavItem to='/feed' className={location.pathname === '/feed' ? 'active' : ''}>
         <IconFeed className='nav-icon' />
         <p>피드</p>
       </NavItem>
@@ -28,9 +28,11 @@ export default BottomNav;
 const BottomNavContainer = styled.footer`
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 375px;
   height: 60px;
-  left: 0;
+
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: space-around;
   align-items: center;
