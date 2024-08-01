@@ -34,4 +34,7 @@ export { default as IconFeed } from './IconFeed';
 export { default as IconHome } from './IconHome';
 export { default as IconPosting } from './IconPosting';
 export { default as Footer } from './Footer';
+
 export { default as ImgSodong } from './ImgSodong';
+export { default as ImgGuide } from './ImgGuide';
+export { default as ImgMyStore } from './ImgMyStore';
