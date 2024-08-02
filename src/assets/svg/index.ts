@@ -38,3 +38,8 @@ export { default as Footer } from './Footer';
 export { default as ImgSodong } from './ImgSodong';
 export { default as ImgGuide } from './ImgGuide';
 export { default as ImgMyStore } from './ImgMyStore';
+
+export { default as IconFeedFill } from './IconFeedFill';
+export { default as IconHomeFill } from './IconHomeFill';
+export { default as IconPostingBottom } from './IconPostingBottom';
+export { default as IconPostingFill } from './IconPostingFill';
