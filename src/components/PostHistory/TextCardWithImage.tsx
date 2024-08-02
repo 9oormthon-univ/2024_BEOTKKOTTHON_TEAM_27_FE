@@ -49,6 +49,7 @@ const TextCardContainer = styled.article`
 
   border-radius: 0.3125rem;
   background: #fff;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
 
   padding: 1.5rem;
   margin-bottom: 1rem;

@@ -29,6 +29,7 @@ export type PostInfo = {
   fileName: string | null;
   targetGender: Array;
   targetAge: Array;
+  promotionKeywords: string[];
 };
 
 export interface ImageUploadRequestType {

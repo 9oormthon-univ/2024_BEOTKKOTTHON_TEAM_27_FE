@@ -85,7 +85,7 @@ export default function Login() {
 }
 
 const LoginContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100dvh;
   max-width: 360px;
 
@@ -94,7 +94,7 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  padding: 2rem;
+  padding: 2rem 0;
 
   > button {
     margin-top: 1.13rem;

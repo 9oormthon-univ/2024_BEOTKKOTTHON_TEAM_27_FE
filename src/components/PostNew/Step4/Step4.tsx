@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
 import useMenuInput from '../../../hooks/PostNew/useMenuInput';
-import { NameInputProps } from '../Step1/Step1';
+import { NameInputProps } from '../SelectSns/SelectSns';
 import NextButton from '../PostFooter/NextButton';
 import { useEffect, useState } from 'react';
 
@@ -67,12 +67,13 @@ const InputTitle = styled.p`
 `;
 
 const PostTitleContainer = styled.div`
-  margin-top: 6.5rem;
+  margin-top: 2.5rem;
   width: 100vw;
 `;
 
 const MenuInputContainer = styled.div`
   margin-top: 2rem;
+  padding: 0 0.5rem;
   position: relative;
 `;
 

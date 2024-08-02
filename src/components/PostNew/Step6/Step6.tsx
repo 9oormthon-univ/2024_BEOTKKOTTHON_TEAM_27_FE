@@ -92,7 +92,12 @@ export default function Step6() {
   const { onboardingInfo } = useOnboardingContext();
   const postOnboarding = async () => {
     try {
-      mutate(onboardingInfo);
+      const postInfo = onboardingInfo;
+      postInfo.promotionContent =
+        `주요 키워드는 ${onboardingInfo.promotionKeywords}이고, ` + postInfo.promotionContent;
+
+      console.log(postInfo);
+      mutate(postInfo);
     } catch (error) {
       console.log(error);
     }
@@ -172,16 +177,17 @@ const ImgWrapper = styled.div`
 
 const TipImageContainer = styled.div`
   display: flex;
-  justify-content: center;
+  margin-left: 1rem;
   align-items: center;
   gap: 0.5rem;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
 `;
 
 const TipContainer = styled.div`
-  position: relative;
-  margin-top: 18%;
   display: flex;
+  position: relative;
+  margin-left: 0.5rem;
+  margin-top: 18%;
 `;
 
 const TipMenu = styled.div`
@@ -206,7 +212,7 @@ const ThumbnailWrapper = styled.div`
 `;
 
 const PostTitleContainer = styled.div`
-  margin-top: 6.5rem;
+  margin-top: 2.5rem;
   width: 100vw;
 `;
 
@@ -215,6 +221,7 @@ const Highlight = styled.span`
 `;
 
 const SubTitle = styled.p`
+  margin-left: 0.5rem;
   ${({ theme }) => theme.fonts.subTitle};
 `;
 

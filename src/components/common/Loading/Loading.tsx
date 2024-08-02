@@ -16,7 +16,7 @@ export default function Loading() {
 const LoadingContainer = styled.div`
   color: #fff;
 
-  width: 100vw;
+  width: 100%;
   height: calc(100dvh - 45%);
 
   position: absolute;

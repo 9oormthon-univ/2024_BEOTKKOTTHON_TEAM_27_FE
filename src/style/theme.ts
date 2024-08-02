@@ -1,16 +1,23 @@
 import { css, keyframes } from 'styled-components';
 
-/** 컬러 코드 나오면 추가 될 예정 */
+const sizes = {
+  maxWidth: '375px',
+};
+
 const colors = {
   white: '#FFFFFF',
   black: '#1E1E1E',
   gray: '#94A3B8',
   light_gray: '#F9F9F9',
   deep_gray: '#727272',
-  main: '#342FFF',
+  main: '#206BFF',
+  pink01: '#FFD6E7',
+  pink02: '#FF77B0',
+  yellow: '#FFD74A',
   light_main: '#E2E5FF',
-  main_blue: '#402FFF',
+  main_blue: '#206BFF',
   sub_blue: '#8E85FF',
+  sub_blue01: '#B7CBFF',
   sub_purple: '#D4D1FB',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
@@ -25,6 +32,8 @@ const colors = {
   G_11: '#848485',
   G_12: '#EEEEEE',
   G_13: '#F3F4F6',
+  G_14: '#D9D9D9',
+  G_15: '#E6E6E6',
 };
 
 /** 폰트 결정 시 수정 될 예정 */
@@ -36,12 +45,54 @@ const fonts = {
     font-weight: 700;
     line-height: 160%;
   `,
+  sub_title: css`
+    font-family: Pretendard;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+  `,
   PostingTitle: css`
     font-family: Pretendard;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: 144.583%; /* 34.7px */
+  `,
+  posting_card_title: css`
+    font-family: Pretendard;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 125%;
+  `,
+  posting_card_sub: css`
+    font-family: Pretendard;
+    font-size: 0.85rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0.85rem;
+  `,
+  posting_hash_tag: css`
+    font-family: Pretendard;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  `,
+  type_option: css`
+    font-family: Pretendard;
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 144.583%;
+  `,
+  card_button: css`
+    font-family: Pretendard;
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 0.625rem;
   `,
   subTitle: css`
     font-family: Pretendard;
@@ -81,6 +132,13 @@ const fonts = {
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
+    line-height: normal;
+  `,
+  footer: css`
+    font-family: Pretendard;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 600;
     line-height: normal;
   `,
   subheading_02: css`
@@ -200,12 +258,26 @@ const fonts = {
     font-style: normal;
     font-weight: 400;
     line-height: 125%;
-    `,
+  `,
   select_on: css`
     font-family: Pretendard;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
+    line-height: 125%;
+  `,
+  keyword: css`
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%;
+  `,
+  tip: css`
+    font-family: Pretendard;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
     line-height: 125%;
   `,
 };
@@ -247,8 +319,24 @@ const mixins = {
       }
     `;
   },
+  slideup: () => {
+    const slideUp = keyframes`
+      0% {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    `;
+
+    return css`
+      animation: ${slideUp} 0.5s ease-in-out;
+    `;
+  },
 };
 
-const theme = { colors, fonts, mixins };
+const theme = { colors, fonts, mixins, sizes };
 
 export default theme;
