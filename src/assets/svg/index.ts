@@ -30,16 +30,13 @@ export { default as Xmark } from './Xmark';
 export { default as TipBtn } from './Tip';
 export { default as IcImgEditBtn } from './IcImgEditBtn';
 export { default as IcEmptyThumbnailFinal } from './IcEmptyThumbnailFinal';
-export { default as IconFeed } from './IconFeed';
-export { default as IconHome } from './IconHome';
-export { default as IconPosting } from './IconPosting';
 export { default as Footer } from './Footer';
 
 export { default as ImgSodong } from './ImgSodong';
 export { default as ImgGuide } from './ImgGuide';
 export { default as ImgMyStore } from './ImgMyStore';
 
-export { default as IconFeedFill } from './IconFeedFill';
-export { default as IconHomeFill } from './IconHomeFill';
-export { default as IconPostingBottom } from './IconPostingBottom';
-export { default as IconPostingFill } from './IconPostingFill';
+export { default as IcFeed01 } from './IcFeed01';
+export { default as IcHome01 } from './IcHome01';
+export { default as IcPosting01 } from './IcPosting01';
+export { default as IcPosting02 } from './IcPosting02';

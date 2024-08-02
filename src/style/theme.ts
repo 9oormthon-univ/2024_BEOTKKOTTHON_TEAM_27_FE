@@ -17,6 +17,7 @@ const colors = {
   light_main: '#E2E5FF',
   main_blue: '#206BFF',
   sub_blue: '#8E85FF',
+  sub_blue01: '#B7CBFF',
   sub_purple: '#D4D1FB',
   G_01: '#F8F8F8',
   G_02: '#EBE9EA',
@@ -31,6 +32,7 @@ const colors = {
   G_11: '#848485',
   G_12: '#EEEEEE',
   G_13: '#F3F4F6',
+  G_14: '#D9D9D9',
 };
 
 /** 폰트 결정 시 수정 될 예정 */
