@@ -5,10 +5,12 @@ import styled from 'styled-components';
 import Trend1 from '../../assets/Image/trend1.png';
 import Trend2 from '../../assets/Image/trend2.png';
 import { IconArrow } from '../../assets/svg';
+import CommonHeader from '../../components/common/Header/HeaderCommon';
 
 export default function FeedPage() {
   return (
     <>
+      <CommonHeader title='피드' />
       <TitleContainer>
         <TrendContainer>
           <SubTitle>요즘 트렌드 참고하기 ✈️</SubTitle>
