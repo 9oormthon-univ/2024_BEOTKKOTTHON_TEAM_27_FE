@@ -28,7 +28,7 @@ export const CARD_CONFIG = {
     backgroundColor: 'main',
     Icon: ImgSodong,
     iconWidth: '13rem',
-    iconBottom: '5.4rem',
+    iconBottom: '5.5rem',
     iconLeft: '8rem',
   },
   guideline: {
@@ -50,7 +50,7 @@ export const CARD_CONFIG = {
     backgroundColor: 'yellow',
     Icon: ImgMyStore,
     iconWidth: '7rem',
-    iconBottom: '2rem',
+    iconBottom: '2.2rem',
     iconLeft: '12rem',
   },
 };
