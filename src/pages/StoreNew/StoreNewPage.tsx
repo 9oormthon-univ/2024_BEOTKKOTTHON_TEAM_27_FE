@@ -9,6 +9,7 @@ import { usePostStore } from '../../hooks/mutations/store/usePostStore';
 import { useGetKakaoSearch } from '../../hooks/queries/kakao/useGetKakaoSearch';
 import { useOutletContext } from 'react-router-dom';
 import { HeaderLayoutContext } from '../../layouts/HeaderLayout';
+import { useGetStore } from '../../hooks/queries/store/useGetStore';
 
 export default function StoreNewPage() {
   const navigate = useNavigate();
@@ -33,6 +34,8 @@ export default function StoreNewPage() {
     setSelected(-1);
     setQuery(query);
   }
+
+  const { data: store } = useGetStore({ userId: 1, storeId: 1 });
 
   // POST - 가게 등록 API
   const { mutate } = usePostStore({
@@ -66,6 +69,32 @@ export default function StoreNewPage() {
     };
 
     mutate(body);
+  }
+
+  if (store?.data) {
+    setTitle('내 가게 확인하기');
+
+    return (
+      <MyStoreContainer>
+        <MyStoreInfoContainer>
+          <h3> {store.data.name}</h3>
+          <div>주소: {store.data.address}</div>
+        </MyStoreInfoContainer>
+
+        <StoreResultNone
+          title='내 가게를 등록하세요'
+          description='포스트 내용에 들어가는 가게 정보예요'
+          height='calc(50%)'
+        />
+        <ButtonFill
+          title='등록하기'
+          width='90%'
+          height='3.125rem'
+          onClick={handleSumbit}
+          enable={selected !== -1}
+        />
+      </MyStoreContainer>
+    );
   }
 
   return (
@@ -116,5 +145,16 @@ const MyStoreContainer = styled.div`
     left: 50%;
     bottom: 1.94rem;
     transform: translate(-50%, 0);
+  }
+`;
+
+const MyStoreInfoContainer = styled.div`
+  ${({ theme }) => theme.mixins.flexBox('column', 'center', 'flex-start')};
+  gap: 20px;
+
+  margin: 4rem 0;
+
+  h3 {
+    ${({ theme }) => theme.fonts.heading_01};
   }
 `;
