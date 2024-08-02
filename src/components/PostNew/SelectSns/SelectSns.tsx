@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { CheckIcon } from '../../../assets/svg';
 import kakao from '../../../assets/Image/kakao.png';
