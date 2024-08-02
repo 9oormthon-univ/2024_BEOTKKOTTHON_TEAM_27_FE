@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { IconFeed, IconHome, IconPosting } from '../../assets/svg';
+import { IcFeed01, IcHome01, IcPosting01, IcPosting02 } from '../../assets/svg';
 
 const BottomNav = () => {
   const location = useLocation();
@@ -8,15 +8,19 @@ const BottomNav = () => {
   return (
     <BottomNavContainer>
       <NavItem to='/home' className={location.pathname === '/home' ? 'active' : ''}>
-        <IconHome className='nav-icon' />
+        <IcHome01 className='nav-icon' />
         <p>홈</p>
       </NavItem>
       <NavItem to='/post-history' className={location.pathname === '/post-history' ? 'active' : ''}>
-        <IconPosting className='nav-icon' />
+        {location.pathname === '/post-history' ? (
+          <IcPosting01 className='nav-icon' />
+        ) : (
+          <IcPosting02 className='nav-icon' />
+        )}
         <p>포스팅</p>
       </NavItem>
       <NavItem to='/feed' className={location.pathname === '/feed' ? 'active' : ''}>
-        <IconFeed className='nav-icon' />
+        <IcFeed01 className='nav-icon' />
         <p>피드</p>
       </NavItem>
     </BottomNavContainer>
@@ -29,7 +33,7 @@ const BottomNavContainer = styled.footer`
   position: fixed;
   bottom: 0;
   width: 375px;
-  height: 60px;
+  padding: 0.5rem 0;
 
   left: 50%;
   transform: translateX(-50%);
@@ -46,15 +50,15 @@ const NavItem = styled(Link)`
   align-items: center;
   text-decoration: none;
   gap: 0.3rem;
-  color: ${({ theme }) => theme.colors.G_08};
+  color: ${({ theme }) => theme.colors.G_14};
 
   .nav-icon {
-    width: 1.8rem;
+    width: 2.3rem;
     fill: currentColor;
   }
 
   &.active {
-    color: ${({ theme }) => theme.colors.main_blue};
+    color: ${({ theme }) => theme.colors.sub_blue01};
   }
 
   p {

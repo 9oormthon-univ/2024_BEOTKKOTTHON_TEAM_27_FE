@@ -25,6 +25,9 @@ ${reset}
   overflow-x :  hidden;
  }
 
+ ::-webkit-scrollbar {
+  display: none;
+}
  /* .react-loading-skeleton {
     line-height: unset !important;
 } */
