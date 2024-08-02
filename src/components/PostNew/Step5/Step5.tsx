@@ -4,7 +4,7 @@ import { Xmark } from '../../../assets/svg';
 import useMenuExplain from '../../../hooks/PostNew/useMenuExplain';
 import { NameInputProps } from '../Step1/Step1';
 import NextButton from '../PostFooter/NextButton';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Keywords from './Keywords/Keywords';
 
 export default function Step5(props: NameInputProps) {
@@ -31,7 +31,14 @@ export default function Step5(props: NameInputProps) {
   };
 
   // 본문에 키워드 추가 후, 다음 스텝으로 이동
+  const keywordsRef = useRef<any>(null);
   const handleBeforeOnNext = () => {
+    if (keywordsRef.current) {
+      const selectedKeywords = keywordsRef.current.getSelectedKeywords();
+      console.log(selectedKeywords);
+      // setOnboardingInfo((prev) => ({ ...prev, keywords: selectedKeywords }));
+    }
+
     onNext();
   };
 
@@ -68,7 +75,7 @@ export default function Step5(props: NameInputProps) {
         {characterCount}/{maxCharacters}
       </CharacterCount>
 
-      <Keywords post={onboardingInfo} />
+      <Keywords post={onboardingInfo} ref={keywordsRef} />
 
       <NextButton isActivated={isActivated} setStep={handleBeforeOnNext}>
         다음

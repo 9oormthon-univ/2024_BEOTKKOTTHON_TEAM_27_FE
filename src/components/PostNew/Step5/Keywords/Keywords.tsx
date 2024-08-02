@@ -1,6 +1,6 @@
+import { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { PostInfo } from '../../../../types/PostNew';
-import { useEffect, useState } from 'react';
 import {
   getAIKeywordsPrompt,
   usePostChatGPT,
@@ -10,17 +10,22 @@ import KeywordsTip from '../Tip/KeywordsTip';
 interface KeywordsProps {
   post: PostInfo;
 }
-export default function Keywords({ post }: KeywordsProps) {
+
+const Keywords = forwardRef(({ post }: KeywordsProps, ref) => {
   const [keywords, setKeywords] = useState<string[]>([]);
   const [selectedKeywords, setSelectedKeywords] = useState<boolean[]>([]);
 
+  useImperativeHandle(ref, () => ({
+    getSelectedKeywords: () => {
+      return keywords.filter((_, idx) => selectedKeywords[idx]);
+    },
+  }));
+
   const { mutate: getAIKeywords, isPending } = usePostChatGPT({
     onSuccess: (res) => {
-      console.log('>>', res);
       const k = JSON.parse(res.text);
       setKeywords(k);
       setSelectedKeywords(new Array(k.length).fill(false));
-      console.log(k);
     },
     onError: (e) => {
       console.error(e);
@@ -29,9 +34,6 @@ export default function Keywords({ post }: KeywordsProps) {
 
   useEffect(() => {
     const prompt = getAIKeywordsPrompt(post);
-
-    console.log('onboardingInfo', post);
-    console.log('prompt', prompt);
     getAIKeywords({ content: prompt });
   }, [post]);
 
@@ -67,7 +69,9 @@ export default function Keywords({ post }: KeywordsProps) {
       <KeywordsTip />
     </KeywordsContainer>
   );
-}
+});
+
+export default Keywords;
 
 const KeywordsContainer = styled.div`
   margin: 20px 0.5rem 40px;
