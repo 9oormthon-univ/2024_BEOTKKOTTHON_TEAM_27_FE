@@ -4,15 +4,23 @@ import SubTitle from '../../components/common/Title/SubTitle';
 import styled from 'styled-components';
 import Trend1 from '../../assets/Image/trend1.png';
 import Trend2 from '../../assets/Image/trend2.png';
+import { IconArrow } from '../../assets/svg';
 
 export default function FeedPage() {
   return (
     <>
       <TitleContainer>
-        <SubTitle>요즘 트렌드 참고하기 ✈️</SubTitle>
-        <SubTitle>
-          <Highlight>소동 떡볶이</Highlight>님과 관련된 <br /> 다른 가게 글을 확인해보세요
-        </SubTitle>
+        <TrendContainer>
+          <SubTitle>요즘 트렌드 참고하기 ✈️</SubTitle>
+          <IconArrow style={{ width: '0.7rem' }} />
+        </TrendContainer>
+
+        <TrendContainer>
+          <SubTitle>
+            <Highlight>소동 떡볶이</Highlight>님과 관련된 <br /> 다른 가게 글을 확인해보세요
+          </SubTitle>
+          <IconArrow style={{ width: '0.7rem' }} />
+        </TrendContainer>
       </TitleContainer>
 
       <ImgContainer>
@@ -47,6 +55,11 @@ const TitleContainer = styled.section`
   gap: 12rem;
 `;
 
+const TrendContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 const RelatedPostsContainer = styled.div`
   display: flex;
   position: absolute;

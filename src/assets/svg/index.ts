@@ -41,3 +41,4 @@ export { default as IcFeed01 } from './IcFeed01';
 export { default as IcHome01 } from './IcHome01';
 export { default as IcPosting01 } from './IcPosting01';
 export { default as IcPosting02 } from './IcPosting02';
+export { default as IconArrow } from './IconArrow';

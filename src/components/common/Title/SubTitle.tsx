@@ -16,7 +16,6 @@ const PostingTitleContainer = styled.div`
   display: flex;
   align-items: center;
 
-  margin-bottom: 0.5rem;
   ${({ theme }) => theme.fonts.posting_card_title};
 
   .highlight {
