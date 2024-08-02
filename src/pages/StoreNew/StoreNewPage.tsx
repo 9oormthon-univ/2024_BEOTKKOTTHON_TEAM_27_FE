@@ -104,12 +104,12 @@ export default function StoreNewPage() {
 }
 
 const MyStoreContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100dvh;
   max-width: 360px;
 
   position: relative;
-  padding: 4rem 2rem 0; // header 4rem 영역
+  padding: 4rem 0 0; // header 4rem 영역
 
   > button {
     position: fixed;
