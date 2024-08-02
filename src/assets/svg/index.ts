@@ -31,6 +31,7 @@ export { default as TipBtn } from './Tip';
 export { default as IcImgEditBtn } from './IcImgEditBtn';
 export { default as IcEmptyThumbnailFinal } from './IcEmptyThumbnailFinal';
 export { default as Footer } from './Footer';
+export { default as IconLock } from './IconLock';
 
 export { default as ImgSodong } from './ImgSodong';
 export { default as ImgGuide } from './ImgGuide';

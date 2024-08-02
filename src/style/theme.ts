@@ -33,6 +33,7 @@ const colors = {
   G_12: '#EEEEEE',
   G_13: '#F3F4F6',
   G_14: '#D9D9D9',
+  G_15: '#E6E6E6',
 };
 
 /** 폰트 결정 시 수정 될 예정 */
@@ -72,7 +73,13 @@ const fonts = {
     font-weight: 400;
     line-height: 0.85rem;
   `,
-
+  posting_hash_tag: css`
+    font-family: Pretendard;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  `,
   card_button: css`
     font-family: Pretendard;
     font-size: 0.8rem;
