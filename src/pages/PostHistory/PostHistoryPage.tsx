@@ -13,13 +13,12 @@ export default function PostHistoryPage() {
     storeId: storeId,
   });
 
-  const posting = data?.data.postingList.reverse();
-
   return (
     <>
       <CommonHeader title='포스팅' />
+
       <HistoryPageContainer>
-        {posting?.map((data, index) => {
+        {data?.data.postingList?.map((data, index) => {
           if (data.postingImage) {
             return (
               <TextCardWithImage
