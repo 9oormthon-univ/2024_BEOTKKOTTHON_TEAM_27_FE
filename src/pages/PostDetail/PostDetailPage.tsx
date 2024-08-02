@@ -64,7 +64,7 @@ export default function PostDetailPage() {
 }
 
 const PostDetailContainter = styled.div`
-  width: 100vw;
+  width: 100%;
   max-width: 360px;
 
   display: flex;
