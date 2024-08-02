@@ -250,6 +250,20 @@ const fonts = {
     font-weight: 700;
     line-height: 125%;
   `,
+  keyword: css`
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%;
+  `,
+  tip: css`
+    font-family: Pretendard;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 125%;
+  `,
 };
 
 /* 믹스인 */
@@ -287,6 +301,22 @@ const mixins = {
         box-shadow: 0px 0px 50px 30px #d1d5db;
         animation: ${moveRight} 1s infinite linear;
       }
+    `;
+  },
+  slideup: () => {
+    const slideUp = keyframes`
+      0% {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    `;
+
+    return css`
+      animation: ${slideUp} 0.5s ease-in-out;
     `;
   },
 };

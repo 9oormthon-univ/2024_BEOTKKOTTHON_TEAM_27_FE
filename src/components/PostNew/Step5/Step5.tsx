@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
 import useMenuExplain from '../../../hooks/PostNew/useMenuExplain';
 import { NameInputProps } from '../Step1/Step1';
 import NextButton from '../PostFooter/NextButton';
 import { useEffect, useState } from 'react';
-import Tip from './Tip/Tip';
+import Keywords from './Keywords/Keywords';
 
 export default function Step5(props: NameInputProps) {
   const { onNext } = props;
@@ -30,8 +30,13 @@ export default function Step5(props: NameInputProps) {
     handleInputChange(event);
   };
 
+  // 본문에 키워드 추가 후, 다음 스텝으로 이동
+  const handleBeforeOnNext = () => {
+    onNext();
+  };
+
   return (
-    <>
+    <Step5Container>
       <PostTitleContainer>
         <Title>
           {placeholder ? (
@@ -45,7 +50,7 @@ export default function Step5(props: NameInputProps) {
           )}
         </Title>
       </PostTitleContainer>
-      <Tip />
+
       <ContentInputContainer>
         <ContentInput
           value={onboardingInfo.promotionContent}
@@ -63,26 +68,34 @@ export default function Step5(props: NameInputProps) {
         {characterCount}/{maxCharacters}
       </CharacterCount>
 
-      <NextButton isActivated={isActivated} setStep={onNext}>
+      <Keywords post={onboardingInfo} />
+
+      <NextButton isActivated={isActivated} setStep={handleBeforeOnNext}>
         다음
       </NextButton>
-    </>
+    </Step5Container>
   );
 }
 
+const Step5Container = styled.div`
+  width: 100%;
+  height: calc(100vh - 8rem);
+  overflow: scroll;
+`;
+
 const PostTitleContainer = styled.div`
   margin-top: 2.5rem;
-  width: 100vw;
 `;
 
 const ContentInputContainer = styled.div`
+  width: 100%;
   display: flex;
   padding: 0 0.5rem;
   margin-top: 2rem;
 `;
 
 const ContentInput = styled.textarea`
-  width: 100vw;
+  width: 100%;
   height: 10rem;
   min-height: 130px;
 
