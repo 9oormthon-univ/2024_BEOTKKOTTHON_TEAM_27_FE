@@ -9,7 +9,7 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => console.log(data));
   }, []);
-  
+
   return (
     <HomePageContainer>
       <HomeTitleContainer>
@@ -33,8 +33,8 @@ const HomeTitleContainer = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  padding: 2rem 0 0 0;
-  margin-bottom: 3rem;
+  padding: 3rem 0 0 0;
+  margin-bottom: 2rem;
 `;
 
 const HomePageContainer = styled.section`
