@@ -60,9 +60,12 @@ export default function PostNewPage() {
       </Funnel.Step>
 
       <Funnel.Step name='POSTING_CONTENT'>
-        <PostNewHeader onClickBackBtn={() => onClickBackBtn(5)} />
-        <ProcessBar currentStep={5} stepCount={6} />
-        <Step5 onNext={() => setStep(() => 'POSTING_IMAGE')} />
+        {/* <PostNewHeader onClickBackBtn={() => onClickBackBtn(5)} />
+        <ProcessBar currentStep={5} stepCount={6} /> */}
+        <Step5
+          onNext={() => setStep(() => 'POSTING_IMAGE')}
+          onClickBackBtn={() => onClickBackBtn(5)}
+        />
       </Funnel.Step>
 
       <Funnel.Step name='POSTING_IMAGE'>

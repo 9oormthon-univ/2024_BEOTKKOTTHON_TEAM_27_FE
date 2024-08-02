@@ -92,7 +92,12 @@ export default function Step6() {
   const { onboardingInfo } = useOnboardingContext();
   const postOnboarding = async () => {
     try {
-      mutate(onboardingInfo);
+      const postInfo = onboardingInfo;
+      postInfo.promotionContent =
+        `주요 키워드는 ${onboardingInfo.promotionKeywords}이고, ` + postInfo.promotionContent;
+
+      console.log(postInfo);
+      mutate(postInfo);
     } catch (error) {
       console.log(error);
     }

@@ -19,8 +19,8 @@ export const getHistory = async ({ userId, storeId }: GetPostHistoryRequest) => 
   const { data } = await get<AxiosResponse<BaseResponse<GetPostHistoryResponse>>>(
     `/api/posting/list/${userId}/${storeId}`,
   );
-  console.log(data);
-  console.log(data.data.postingList);
+
+  data.data.postingList.reverse();
   return data;
 };
 
