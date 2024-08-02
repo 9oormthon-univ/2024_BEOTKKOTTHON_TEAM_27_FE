@@ -1,4 +1,6 @@
 import { ImgSodong, ImgGuide, ImgMyStore } from '../assets/svg/index';
+import TrendImg from '../assets/Image/trend3.png';
+import TrendImg2 from '../assets/Image/trend4.png';
 
 export const POSTING_CHANNEL = Object.freeze({
   INSTAGRAM: `인스타그램`,
@@ -26,7 +28,7 @@ export const CARD_CONFIG = {
     backgroundColor: 'main',
     Icon: ImgSodong,
     iconWidth: '13rem',
-    iconBottom: '5.4rem',
+    iconBottom: '5.5rem',
     iconLeft: '8rem',
   },
   guideline: {
@@ -48,7 +50,31 @@ export const CARD_CONFIG = {
     backgroundColor: 'yellow',
     Icon: ImgMyStore,
     iconWidth: '7rem',
-    iconBottom: '2rem',
+    iconBottom: '2.2rem',
     iconLeft: '12rem',
   },
 };
+
+interface PostProps {
+  title: string;
+  hashtags: string[];
+  imgSrc: string;
+}
+
+export const POSTS: PostProps[] = [
+  {
+    title: '코야코',
+    hashtags: ['#혜화떡볶이맛집', '#치즈소스'],
+    imgSrc: TrendImg,
+  },
+  {
+    title: '청년 다방',
+    hashtags: ['#혜화떡볶이맛집'],
+    imgSrc: TrendImg2,
+  },
+  {
+    title: '코야코',
+    hashtags: ['#혜화떡볶이맛집', '#치즈소스'],
+    imgSrc: TrendImg,
+  },
+];

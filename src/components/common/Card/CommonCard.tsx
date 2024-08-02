@@ -66,7 +66,7 @@ const TitleContainer = styled.article`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.4375rem;
+  gap: 0.35rem;
 `;
 
 const PostSubTitle = styled.p<{ type: keyof typeof CARD_CONFIG }>`
@@ -85,6 +85,7 @@ const Button = styled.button<{ type: keyof typeof CARD_CONFIG }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 0.3rem;
   border-radius: 4px;
   background-color: ${({ theme, type }) =>
     type === 'guideline' ? theme.colors.pink02 : theme.colors.white};

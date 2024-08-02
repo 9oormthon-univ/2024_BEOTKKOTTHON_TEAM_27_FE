@@ -10,7 +10,7 @@ const SvgIconPosting = (props: SVGProps<SVGSVGElement>) => (
       fill='#000'
       maskUnits='userSpaceOnUse'
     >
-      <path d='M0 0h24v20H0z' />
+      <path fill='#fff' d='M0 0h24v20H0z' />
       <path
         fillRule='evenodd'
         d='M3 2h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1M1 3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-2H3a2 2 0 0 1-2-2zm5 12v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-2v7a2 2 0 0 1-2 2z'
