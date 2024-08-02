@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
-import { BaseResponse } from '../../../types/Response';
 import { post } from '../../../apis/gptClient';
 import { PostInfo } from '../../../types/PostNew';
+import { BaseResponse } from '../../../types/Response';
 
 interface askChatGPTRequest {
   content: string;
@@ -17,7 +17,7 @@ export const askChatGPT = async (body: askChatGPTRequest) => {
 };
 
 interface PostChatGPTProps {
-  onSuccess: (res: askChatGPTResponse) => void;
+  onSuccess: (res: BaseResponse<askChatGPTResponse>) => void;
   onError: (e: Error) => void;
 }
 
