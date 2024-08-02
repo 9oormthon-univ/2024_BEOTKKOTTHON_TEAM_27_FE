@@ -34,6 +34,7 @@ jobs:
           VITE_KAKAO_REST_API: ${{secrets.VITE_KAKAO_REST_API}}
           VITE_APP_BASE_URL: ${{secrets.VITE_APP_BASE_URL}}
           VITE_APP_FAST_URL: ${{secrets.VITE_APP_FAST_URL}}
+          VITE_APP_GPT_URL: ${{secrets.VITE_APP_GPT_URL}}
 
       - name: Build
         run: yarn install && yarn build
