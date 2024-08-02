@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Title from '../../../common/Title/Title';
+import Title from '../../common/Title/Title';
 
 export default function PostTitle() {
   return (

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import SelectType from './SelectType/SelectType';
+import SelectType from './SelectTypeOptions';
 import Title from '../../common/Title/Title';
-import { NameInputProps } from '../Step1/Step1';
+import { NameInputProps } from '../SelectSns/SelectSns';
 
 export default function Step3(props: NameInputProps) {
   return (

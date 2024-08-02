@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { GenderOptionProps } from '../../../../types/PostNew';
-import { useOnboardingContext } from '../../../../context/PostNew/PostNewContext';
-import maleIc from '../../../../assets/Icon/maleIc.png';
-import femaleIc from '../../../../assets/Icon/femalIc.png';
+import { GenderOptionProps } from '../../../types/PostNew';
+import { useOnboardingContext } from '../../../context/PostNew/PostNewContext'
+import maleIc from '../../../assets/Icon/maleIc.png';
+import femaleIc from '../../../assets/Icon/femalIc.png';
 
 export default function SelectGender() {
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();

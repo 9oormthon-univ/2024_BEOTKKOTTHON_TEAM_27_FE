@@ -1,4 +1,4 @@
-import { Highlight } from '../../components/PostNew/Step1/Step1Title/Step1Title';
+import { Highlight } from '../../components/PostNew/SelectSns/SelectSnsTitle';
 import RelatedPosts from '../../components/common/Card/RelatedPosts';
 import SubTitle from '../../components/common/Title/SubTitle';
 import styled from 'styled-components';
