@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useContext,  useMemo, useState } from 'react';
+import { PropsWithChildren, createContext, useContext, useMemo, useState } from 'react';
 import { PostInfo, PostInfoContext } from '../../types/PostNew';
 
 // 1.
@@ -14,6 +14,7 @@ export const initialOnboardingInfo: PostInfo = {
   fileName: '',
   targetGender: [],
   targetAge: [],
+  promotionKeywords: [],
 };
 
 // 2.

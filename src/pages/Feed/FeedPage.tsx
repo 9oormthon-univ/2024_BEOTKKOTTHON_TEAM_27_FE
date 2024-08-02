@@ -45,7 +45,7 @@ const ImgContainer = styled.section`
   top: 20%;
   left: 50%;
   gap: 1rem;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   transform: translateX(-50%);
   overflow-x: auto;
 `;

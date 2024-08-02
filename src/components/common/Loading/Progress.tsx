@@ -14,7 +14,7 @@ const ProgressContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 100vw;
+  width: 100%;
   height: 100dvh;
   background: rgba(1, 1, 1, 0.5);
   position: absolute;

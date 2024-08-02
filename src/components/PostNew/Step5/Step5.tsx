@@ -1,20 +1,27 @@
 import styled from 'styled-components';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
-import useMenuExplain from '../../../hooks/PostNew/useMenuExplain';
 import { NameInputProps } from '../SelectSns/SelectSns';
 import NextButton from '../PostFooter/NextButton';
-import { useEffect, useState } from 'react';
-import Tip from './Tip/Tip';
+import { useEffect, useRef, useState } from 'react';
+import Keywords from './Keywords/Keywords';
+import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 
-export default function Step5(props: NameInputProps) {
+import PostNewHeader2 from '../PostHeader/PostNewHeader2';
+
+interface Step5Props extends NameInputProps {
+  onClickBackBtn: () => void;
+}
+export default function Step5(props: Step5Props) {
   const { onNext } = props;
-  const { onboardingInfo, handleInputChange, handleBtnClick, isActivated } = useMenuExplain();
+  const { onboardingInfo, updatePostInfo } = useOnboardingContext();
   const characterCount = onboardingInfo.promotionContent.length;
   const maxCharacters = 100;
   const hasContent = onboardingInfo.promotionType;
   const [title, setTitle] = useState<string>('메뉴');
   const [placeholder, setPlaceholder] = useState<string>(' ');
+
+  const [content, setContent] = useState(onboardingInfo.promotionContent);
 
   useEffect(() => {
     if (hasContent === '메뉴') {
@@ -26,12 +33,38 @@ export default function Step5(props: NameInputProps) {
     }
   }, [hasContent]);
 
+  const handleOnRemove = () => {
+    setContent('');
+    updatePostInfo({ promotionContent: '' });
+  };
+
+  // 본문에 키워드 추가 후, 다음 스텝으로 이동
+  const keywordsRef = useRef<any>(null);
+  const handleBeforeOnNext = () => {
+    let promotionContent = content;
+    console.log('>>', content);
+
+    if (keywordsRef.current) {
+      updatePostInfo({ promotionKeywords: keywordsRef.current.getSelectedKeywords() });
+    }
+
+    updatePostInfo({ promotionContent: promotionContent });
+    onNext();
+  };
+
   const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    handleInputChange(event);
+    setContent(event.target.value);
+  };
+
+  const handleGoBack = () => {
+    updatePostInfo({ promotionContent: content });
+    props.onClickBackBtn();
   };
 
   return (
-    <>
+    <Step5Container>
+      <PostNewHeader2 onClickBackBtn={handleGoBack} stepNum={5} />
+
       <PostTitleContainer>
         <Title>
           {placeholder ? (
@@ -45,16 +78,17 @@ export default function Step5(props: NameInputProps) {
           )}
         </Title>
       </PostTitleContainer>
-      <Tip />
+
       <ContentInputContainer>
         <ContentInput
-          value={onboardingInfo.promotionContent}
+          value={content}
           onChange={handleTextareaChange}
-          placeholder='치즈가 듬뿍 들어간 쌀 떡볶이. 쌀떡이라 더 쫄깃하게 먹을 수 있어요. '
+          placeholder='- 모짜렐라 치즈가 듬뿍 들어간 쌀 떡볶이
+- 쌀떡이라 더 쫄깃하게 먹을 수 있어요'
         />
         {onboardingInfo.promotionSubject && (
           <Xmark
-            onClick={handleBtnClick}
+            onClick={handleOnRemove}
             style={{ width: '1.5rem', position: 'absolute', right: '13%', padding: '4% 0' }}
           />
         )}
@@ -63,26 +97,36 @@ export default function Step5(props: NameInputProps) {
         {characterCount}/{maxCharacters}
       </CharacterCount>
 
-      <NextButton isActivated={isActivated} setStep={onNext}>
+      <Keywords post={onboardingInfo} ref={keywordsRef} />
+
+      <NextButton isActivated={content.length > 0} setStep={handleBeforeOnNext}>
         다음
       </NextButton>
-    </>
+    </Step5Container>
   );
 }
 
+const Step5Container = styled.div`
+  width: 100%;
+  height: calc(100vh - 4rem);
+  overflow: scroll;
+
+  padding-top: 4rem;
+`;
+
 const PostTitleContainer = styled.div`
   margin-top: 2.5rem;
-  width: 100vw;
 `;
 
 const ContentInputContainer = styled.div`
+  width: 100%;
   display: flex;
   padding: 0 0.5rem;
   margin-top: 2rem;
 `;
 
 const ContentInput = styled.textarea`
-  width: 100vw;
+  width: 100%;
   height: 10rem;
   min-height: 130px;
 
