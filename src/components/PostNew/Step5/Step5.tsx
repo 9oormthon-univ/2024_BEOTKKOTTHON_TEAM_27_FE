@@ -83,7 +83,8 @@ export default function Step5(props: Step5Props) {
         <ContentInput
           value={content}
           onChange={handleTextareaChange}
-          placeholder='치즈가 듬뿍 들어간 쌀 떡볶이. 쌀떡이라 더 쫄깃하게 먹을 수 있어요. '
+          placeholder='- 모짜렐라 치즈가 듬뿍 들어간 쌀 떡볶이
+- 쌀떡이라 더 쫄깃하게 먹을 수 있어요'
         />
         {onboardingInfo.promotionSubject && (
           <Xmark
