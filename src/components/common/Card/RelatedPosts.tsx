@@ -1,36 +1,11 @@
 import styled from 'styled-components';
 import { IconLock } from '../../../assets/svg';
-import TrendImg from '../../../assets/Image/trend3.png';
-import TrendImg2 from '../../../assets/Image/trend4.png';
-
-interface PostProps {
-  title: string;
-  hashtags: string[];
-  imgSrc: string;
-}
+import { POSTS } from '../../../core/Post';
 
 export default function RelatedPosts() {
-  const posts: PostProps[] = [
-    {
-      title: '코야코',
-      hashtags: ['#혜화떡볶이맛집', '#치즈소스'],
-      imgSrc: TrendImg,
-    },
-    {
-      title: '청년 다방',
-      hashtags: ['#혜화떡볶이맛집'],
-      imgSrc: TrendImg2,
-    },
-    {
-      title: '코야코',
-      hashtags: ['#혜화떡볶이맛집', '#치즈소스'],
-      imgSrc: TrendImg,
-    },
-  ];
-
   return (
     <PostsContainer>
-      {posts.map((post, index) => (
+      {POSTS.map((post, index) => (
         <PostCard key={index}>
           <Image src={post.imgSrc} alt={post.title} />
           <Overlay>

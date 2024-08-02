@@ -43,8 +43,8 @@ const ImgContainer = styled.section`
 const TitleContainer = styled.section`
   display: flex;
   flex-direction: column;
-  padding-top: 4rem;
-  gap: 14rem;
+  padding-top: 6rem;
+  gap: 12rem;
 `;
 
 const RelatedPostsContainer = styled.div`
