@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Title from '../../common/Title/Title';
 import { Xmark } from '../../../assets/svg';
 import useMenuInput from '../../../hooks/PostNew/useMenuInput';
-import { NameInputProps } from '../Step1/Step1';
+import { NameInputProps } from '../SelectSns/SelectSns';
 import NextButton from '../PostFooter/NextButton';
 import { useEffect, useState } from 'react';
 

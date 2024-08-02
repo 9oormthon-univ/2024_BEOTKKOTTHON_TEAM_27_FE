@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import { Highlight } from '../../components/PostNew/Step1/Step1Title/Step1Title';
+import { Highlight } from '../../components/PostNew/SelectSns/SelectSnsTitle';
 import CommonCard from '../../components/common/Card/CommonCard';
 
 export default function Home() {

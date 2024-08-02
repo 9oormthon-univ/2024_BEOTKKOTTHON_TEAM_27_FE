@@ -1,4 +1,4 @@
-import Title from '../../../common/Title/Title';
+import Title from '../../common/Title/Title';
 import styled from 'styled-components';
 
 export default function Step1Title() {

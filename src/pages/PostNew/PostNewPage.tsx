@@ -2,9 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import { useFunnel } from '../../hooks/useFunnel';
 import { ONBOARDING_FORM_STEP } from '../../core/PostNew/Onboarding';
 import { useOnboardingContext } from '../../context/PostNew/PostNewContext';
-import Step1 from '../../components/PostNew/Step1/Step1';
-import Step2 from '../../components/PostNew/Step2/Step2';
-import Step3 from '../../components/PostNew/Step3/Step3';
+import SelectSns from '../../components/PostNew/SelectSns/SelectSns';
+import SelectTarget from '../../components/PostNew/SelectTarget/SelectTarget';
+import SelectType from '../../components/PostNew/SelectType/SelectType';
 import Step4 from '../../components/PostNew/Step4/Step4';
 import Step5 from '../../components/PostNew/Step5/Step5';
 import Step6 from '../../components/PostNew/Step6/Step6';
@@ -38,19 +38,19 @@ export default function PostNewPage() {
       <Funnel.Step name='POSTING_CHANNEL'>
         <PostNewHeader onClickBackBtn={() => onClickBackBtn(1)} />
         <ProcessBar currentStep={1} stepCount={6} />
-        <Step1 onNext={() => setStep(() => 'AGE_GENDER')} />
+        <SelectType onNext={() => setStep(() => 'AGE_GENDER')} />
       </Funnel.Step>
 
       <Funnel.Step name='AGE_GENDER'>
         <PostNewHeader onClickBackBtn={() => onClickBackBtn(2)} />
         <ProcessBar currentStep={2} stepCount={6} />
-        <Step2 onNext={() => setStep(() => 'TYPE')} />
+        <SelectTarget onNext={() => setStep(() => 'TYPE')} />
       </Funnel.Step>
 
       <Funnel.Step name='TYPE'>
         <PostNewHeader onClickBackBtn={() => onClickBackBtn(3)} />
         <ProcessBar currentStep={3} stepCount={6} />
-        <Step3 onNext={() => setStep(() => 'POSTING_SUBJECT')} />
+        <SelectSns onNext={() => setStep(() => 'POSTING_SUBJECT')} />
       </Funnel.Step>
 
       <Funnel.Step name='POSTING_SUBJECT'>

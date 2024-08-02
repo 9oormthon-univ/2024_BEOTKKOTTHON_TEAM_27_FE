@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import PostTitle from './PostTitle/PostTitle';
-import { NameInputProps } from '../Step1/Step1';
+import PostTitle from './PostTitle';
+import { NameInputProps } from '../SelectSns/SelectSns';
 import NextButton from '../PostFooter/NextButton';
 import { AgeBoxProps } from '../../../types/PostNew';
-import SelectGender from './SelectGender/SelectGender';
+import SelectGender from './SelectGender';
 import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 
-export default function Step2(props: NameInputProps) {
+export default function SelectTarget(props: NameInputProps) {
   const { onNext } = props;
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
   const [selectedAges, setSelectedAges] = useState<string[]>(onboardingInfo.targetAge || []);

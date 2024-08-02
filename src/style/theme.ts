@@ -80,6 +80,13 @@ const fonts = {
     font-weight: 400;
     line-height: normal;
   `,
+  type_option: css`
+    font-family: Pretendard;
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 144.583%;
+  `,
   card_button: css`
     font-family: Pretendard;
     font-size: 0.8rem;

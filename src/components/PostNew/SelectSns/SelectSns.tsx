@@ -6,7 +6,7 @@ import carrot from '../../../assets/Image/carrot.png';
 import kakaoMap from '../../../assets/Image/kakaoMap.png';
 import insta from '../../../assets/Image/Instagram.png';
 import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
-import Step1Title from './Step1Title/Step1Title';
+import Step1Title from './SelectSnsTitle';
 import NextButton from '../PostFooter/NextButton';
 import { POSTING_CHANNEL } from '../../../core/Post';
 
@@ -14,7 +14,21 @@ export interface NameInputProps {
   onNext: VoidFunction;
 }
 
-export default function Step1(props: NameInputProps) {
+const SNS_ORDER_DEFAULT = [
+  POSTING_CHANNEL.INSTAGRAM,
+  POSTING_CHANNEL.KAKAO_CHANNEL,
+  POSTING_CHANNEL.DANGUEN,
+  POSTING_CHANNEL.KAKAO_TALK,
+];
+
+const SNS_ORDER_40s_50s = [
+  POSTING_CHANNEL.KAKAO_CHANNEL,
+  POSTING_CHANNEL.DANGUEN,
+  POSTING_CHANNEL.KAKAO_TALK,
+  POSTING_CHANNEL.INSTAGRAM,
+];
+
+export default function SelectSns(props: NameInputProps) {
   const { onNext } = props;
   const { onboardingInfo, updatePostInfo } = useOnboardingContext();
   const [selectedSNS, setSelectedSNS] = useState<string | null>(
@@ -27,6 +41,16 @@ export default function Step1(props: NameInputProps) {
     { name: POSTING_CHANNEL.DANGUEN, icon: carrot },
     { name: POSTING_CHANNEL.KAKAO_TALK, icon: kakaoMap },
   ];
+
+  const getOrderedSnsOptions = () => {
+    const ageGroups = onboardingInfo.targetAge || [];
+    const is40sOr50sSelected = ageGroups.includes('40대') && ageGroups.includes('50대');
+    const order = is40sOr50sSelected ? SNS_ORDER_40s_50s : SNS_ORDER_DEFAULT;
+
+    return snsOptions.sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
+  };
+
+  const orderedSnsOptions = getOrderedSnsOptions();
 
   const handleSelectSNS = (sns: string) => {
     setSelectedSNS((prev) => {
@@ -41,7 +65,7 @@ export default function Step1(props: NameInputProps) {
       <PostTitleContainer>
         <Step1Title />
         <SNSOptionContainer>
-          {snsOptions.map((sns) => (
+          {orderedSnsOptions.map((sns) => (
             <SNSOption
               key={sns.name}
               selected={selectedSNS === sns.name}

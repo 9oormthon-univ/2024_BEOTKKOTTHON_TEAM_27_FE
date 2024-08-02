@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { GenderOptionProps } from '../../../../types/PostNew';
-import { useOnboardingContext } from '../../../../context/PostNew/PostNewContext';
-import NextButton from '../../PostFooter/NextButton';
-import { NameInputProps } from '../../Step1/Step1';
-import menuIc from '../../../../assets/Icon/menuIc.png';
-import eventIc from '../../../../assets/Icon/eventIc.png';
+import { GenderOptionProps } from '../../../types/PostNew';
+import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
+import NextButton from '../PostFooter/NextButton';
+import { NameInputProps } from '../SelectSns/SelectSns';
+import { IconEventEmoji, IconMenuEmoji } from '../../../assets/svg';
 
 export default function SelectType(props: NameInputProps) {
   const { onNext } = props;
@@ -27,8 +26,13 @@ export default function SelectType(props: NameInputProps) {
   }
 
   const typeOptions = [
-    { label: '메뉴 홍보', value: '메뉴', image: menuIc },
-    { label: '이벤트 홍보', value: '이벤트', image: eventIc },
+    { label: '메뉴 홍보', labelSub: 'ex. 신메뉴 홍보', value: '메뉴', image: IconMenuEmoji },
+    {
+      label: '이벤트 홍보',
+      labelSub: 'ex. 첫 오픈 할인 이벤트',
+      value: '이벤트',
+      image: IconEventEmoji,
+    },
   ];
 
   return (
@@ -40,8 +44,11 @@ export default function SelectType(props: NameInputProps) {
             selected={selectedType === option.value}
             onClick={() => handleMenuSelect(option.value)}
           >
-            <img src={option.image} />
-            {option.label}
+            <option.image className='nav-icon' />
+            <LabelContainer>
+              {option.label}
+              <p>{option.labelSub}</p>
+            </LabelContainer>
           </TypeOption>
         ))}
       </TypeSelection>
@@ -54,6 +61,7 @@ export default function SelectType(props: NameInputProps) {
 
 const TypeSelection = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -61,16 +69,23 @@ const TypeSelection = styled.div`
   gap: 1rem;
 `;
 
+const LabelContainer = styled.article`
+  p {
+    margin-top: 0.5rem;
+    color: ${({ theme }) => theme.colors.G_06};
+    ${({ theme }) => theme.fonts.type_option};
+  }
+`;
 const TypeOption = styled.div<GenderOptionProps>`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
-  width: 7.875rem;
-  height: 11.125rem;
+  width: 17rem;
+  height: 6rem;
   gap: 2rem;
+  padding-left: 1rem;
   cursor: pointer;
-  flex-direction: column;
 
   border-radius: 0.625rem;
   background: #fff;
@@ -80,8 +95,7 @@ const TypeOption = styled.div<GenderOptionProps>`
   ${({ theme, selected }) =>
     selected ? `border: 1px solid ${theme.colors.main}; color: ${theme.colors.main}; ` : ''}
 
-  img {
+  .nav-icon {
     width: 3.75rem;
-    margin-top: 16%;
   }
 `;
