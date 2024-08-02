@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { BaseResponse } from '../types/Response';
 
 // [GPT]
 export const gptinstance = axios.create({
@@ -9,5 +8,5 @@ export const gptinstance = axios.create({
 });
 
 export function post<T>(...args: Parameters<typeof gptinstance.post>) {
-  return gptinstance.post<BaseResponse<T>>(...args);
+  return gptinstance.post<T>(...args);
 }
