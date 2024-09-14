@@ -15,7 +15,6 @@ export default function PostNewCard({ type }: PostCardProps) {
     navigateTo,
     backgroundColor,
     Icon,
-    iconWidth,
     iconBottom,
     iconLeft,
   } = CARD_CONFIG[type];
@@ -33,7 +32,7 @@ export default function PostNewCard({ type }: PostCardProps) {
       </TitleContainer>
 
       <IconContainer bottom={iconBottom} left={iconLeft}>
-        <Icon width={iconWidth} />
+        <img src={Icon} alt={Icon} />
       </IconContainer>
     </CardContainer>
   );
@@ -52,8 +51,8 @@ const CardContainer = styled.section<{ backgroundColor: string }>`
   background-color: ${({ backgroundColor, theme }) => theme.colors[backgroundColor]};
 
   img {
-    width: 172px;
-    height: 168px;
+    width: 110px;
+    height: 110px;
   }
 `;
 

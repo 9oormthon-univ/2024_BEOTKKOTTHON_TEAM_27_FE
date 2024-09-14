@@ -1,6 +1,8 @@
-import { ImgSodong, ImgGuide, ImgMyStore } from '../assets/svg/index';
 import TrendImg from '../assets/Image/trend3.png';
 import TrendImg2 from '../assets/Image/trend4.png';
+import ImgSodong from '../assets/Icon/sodong_icon.png';
+import ImgGuide from '../assets/Icon/guide_icon.png';
+import ImgMyStore from '../assets/Icon/store_icon.png';
 
 export const POSTING_CHANNEL = Object.freeze({
   INSTAGRAM: `인스타그램`,
@@ -28,8 +30,8 @@ export const CARD_CONFIG = {
     backgroundColor: 'main',
     Icon: ImgSodong,
     iconWidth: '13rem',
-    iconBottom: '5.5rem',
-    iconLeft: '8rem',
+    iconBottom: '2.75rem',
+    iconLeft: '12rem',
   },
   guideline: {
     title: '이용가이드',
@@ -50,7 +52,7 @@ export const CARD_CONFIG = {
     backgroundColor: 'yellow',
     Icon: ImgMyStore,
     iconWidth: '7rem',
-    iconBottom: '2.2rem',
+    iconBottom: '2.75rem',
     iconLeft: '12rem',
   },
 };
