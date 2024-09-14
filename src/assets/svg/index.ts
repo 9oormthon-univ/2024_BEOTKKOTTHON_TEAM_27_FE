@@ -3,7 +3,6 @@ export { default as GuideIc } from './GuideIc';
 export { default as HistoryIc } from './HistoryIc';
 export { default as Instagram } from './Instagram';
 export { default as KoGptIc } from './KoGptIc';
-export { default as MyStoreIc } from './MyStoreIc';
 export { default as PostNewIc } from './PostNewIc';
 export { default as Ai } from './Ai';
 export { default as Carrot } from './Carrot';
@@ -33,15 +32,8 @@ export { default as IcEmptyThumbnailFinal } from './IcEmptyThumbnailFinal';
 export { default as Footer } from './Footer';
 export { default as IconLock } from './IconLock';
 
-export { default as ImgSodong } from './ImgSodong';
-export { default as ImgGuide } from './ImgGuide';
-export { default as ImgMyStore } from './ImgMyStore';
-
 export { default as IcFeed01 } from './IcFeed01';
 export { default as IcHome01 } from './IcHome01';
 export { default as IcPosting01 } from './IcPosting01';
 export { default as IcPosting02 } from './IcPosting02';
 export { default as IconArrow } from './IconArrow';
-
-export { default as IconEventEmoji } from './IconEventEmoji';
-export { default as IconMenuEmoji } from './IconMenuEmoji';
