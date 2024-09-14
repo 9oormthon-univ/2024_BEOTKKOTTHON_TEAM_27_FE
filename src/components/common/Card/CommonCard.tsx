@@ -8,16 +8,8 @@ interface PostCardProps {
 
 export default function PostNewCard({ type }: PostCardProps) {
   const navigate = useNavigate();
-  const {
-    title,
-    subTitle,
-    buttonText,
-    navigateTo,
-    backgroundColor,
-    Icon,
-    iconBottom,
-    iconLeft,
-  } = CARD_CONFIG[type];
+  const { title, subTitle, buttonText, navigateTo, backgroundColor, Icon, iconBottom, iconLeft } =
+    CARD_CONFIG[type];
 
   const handlePostCreate = () => {
     navigate(navigateTo);
@@ -32,7 +24,7 @@ export default function PostNewCard({ type }: PostCardProps) {
       </TitleContainer>
 
       <IconContainer bottom={iconBottom} left={iconLeft}>
-        <img src={Icon} alt={Icon} />
+        <img src={Icon} alt={Icon} loading='lazy' />
       </IconContainer>
     </CardContainer>
   );
