@@ -1,5 +1,5 @@
 import { BottomSheet } from 'react-spring-bottom-sheet';
-import { Image, Text } from '../../assets/svg';
+import { Text } from '../../assets/svg';
 import styled from 'styled-components';
 import recreateIcon from '../../assets/Icon/recreate_icon.png';
 
