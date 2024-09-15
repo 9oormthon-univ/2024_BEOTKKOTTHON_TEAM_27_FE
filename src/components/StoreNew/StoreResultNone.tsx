@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Store } from '../../assets/svg';
+import storeIcon from '../../assets/Icon/mystore_icon.png';
 
 interface StoreResultNoneProps {
   title: string;
@@ -15,7 +15,7 @@ export default function StoreResultNone({
 }: StoreResultNoneProps) {
   return (
     <StoreResultNoneContainer height={height} $isClickable={onClick !== undefined}>
-      <Store style={{ width: '40%' }} />
+      <img src={storeIcon} />
       <h3>{title}</h3>
       <p onClick={onClick}>{description}</p>
     </StoreResultNoneContainer>
@@ -39,6 +39,10 @@ const StoreResultNoneContainer = styled.div<{ height?: string; $isClickable?: bo
     color: ${({ theme }) => theme.colors.G_08};
     ${({ theme }) => theme.fonts.ex_01};
     margin: 0.31rem 0;
+
+    > img {
+      width: 40%;
+    }
 
     // Click 가능한 경우,
     cursor: ${({ $isClickable }) => ($isClickable ? 'pointer' : 'none')};

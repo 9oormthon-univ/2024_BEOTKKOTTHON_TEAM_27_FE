@@ -1,6 +1,7 @@
 import { BottomSheet } from 'react-spring-bottom-sheet';
-import { Image, Text } from '../../assets/svg';
 import styled from 'styled-components';
+import recreateIcon from '../../assets/Icon/recreate_icon.png';
+import recreateTextIcon from '../../assets/Icon/text_recreate_icon.png';
 
 interface PostBottomSheetProps {
   open: boolean;
@@ -31,13 +32,13 @@ export default function PostBottomSheet({
         <BottomSheetSelectContainer>
           {type == 'Both' && (
             <BottomSheetSelect onClick={() => onSelect('Image')}>
-              <Image style={{ width: '110px' }} />
+              <img src={recreateIcon} />
               <p>이미지 생성하기</p> <div>{imgCnt}/3</div>
             </BottomSheetSelect>
           )}
 
           <BottomSheetSelect onClick={() => onSelect('Text')}>
-            <Text style={{ width: '110px' }} />
+            <img src={recreateTextIcon} />
             <p>글 생성하기</p> <div>{txtCnt}/3</div>
           </BottomSheetSelect>
         </BottomSheetSelectContainer>
@@ -91,5 +92,9 @@ const BottomSheetSelect = styled.div`
 
   > div {
     ${({ theme }) => theme.fonts.ex_01};
+  }
+
+  > img {
+    width: 110px;
   }
 `;

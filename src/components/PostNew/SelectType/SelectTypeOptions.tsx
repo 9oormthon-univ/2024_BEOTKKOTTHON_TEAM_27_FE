@@ -4,7 +4,8 @@ import { GenderOptionProps } from '../../../types/PostNew';
 import { useOnboardingContext } from '../../../context/PostNew/PostNewContext';
 import NextButton from '../PostFooter/NextButton';
 import { NameInputProps } from '../SelectSns/SelectSns';
-import { IconEventEmoji, IconMenuEmoji } from '../../../assets/svg';
+import IconEvent from '../../../assets/Icon/event_icon.png';
+import IconMenu from '../../../assets/Icon/menu_icon.png';
 
 export default function SelectType(props: NameInputProps) {
   const { onNext } = props;
@@ -26,12 +27,12 @@ export default function SelectType(props: NameInputProps) {
   }
 
   const typeOptions = [
-    { label: '메뉴 홍보', labelSub: 'ex. 신메뉴 홍보', value: '메뉴', image: IconMenuEmoji },
+    { label: '메뉴 홍보', labelSub: 'ex. 신메뉴 홍보', value: '메뉴', image: IconMenu },
     {
       label: '이벤트 홍보',
       labelSub: 'ex. 첫 오픈 할인 이벤트',
       value: '이벤트',
-      image: IconEventEmoji,
+      image: IconEvent,
     },
   ];
 
@@ -44,7 +45,7 @@ export default function SelectType(props: NameInputProps) {
             selected={selectedType === option.value}
             onClick={() => handleMenuSelect(option.value)}
           >
-            <option.image className='nav-icon' />
+            <img src={option.image} alt={option.label} />
             <LabelContainer>
               {option.label}
               <p>{option.labelSub}</p>
@@ -94,8 +95,4 @@ const TypeOption = styled.div<GenderOptionProps>`
   ${({ theme }) => theme.fonts.heading_02};
   ${({ theme, selected }) =>
     selected ? `border: 1px solid ${theme.colors.main}; color: ${theme.colors.main}; ` : ''}
-
-  .nav-icon {
-    width: 3.75rem;
-  }
 `;
