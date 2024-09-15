@@ -16,17 +16,22 @@ export default function PostNewCard({ type }: PostCardProps) {
   };
 
   return (
-    <CardContainer backgroundColor={backgroundColor} onClick={handlePostCreate}>
-      <TitleContainer>
-        <PostTitle type={type}>{title}</PostTitle>
-        <PostSubTitle type={type}>{subTitle}</PostSubTitle>
-        <Button type={type}>{buttonText}</Button>
-      </TitleContainer>
+    <>
+      {/* Preload 이미지 개선 */}
+      <link rel='preload' href={Icon} as='image' />
 
-      <IconContainer bottom={iconBottom} left={iconLeft}>
-        <img src={Icon} alt={Icon} loading='lazy' />
-      </IconContainer>
-    </CardContainer>
+      <CardContainer backgroundColor={backgroundColor} onClick={handlePostCreate}>
+        <TitleContainer>
+          <PostTitle type={type}>{title}</PostTitle>
+          <PostSubTitle type={type}>{subTitle}</PostSubTitle>
+          <Button type={type}>{buttonText}</Button>
+        </TitleContainer>
+
+        <IconContainer bottom={iconBottom} left={iconLeft}>
+          <img src={Icon} alt={title} loading='eager' />
+        </IconContainer>
+      </CardContainer>
+    </>
   );
 }
 
