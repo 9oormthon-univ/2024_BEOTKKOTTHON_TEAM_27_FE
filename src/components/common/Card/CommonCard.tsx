@@ -27,7 +27,7 @@ export default function PostNewCard({ type }: PostCardProps) {
         <IconContainer bottom={iconBottom} left={iconLeft}>
           <picture>
             <source srcSet={`${Icon}`} type='image/webp' />
-            <img src={Icon} alt='Card Icon' />
+            <img src={Icon} alt='Card Icon' width='110' height='110' loading='lazy' />
           </picture>
         </IconContainer>
       </CardContainer>
@@ -46,11 +46,6 @@ const CardContainer = styled.section<{ backgroundColor: string }>`
   margin-bottom: 1rem;
   border-radius: 10px;
   background-color: ${({ backgroundColor, theme }) => theme.colors[backgroundColor]};
-
-  img {
-    width: 110px;
-    height: 110px;
-  }
 `;
 
 const PostTitle = styled.p<{ type: keyof typeof CARD_CONFIG }>`
