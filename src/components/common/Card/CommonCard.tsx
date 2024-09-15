@@ -27,7 +27,7 @@ export default function PostNewCard({ type }: PostCardProps) {
         <IconContainer bottom={iconBottom} left={iconLeft}>
           <picture>
             <source srcSet={`${Icon}`} type='image/webp' />
-            <img src={Icon} alt='Card Icon' width='210' height='210' loading='lazy' />
+            <img src={Icon} alt='Card Icon' />
           </picture>
         </IconContainer>
       </CardContainer>
@@ -75,6 +75,11 @@ const IconContainer = styled.div<{ bottom: string; left: string }>`
   position: relative;
   bottom: ${({ bottom }) => bottom};
   left: ${({ left }) => left};
+
+  > img {
+    width: 210px;
+    height: 210px;
+  }
 `;
 
 const Button = styled.button<{ type: keyof typeof CARD_CONFIG }>`
