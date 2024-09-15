@@ -17,9 +17,6 @@ export default function PostNewCard({ type }: PostCardProps) {
 
   return (
     <>
-      {/* Preload 이미지 개선 */}
-      <link rel='preload' href={Icon} as='image' />
-
       <CardContainer backgroundColor={backgroundColor} onClick={handlePostCreate}>
         <TitleContainer>
           <PostTitle type={type}>{title}</PostTitle>
@@ -28,7 +25,10 @@ export default function PostNewCard({ type }: PostCardProps) {
         </TitleContainer>
 
         <IconContainer bottom={iconBottom} left={iconLeft}>
-          <img src={Icon} alt={title} loading='eager' />
+          <picture>
+            <source srcSet={`${Icon}`} type='image/webp' />
+            <img src={Icon} alt='Card Icon' width='210' height='210' loading='lazy' />
+          </picture>
         </IconContainer>
       </CardContainer>
     </>

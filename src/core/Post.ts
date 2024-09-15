@@ -1,8 +1,8 @@
 import TrendImg from '../assets/Image/trend3.png';
 import TrendImg2 from '../assets/Image/trend4.png';
-import ImgSodong from '../assets/Icon/sodong_icon.png';
-import ImgGuide from '../assets/Icon/guide_icon.png';
-import ImgMyStore from '../assets/Icon/store_icon.png';
+import ImgSodong from '../assets/Icon/sodong_icon.webp';
+import ImgGuide from '../assets/Icon/guide_icon.webp';
+import ImgMyStore from '../assets/Icon/store_icon.webp';
 
 export const POSTING_CHANNEL = Object.freeze({
   INSTAGRAM: `인스타그램`,
