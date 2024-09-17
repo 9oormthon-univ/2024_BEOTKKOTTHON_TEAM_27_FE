@@ -8,34 +8,30 @@ interface PostCardProps {
 
 export default function PostNewCard({ type }: PostCardProps) {
   const navigate = useNavigate();
-  const {
-    title,
-    subTitle,
-    buttonText,
-    navigateTo,
-    backgroundColor,
-    Icon,
-    iconWidth,
-    iconBottom,
-    iconLeft,
-  } = CARD_CONFIG[type];
+  const { title, subTitle, buttonText, navigateTo, backgroundColor, Icon, iconBottom, iconLeft } =
+    CARD_CONFIG[type];
 
   const handlePostCreate = () => {
     navigate(navigateTo);
   };
 
   return (
-    <CardContainer backgroundColor={backgroundColor} onClick={handlePostCreate}>
-      <TitleContainer>
-        <PostTitle type={type}>{title}</PostTitle>
-        <PostSubTitle type={type}>{subTitle}</PostSubTitle>
-        <Button type={type}>{buttonText}</Button>
-      </TitleContainer>
+    <>
+      <CardContainer backgroundColor={backgroundColor} onClick={handlePostCreate}>
+        <TitleContainer>
+          <PostTitle type={type}>{title}</PostTitle>
+          <PostSubTitle type={type}>{subTitle}</PostSubTitle>
+          <Button type={type}>{buttonText}</Button>
+        </TitleContainer>
 
-      <IconContainer bottom={iconBottom} left={iconLeft}>
-        <Icon width={iconWidth} />
-      </IconContainer>
-    </CardContainer>
+        <IconContainer bottom={iconBottom} left={iconLeft}>
+          <picture>
+            <source srcSet={`${Icon}`} type='image/webp' />
+            <img src={Icon} alt='Card Icon' width='110' height='110' loading='lazy' />
+          </picture>
+        </IconContainer>
+      </CardContainer>
+    </>
   );
 }
 
@@ -50,11 +46,6 @@ const CardContainer = styled.section<{ backgroundColor: string }>`
   margin-bottom: 1rem;
   border-radius: 10px;
   background-color: ${({ backgroundColor, theme }) => theme.colors[backgroundColor]};
-
-  img {
-    width: 172px;
-    height: 168px;
-  }
 `;
 
 const PostTitle = styled.p<{ type: keyof typeof CARD_CONFIG }>`
@@ -79,6 +70,11 @@ const IconContainer = styled.div<{ bottom: string; left: string }>`
   position: relative;
   bottom: ${({ bottom }) => bottom};
   left: ${({ left }) => left};
+
+  > img {
+    width: 210px;
+    height: 210px;
+  }
 `;
 
 const Button = styled.button<{ type: keyof typeof CARD_CONFIG }>`
